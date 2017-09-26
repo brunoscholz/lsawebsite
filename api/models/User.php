@@ -11,7 +11,7 @@ use yii\web\Request as WebRequest;
 /**
  * Class User
  *
- * @property integer $id
+ * @property integer $userId
  * @property string $username
  * @property string $auth_key
  * @property integer $access_token_expired_at
@@ -38,10 +38,21 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 	const ROLE_STAFF = 50;
 	const ROLE_ADMIN = 99;
 
-    const STATUS_DELETED = -1;
-    const STATUS_DISABLED = 0;
-    const STATUS_PENDING = 1;
-    const STATUS_ACTIVE = 10;
+    const USER_EXISTS = '401';
+
+    const STATUS_ACTIVE = 'ACT';
+    const STATUS_DELETED = 'REM';
+    const STATUS_DISABLED = 'BAN';
+    const STATUS_PENDING = 'PEN';
+
+    public static function statusArray() {
+        return [
+            self::STATUS_ACTIVE,
+            self::STATUS_NOT_VERIFIED,
+            self::STATUS_BANNED,
+            self::STATUS_REMOVED,
+        ];
+    }
 
     /** @var  string to store JSON web token */
     public $access_token;
@@ -54,7 +65,15 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
      */
     public static function tableName()
     {
-        return 'user';
+        return '{{%user}}';
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public static function primaryKey()
+    {
+        return ['userId'];
     }
 
 
@@ -62,6 +81,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     public function attributeLabels()
     {
         return [
+            'userId'            => Yii::t('app', 'User ID'),
             'username'          => Yii::t('app', 'Username'),
             'email'             => Yii::t('app', 'Email'),
             'registration_ip'   => Yii::t('app', 'Registration ip'),
@@ -91,7 +111,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     public function fields()
     {
         $fields = [
-            'id',
+            'userId',
             'username',
             'email',
             'unconfirmed_email',
@@ -312,14 +332,14 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 
         } elseif($request->isPut) {
             // get current user
-            $user = User::findIdentityWithoutValidation($this->id);
+            $user = User::findIdentityWithoutValidation($this->userId);
             if($user == null) {
                 $this->addError($attribute, Yii::t('app', 'The system cannot find requested user.'));
             } else {
                 // check username is already taken except own username
                 $existingUser = User::find()
                     ->where(['=', 'username', $this->$attribute])
-                    ->andWhere(['!=', 'id', $this->id])
+                    ->andWhere(['!=', 'userId', $this->userId])
                     ->count();
                 if($existingUser > 0) {
                     $this->addError($attribute, Yii::t('app', 'The username has already been taken.'));
@@ -355,7 +375,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 
         } elseif($request->isPut) {
             // get current user
-            $user = User::findIdentityWithoutValidation($this->id);
+            $user = User::findIdentityWithoutValidation($this->userId);
 
             if($user == null) {
                 $this->addError($attribute, Yii::t('app', 'The system cannot find requested user.'));
@@ -363,7 +383,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
                 // check username is already taken except own username
                 $existingUser = User::find()
                     ->where(['=', 'email', $this->$attribute])
-                    ->andWhere(['!=', 'id', $this->id])
+                    ->andWhere(['!=', 'userId', $this->userId])
                     ->count();
                 if($existingUser > 0) {
                     $this->addError($attribute, Yii::t('app', 'The email has already been taken.'));
@@ -398,7 +418,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
      */
     public static function findIdentity($id)
     {
-        $user = static::findOne(['id' => $id, 'status' => self::STATUS_ACTIVE]);
+        $user = static::findOne(['userId' => $id, 'status' => self::STATUS_ACTIVE]);
         if($user !== null &&
             ($user->getIsBlocked() == true || $user->getIsConfirmed() == false)) {
             return null;
@@ -407,7 +427,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     }
 
     public static function findIdentityWithoutValidation($id){
-        $user = static::findOne(['id' => $id]);
+        $user = static::findOne(['userId' => $id]);
 
         return $user;
     }
@@ -440,12 +460,14 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 	 */
 	public static function findByUsernameWithRoles($username, $roles)
 	{
-		/** @var User $user */
-		$user = static::find()->where([
-			'username'  =>  $username,
-			'status'    =>  self::STATUS_ACTIVE,
+        $query = static::find()->where([
+            'username'  =>  $username,
+            'status'    =>  self::STATUS_ACTIVE,
 
-		])->andWhere(['in', 'role', $roles])->one();
+        ])->andWhere(['in', 'role', $roles]);
+
+		/** @var User $user */
+		$user = $query->one();
 
 
 		if($user !== null &&
@@ -496,7 +518,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
      */
     public function getId()
     {
-        return $this->getPrimaryKey();
+        return $this->userId;
     }
 
     /**
@@ -642,16 +664,16 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 			$roleName = $this->getRoleName();
 
 			$authItem = $authManager->getRole($roleName);
-			$authManager->assign($authItem, $this->getId());
+			$authManager->assign($authItem, $this->userId);
 		}
 		// When update existing user, revoke old role and assign new role
 		else {
 			if(isset($changedAttributes['role']) === true) {
 				// Get role name
 				$roleName = $this->getRoleName();
-				$authManager->revokeAll($this->getId());
+				$authManager->revokeAll($this->userId);
 				$authItem = $authManager->getRole($roleName);
-				$authManager->assign($authItem, $this->getId());
+				$authManager->assign($authItem, $this->userId);
 			}
 		}
 		// ---- Finish to process role
@@ -759,7 +781,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 	{
 		/** @var User $user */
 		$user = static::find()->where([
-			'=', 'id', $id
+			'=', 'userId', $id
 		])
           ->andWhere([
               '=', 'status',  self::STATUS_ACTIVE

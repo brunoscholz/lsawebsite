@@ -30,6 +30,18 @@ export const routes: Routes = [
         component:FrontendLayoutComponent,
         children: [
             {
+                path: 'search',
+                loadChildren: 'app/search/search.module#SearchModule'
+            },
+            {
+                path: 'search/:term',
+                loadChildren: 'app/search/search.module#SearchModule'
+            },
+            {
+                path: 'school',
+                loadChildren: 'app/school/school.module#SchoolModule'
+            },
+            {
                 path: 'login',
                 loadChildren: 'app/login/login.module#LoginModule'
             },

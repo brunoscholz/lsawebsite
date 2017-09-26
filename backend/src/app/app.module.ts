@@ -4,8 +4,9 @@ import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 import {HttpModule} from '@angular/http';
 
 import {AppComponent} from './app.component';
-import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
-import {TabsModule} from 'ngx-bootstrap/tabs';
+//import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
+import { DropdownModule } from 'ng2-bootstrap';
+import { TabsModule } from 'ng2-bootstrap/tabs';
 import {NAV_DROPDOWN_DIRECTIVES} from './shared/nav-dropdown.directive';
 
 import {ChartsModule} from 'ng2-charts/ng2-charts';
@@ -33,11 +34,14 @@ import {StaffDataService} from './model/staff-data.service';
 import {UserDataService} from './model/user-data.service';
 import {SettingDataService} from './model/setting-data.service';
 
+import { SchoolDataService } from './model/school-data.service';
+import { CourseDataService } from './model/course-data.service';
+
 @NgModule({
     imports: [
         BrowserModule,
         AppRoutingModule,
-        BsDropdownModule.forRoot(),
+        DropdownModule.forRoot(),
         TabsModule.forRoot(),
         ChartsModule,
         HttpModule,
@@ -65,6 +69,8 @@ import {SettingDataService} from './model/setting-data.service';
         SettingDataService,
         StaffDataService,
         UserDataService,
+        SchoolDataService,
+        CourseDataService,
     ],
     bootstrap: [AppComponent]
 })

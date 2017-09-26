@@ -8,7 +8,8 @@ import {Observable} from 'rxjs/Rx';
 
 import {GlobalService} from './global.service';
 import {StaffService} from './staff.service';
-import {User} from './user';
+
+import {User, Instructor, Student} from './general';
 import {AuthHttp} from 'angular2-jwt';
 
 
@@ -39,7 +40,7 @@ export class UserDataService {
     }
 
     // DELETE /v1/user/1
-    deleteUserById(id:number):Observable<boolean>{
+    deleteUserById(id:string):Observable<boolean>{
         let headers = this.getHeaders();
 
         return this._authHttp.delete(
@@ -60,8 +61,121 @@ export class UserDataService {
         let headers = this.getHeaders();
 
         return this._authHttp.put(
-            this._globalService.apiHost+'/user/'+user.id,
+            this._globalService.apiHost+'/user/'+user.userId,
             JSON.stringify(user),
+            {
+                headers: headers
+            }
+        )
+            .map(response => response.json())
+            .map((response) => {
+                return response;
+            })
+            .catch(this.handleError);
+    }
+
+    /* INSTRUCTORS */
+    // POST /v1/instructor
+    addInstructor(instructor:Instructor):Observable<any>{
+        let headers = this.getHeaders();
+
+        let payload = {
+            "Instructor": {"name": instructor.name, "expertise": instructor.expertise},
+            "User": {"username": instructor.user.username,"email": instructor.user.email, "password": instructor.user.password}
+        }
+
+        return this._authHttp.post(
+            this._globalService.apiHost+'/instructor',
+            JSON.stringify(payload),
+            {
+                headers: headers
+            }
+        )
+            .map(response => response.json())
+            .map((response) => {
+                return response;
+            })
+            .catch(this.handleError);
+    }
+
+    // DELETE /v1/instructor/1
+    deleteInstructorById(id:string):Observable<boolean>{
+        let headers = this.getHeaders();
+
+        return this._authHttp.delete(
+            this._globalService.apiHost+'/instructor/'+id,
+            {
+                headers: headers
+            }
+        )
+            .map(response => response.json())
+            .map((response) => {
+                return response;
+            })
+            .catch(this.handleError);
+    }
+
+    // PUT /v1/user/1
+    updateInstructorById(instructor:Instructor):Observable<any>{
+        let headers = this.getHeaders();
+
+        return this._authHttp.put(
+            this._globalService.apiHost+'/instructor/'+instructor.instructorId,
+            JSON.stringify(instructor),
+            {
+                headers: headers
+            }
+        )
+            .map(response => response.json())
+            .map((response) => {
+                return response;
+            })
+            .catch(this.handleError);
+    }
+
+    /* STUDENTS */
+    // POST /v1/student
+    addStudent(student:Student):Observable<any>{
+        let headers = this.getHeaders();
+
+        return this._authHttp.post(
+            this._globalService.apiHost+'/student',
+            JSON.stringify(student),
+            {
+                headers: headers
+            }
+        )
+            .map(response => response.json())
+            .map((response) => {
+                return response;
+            })
+            .catch(this.handleError);
+    }
+
+    // DELETE /v1/student/1
+    deleteStudentById(id:string):Observable<boolean>{
+        let headers = this.getHeaders();
+
+        return this._authHttp.delete(
+            this._globalService.apiHost+'/student/'+id,
+            {
+                headers: headers
+            }
+        )
+            .map(response => response.json())
+            .map((response) => {
+                return response;
+            })
+            .catch(this.handleError);
+    }
+
+    // PUT /v1/student/1
+    updateStudentById(student:Student):Observable<any>{
+        let headers = this.getHeaders();
+
+        return this._authHttp.put(
+            this._globalService.apiHost+'/student/'+student.studentId,
+            JSON.stringify(student),
             {
                 headers: headers
             }
@@ -84,7 +198,7 @@ export class UserDataService {
         let headers = this.getHeaders();
 
         return this._authHttp.get(
-            this._globalService.apiHost+'/user?sort=-id',
+            this._globalService.apiHost+'/user',
             {
                 headers: headers
             }
@@ -96,8 +210,55 @@ export class UserDataService {
             .catch(this.handleError);
     }
 
+    // GET /v1/user
+    getAllInstructors(): Observable<Instructor[]> {
+        let headers = this.getHeaders();
+
+
+        //this._globalService.apiHost+'/user?'+encodeURIComponent(JSON.stringify({ role: 60 })),
+        //+this.obj_to_query({ role: 60 })
+        return this._authHttp.get(
+            this._globalService.apiHost+'/instructor',
+            {
+                headers: headers
+            }
+        )
+            .map(response => response.json())
+            .map((response) => {
+                return <Instructor[]>response.data;
+            })
+            .catch(this.handleError);
+    }
+
+    obj_to_query(obj) {
+        var parts = [];
+        for (var key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                parts.push(encodeURIComponent(key) + '=' + encodeURIComponent(obj[key]));
+            }
+        }
+        return "?" + parts.join('&');
+    }
+
+    // GET /v1/user
+    getAllStudents(): Observable<Student[]> {
+        let headers = this.getHeaders();
+
+        return this._authHttp.get(
+            this._globalService.apiHost+'/student',
+            {
+                headers: headers
+            }
+        )
+            .map(response => response.json())
+            .map((response) => {
+                return <Student[]>response.data;
+            })
+            .catch(this.handleError);
+    }
+
     // GET /v1/user/1
-    getUserById(id:number):Observable<User> {
+    getUserById(id:string):Observable<User> {
         let headers = this.getHeaders();
 
         return this._authHttp.get(
@@ -113,6 +274,39 @@ export class UserDataService {
             .catch(this.handleError);
     }
 
+    // GET /v1/user/1
+    getInstructorById(id:string):Observable<Instructor> {
+        let headers = this.getHeaders();
+
+        return this._authHttp.get(
+            this._globalService.apiHost+'/instructor/'+id,
+            {
+                headers: headers
+            }
+        )
+            .map(response => response.json())
+            .map((response) => {
+                return <Instructor>response.data;
+            })
+            .catch(this.handleError);
+    }
+
+    // GET /v1/user/1
+    getStudentById(id:string):Observable<Student> {
+        let headers = this.getHeaders();
+
+        return this._authHttp.get(
+            this._globalService.apiHost+'/student/'+id,
+            {
+                headers: headers
+            }
+        )
+            .map(response => response.json())
+            .map((response) => {
+                return <Student>response.data;
+            })
+            .catch(this.handleError);
+    }
 
     private handleError (error: Response | any) {
 

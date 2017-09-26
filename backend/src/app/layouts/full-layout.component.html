@@ -7,6 +7,12 @@
             <a class="nav-link" routerLinkActive="active" [routerLink]="['/dashboard']">Dashboard</a>
         </li>
         <li class="nav-item px-3">
+            <a class="nav-link" routerLinkActive="active" [routerLink]="['/school']">Schools</a>
+        </li>
+        <li class="nav-item px-3">
+            <a class="nav-link" routerLinkActive="active" [routerLink]="['/course']">Courses</a>
+        </li>
+        <li class="nav-item px-3">
             <a class="nav-link" routerLinkActive="active" [routerLink]="['/staff']">Staffs</a>
         </li>
         <li class="nav-item px-3">
@@ -29,7 +35,6 @@
     </ul>
 </header>
 
-
 <div class="app-body">
     <div class="sidebar">
         <nav class="sidebar-nav">
@@ -39,12 +44,29 @@
                 </li>
                 <li class="divider"></li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/staff']"><i class="icon-user-following"></i> Staffs </a>
+                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/school']"><i class="fa fa-institution"></i> Schools </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/course']"><i class="fa fa-calendar"></i> Courses </a>
+                </li>
+
+
+                <li class="nav-item nav-dropdown" routerLinkActive="open" appNavDropdown>
+                    <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-people"></i> People </a>
+                    <ul class="nav-dropdown-items">
+                        <li class="nav-item">
+                            <a class="nav-link" routerlinkactive="active" [routerLink]="['/instructor']"><i class="fa fa-info"></i> Instructors </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerlinkactive="active" [routerLink]="['/student']"><i class="fa fa-mortar-board"></i> Students </a>
+                        </li>
+                    </ul>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/user']"><i class="icon-people"></i> Users </a>
+                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/staff']"><i class="icon-user-following"></i> Staffs </a>
                 </li>
+
                 <li class="nav-item">
                     <a class="nav-link" routerLinkActive="active" [routerLink]="['/setting']"><i class="icon-settings"></i> Settings</a>
                 </li>
@@ -72,7 +94,14 @@
 
 </div>
 
-<footer class="app-footer">
-    <a href="http://coreui.io">CoreUI</a> &copy; 2017 creativeLabs.
-    <span class="float-right">Powered by <a href="http://coreui.io">CoreUI</a>. Customized by CK Design &amp; Development.</span>
+<footer class="footer">
+    <div class="container">
+        <div class="col-md-12 text-center">
+            <div class="brand-title">
+                <img src="assets/img/logo.png"/><br>
+                <span class="brand-name">Language Schools</span><br>
+                <span class="brand-location">AUSTRALIA</span><br>
+            </div>
+        </div>
+    </div>
 </footer>

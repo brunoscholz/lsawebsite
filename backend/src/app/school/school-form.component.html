@@ -1,0 +1,281 @@
+<div class="row" *ngIf="_errorMessage">
+  <div class="col-sm-12">
+    <p class="alert alert-danger">{{_errorMessage}}</p>
+  </div>
+</div>
+
+<div class="animated fadeIn" *ngIf="!_school && !_errorMessage">
+  <span class="spinner"></span>
+</div>
+
+<div class="animated fadeIn" *ngIf="_mode">
+  <div class="row">
+        <div class="col-sm-12">
+            <form [formGroup]="_form" (ngSubmit)="onSubmit()">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-header-create" *ngIf="_mode == 'create'">
+                            <strong>Register School</strong>
+                        </div>
+                        <div class="update" *ngIf="_mode == 'update'">
+                            <strong>School - {{_school.name}}</strong><br />
+                            <small>Update School</small>
+                        </div>
+                    </div>
+
+                    <div class="card-block">
+
+                        <h1>User Credentials</h1>
+                        <div class="form-group-wrapper">
+                            <div class="form-group row" [ngClass]="{'has-danger': !_isValid('user.username')}">
+                                <label class="col-sm-12" for="username">Username <span class="required">*</span></label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="username" placeholder="Enter username" [formControl]="_form.controls['user'].controls[0].controls['username']" [ngClass]="{'form-control-danger': !_isValid('user.username')}" [(ngModel)]="_school.user.username" />
+                                </div><div class="clearfix"></div>
+                                <div class="col-sm-12" *ngIf="!_formErrors.username.valid">
+                                    <span class="help-block help-block-error">{{_formErrors.username.message}}</span>
+                                </div>
+                                <div class="col-sm-12">
+                                    <p class="help-text">* Username only allows alphanumeric, underscore and dashboard between 3 and 15 characters. i.e. sampleusername</p>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="form-group-wrapper">
+                            <div class="form-group row" [ngClass]="{'has-danger': !_isValid('user.email')}">
+                                <label class="col-sm-12" for="email">Email Address <span class="required">*</span></label>
+                                <div class="col-sm-8">
+                                    <input type="email" class="form-control" id="email" placeholder="Enter the email address" [formControl]="_form.controls['user'].controls[0].controls['email']" [ngClass]="{'form-control-danger': !_isValid('user.email')}" [(ngModel)]="_school.user.email" />
+                                </div><div class="clearfix"></div>
+                                <div class="col-sm-12" *ngIf="!_formErrors.email.valid">
+                                    <span class="help-block help-block-error">{{_formErrors.email.message}}</span>
+                                </div>
+                                <div class="col-sm-12">
+                                    <p class="help-text">* Email must be valid email address. i.e. sample@username.com.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group-wrapper">
+                            <div class="form-group row" [ngClass]="{'has-danger': !_isValid('user.password')}">
+                                <label class="col-sm-12" for="password">Password</label>
+                                <div class="col-sm-6">
+                                    <input type="password" class="form-control" id="password" placeholder="Enter the password" [formControl]="_form.controls['user'].controls[0].controls['password']" [ngClass]="{'form-control-danger': !_isValid('user.password')}" [(ngModel)]="_school.user.password"/>
+                                </div><div class="clearfix"></div>
+                                <div class="col-sm-12" *ngIf="!_formErrors.password.valid">
+                                    <span class="help-block help-block-error">{{_formErrors.password.message}}</span>
+                                </div>
+                                <div class="col-sm-12">
+                                    <p class="help-text">* Password must be more than 6 characters.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group-wrapper">
+                            <div class="form-group row" [ngClass]="{'has-danger': !_isValid('user.confirmPassword')}">
+                                <label class="col-sm-12" for="confirmPassword">Confirm Password</label>
+                                <div class="col-sm-6">
+                                    <input type="password" class="form-control" id="confirmPassword" placeholder="Enter the password" [formControl]="_form.controls['user'].controls[0].controls['confirmPassword']" [ngClass]="{'form-control-danger': !_isValid('user.confirmPassword')}" [(ngModel)]="_confirmPassword"/>
+                                </div><div class="clearfix"></div>
+                                <div class="col-sm-12" *ngIf="!_formErrors.confirmPassword.valid">
+                                    <span class="help-block help-block-error">{{_formErrors.confirmPassword.message}}</span>
+                                </div>
+                                <div class="col-sm-12">
+                                    <p class="help-text">* Password must be more than 6 characters.</p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <h1>School Information</h1>
+                        <div class="form-group-wrapper">
+                            <div class="form-group row" [ngClass]="{'has-danger': !_isValid('name')}">
+                                <label class="col-sm-12" for="name">Name <span class="required">*</span></label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="name" placeholder="Enter your name" [formControl]="_form.controls['name']" [ngClass]="{'form-control-danger': !_isValid('name')}" [(ngModel)]="_school.name" />
+                                </div><div class="clearfix"></div>
+                                <div class="col-sm-12" *ngIf="!_formErrors.name.valid">
+                                    <span class="help-block help-block-error">{{_formErrors.name.message}}</span>
+                                </div>
+                                <div class="col-sm-12">
+                                    <p class="help-text">* Name only allows letters, to a maximum of 80 characters.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group-wrapper">
+                            <div class="form-group row" [ngClass]="{'has-danger': !_isValid('about')}">
+                                <label class="col-sm-12" for="about">About </label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="about" placeholder="Short description" [formControl]="_form.controls['about']" [ngClass]="{'form-control-danger': !_isValid('about')}" [(ngModel)]="_school.about" />
+                                </div><div class="clearfix"></div>
+                                <div class="col-sm-12" *ngIf="!_formErrors.about.valid">
+                                    <span class="help-block help-block-error">{{_formErrors.about.message}}</span>
+                                </div>
+                                <div class="col-sm-12">
+                                    <p class="help-text"> </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group-wrapper">
+                            <div class="form-group row" [ngClass]="{'has-danger': !_isValid('description')}">
+                                <label class="col-sm-12" for="description">Description <span class="required">*</span></label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="description" placeholder="Enter a longer description" [formControl]="_form.controls['description']" [ngClass]="{'form-control-danger': !_isValid('description')}" [(ngModel)]="_school.description" />
+                                </div><div class="clearfix"></div>
+                                <div class="col-sm-12" *ngIf="!_formErrors.description.valid">
+                                    <span class="help-block help-block-error">{{_formErrors.description.message}}</span>
+                                </div>
+                                <div class="col-sm-12">
+                                    <p class="help-text"> </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group-wrapper">
+                            <div class="form-group row" [ngClass]="{'has-danger': !_isValid('abn')}">
+                                <label class="col-sm-12" for="abn">ABN <span class="required">*</span></label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="abn" placeholder="Enter the ABN" [formControl]="_form.controls['abn']" [ngClass]="{'form-control-danger': !_isValid('abn')}" [(ngModel)]="_school.abn" />
+                                </div><div class="clearfix"></div>
+                                <div class="col-sm-12" *ngIf="!_formErrors.abn.valid">
+                                    <span class="help-block help-block-error">{{_formErrors.abn.message}}</span>
+                                </div>
+                                <div class="col-sm-12">
+                                    <p class="help-text"> </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group-wrapper">
+                            <div class="form-group row" [ngClass]="{'has-danger': !_isValid('cricos')}">
+                                <label class="col-sm-12" for="cricos">CRICOS <span class="required">*</span></label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="cricos" placeholder="Enter the CRICOS number" [formControl]="_form.controls['cricos']" [ngClass]="{'form-control-danger': !_isValid('cricos')}" [(ngModel)]="_school.cricos" />
+                                </div><div class="clearfix"></div>
+                                <div class="col-sm-12" *ngIf="!_formErrors.cricos.valid">
+                                    <span class="help-block help-block-error">{{_formErrors.cricos.message}}</span>
+                                </div>
+                                <div class="col-sm-12">
+                                    <p class="help-text"> </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h1>Location</h1>
+                        <!-- location -->
+                        <div class="form-group-wrapper">
+                            <div class="form-group row" [ngClass]="{'has-danger': !_isValid('location.address')}">
+                                <label class="col-sm-12" for="address">Address <span class="required">*</span></label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="address" placeholder="Enter your address" [formControl]="_form.controls['location'].controls[0].controls['address']" [ngClass]="{'form-control-danger': !_isValid('location.address')}" [(ngModel)]="_school.location.address" />
+                                </div><div class="clearfix"></div>
+                                <div class="col-sm-12" *ngIf="!_formErrors.address.valid">
+                                    <span class="help-block help-block-error">{{_formErrors.address.message}}</span>
+                                </div>
+                                <div class="col-sm-12">
+                                    <p class="help-text">* Street name</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group-wrapper">
+                            <div class="form-group row" [ngClass]="{'has-danger': !_isValid('location.streetNumber')}">
+                                <label class="col-sm-12" for="streetNumber">Street Number <span class="required">*</span></label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="streetNumber" placeholder="Enter the street number" [formControl]="_form.controls['location'].controls[0].controls['streetNumber']" [ngClass]="{'form-control-danger': !_isValid('location.streetNumber')}" [(ngModel)]="_school.location.streetNumber" />
+                                </div><div class="clearfix"></div>
+                                <div class="col-sm-12" *ngIf="!_formErrors.streetNumber.valid">
+                                    <span class="help-block help-block-error">{{_formErrors.streetNumber.message}}</span>
+                                </div>
+                                <div class="col-sm-12">
+                                    <p class="help-text">* Street number</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group-wrapper">
+                            <div class="form-group row" [ngClass]="{'has-danger': !_isValid('location.neighborhood')}">
+                                <label class="col-sm-12" for="neighborhood">Neighborhood <span class="required">*</span></label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="neighborhood" placeholder="Enter the neighborhood" [formControl]="_form.controls['location'].controls[0].controls['neighborhood']" [ngClass]="{'form-control-danger': !_isValid('location.neighborhood')}" [(ngModel)]="_school.location.neighborhood" />
+                                </div><div class="clearfix"></div>
+                                <div class="col-sm-12" *ngIf="!_formErrors.neighborhood.valid">
+                                    <span class="help-block help-block-error">{{_formErrors.neighborhood.message}}</span>
+                                </div>
+                                <div class="col-sm-12">
+                                    <p class="help-text"> </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group-wrapper">
+                            <div class="form-group row" [ngClass]="{'has-danger': !_isValid('location.city')}">
+                                <label class="col-sm-12" for="city">City <span class="required">*</span></label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="city" placeholder="Enter the city" [formControl]="_form.controls['location'].controls[0].controls['city']" [ngClass]="{'form-control-danger': !_isValid('location.city')}" [(ngModel)]="_school.location.city" />
+                                </div><div class="clearfix"></div>
+                                <div class="col-sm-12" *ngIf="!_formErrors.city.valid">
+                                    <span class="help-block help-block-error">{{_formErrors.city.message}}</span>
+                                </div>
+                                <div class="col-sm-12">
+                                    <p class="help-text">* City name</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group-wrapper">
+                            <div class="form-group row">
+                                <label class="col-sm-12" for="state">State <span class="required">*</span></label>
+                                <div class="col-sm-6">
+                                    <select class="form-control" id="state" [formControl]="_form.controls['location'].controls[0].controls['state']" [ngClass]="{'form-control-danger': !_isValid('location.state')}" [(ngModel)]="_school.location.state">
+                                      <option value="0" selected> --- </option>
+                                        <option *ngFor="let state of _states" [value]="state.value" [selected]="">{{state.label}}</option>
+                                    </select>
+                                </div><div class="clearfix"></div>
+                                <div class="col-sm-12" *ngIf="!_formErrors.state.valid">
+                                    <span class="help-block help-block-error">{{_formErrors.state.message}}</span>
+                                </div>
+                                <div class="col-sm-12">
+                                    <p class="help-text">* State name</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group-wrapper">
+                            <div class="form-group row" [ngClass]="{'has-danger': !_isValid('location.postcode')}">
+                                <label class="col-sm-12" for="postcode">Post Code <span class="required">*</span></label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="postcode" placeholder="Enter the post code" [formControl]="_form.controls['location'].controls[0].controls['postcode']" [ngClass]="{'form-control-danger': !_isValid('location.postcode')}" [(ngModel)]="_school.location.postcode" />
+                                </div><div class="clearfix"></div>
+                                <div class="col-sm-12" *ngIf="!_formErrors.postcode.valid">
+                                    <span class="help-block help-block-error">{{_formErrors.postcode.message}}</span>
+                                </div>
+                                <div class="col-sm-12">
+                                    <p class="help-text"> </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ./ location -->
+
+                    </div>
+
+                    <div class="card-footer">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <button type="submit" class="btn btn-sm btn-primary" ><i class="fa fa-dot-circle-o"></i> Save</button>
+                                <div *ngIf="_submitted" class="spinner"></div>
+                            </div>
+                            <div class="col-sm-6 text-right">
+                                <a [routerLink]="['/school']" class="btn btn-sm btn-warning"><i class="fa fa-arrow-left"></i> Back to list</a>
+                            </div>
+                            <div *ngIf="_errorMessage" class="col-xs-12 error-block mt-h">
+                                <div class="alert alert-danger">{{_errorMessage}}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

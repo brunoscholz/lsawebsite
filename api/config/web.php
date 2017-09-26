@@ -51,37 +51,80 @@ $config = [
             'rules' => [
                 'ping'  =>  'site/ping',
                 [
-	                'class'         => 'yii\rest\UrlRule',
-	                'controller'    => 'v1/user',
-	                'pluralize'     => false,
-	                'tokens' => [
-		                '{id}'             => '<id:\d+>',
-	                ],
-	                'extraPatterns' => [
-		                'OPTIONS {id}'      =>  'options',
-		                'POST login'        =>  'login',
-		                'OPTIONS login'     =>  'options',
-		                'POST signup'       =>  'signup',
-		                'OPTIONS signup'    =>  'options',
-		                'POST confirm'      =>  'confirm',
-		                'OPTIONS confirm'   =>  'options',
-		                'POST password-reset-request'       =>  'password-reset-request',
-		                'OPTIONS password-reset-request'    =>  'options',
-		                'POST password-reset-token-verification'       =>  'password-reset-token-verification',
-		                'OPTIONS password-reset-token-verification'    =>  'options',
-		                'POST password-reset'       =>  'password-reset',
-		                'OPTIONS password-reset'    =>  'options',
-		                'GET me'            =>  'me',
-		                'POST me'           =>  'me-update',
-		                'OPTIONS me'        =>  'options',
-	                ]
+                    'class'         => 'yii\rest\UrlRule',
+                    'controller'    => 'v1/search',
+                    'pluralize'     => false,
+                    'tokens' => [
+                        '{q}'             => '<q:\w+>',
+                    ],
+                    'extraPatterns' => [
+                        'GET search'      =>  'search'
+                    ]
+                ],
+                [
+                    'class'         => 'yii\rest\UrlRule',
+                    'controller'    => 'v1/school',
+                    'pluralize'     => false,
+                    'tokens' => [
+                        '{id}'             => '<id:\w+>',
+                    ],
+                ],
+                [
+                    'class'         => 'yii\rest\UrlRule',
+                    'controller'    => 'v1/course',
+                    'pluralize'     => false,
+                    'tokens' => [
+                        '{id}'             => '<id:\w+>',
+                    ],
+                ],
+                [
+                    'class'         => 'yii\rest\UrlRule',
+                    'controller'    => 'v1/student',
+                    'pluralize'     => false,
+                    'tokens' => [
+                        '{id}'             => '<id:\w+>',
+                    ],
+                ],
+                [
+                    'class'         => 'yii\rest\UrlRule',
+                    'controller'    => 'v1/instructor',
+                    'pluralize'     => false,
+                    'tokens' => [
+                        '{id}'             => '<id:\w+>',
+                    ],
+                ],
+                [
+                    'class'         => 'yii\rest\UrlRule',
+                    'controller'    => 'v1/user',
+                    'pluralize'     => false,
+                    'tokens' => [
+                        '{id}'             => '<id:\w+>',
+                    ],
+                    'extraPatterns' => [
+                        'OPTIONS {id}'      =>  'options',
+                        'POST login'        =>  'login',
+                        'OPTIONS login'     =>  'options',
+                        'POST signup'       =>  'signup',
+                        'OPTIONS signup'    =>  'options',
+                        'POST confirm'      =>  'confirm',
+                        'OPTIONS confirm'   =>  'options',
+                        'POST password-reset-request'       =>  'password-reset-request',
+                        'OPTIONS password-reset-request'    =>  'options',
+                        'POST password-reset-token-verification'       =>  'password-reset-token-verification',
+                        'OPTIONS password-reset-token-verification'    =>  'options',
+                        'POST password-reset'       =>  'password-reset',
+                        'OPTIONS password-reset'    =>  'options',
+                        'GET me'            =>  'me',
+                        'POST me'           =>  'me-update',
+                        'OPTIONS me'        =>  'options',
+                    ],
                 ],
                 [
                     'class'         => 'yii\rest\UrlRule',
                     'controller'    => 'v1/staff',
                     'pluralize'     => false,
                     'tokens' => [
-                        '{id}'             => '<id:\d+>',
+                        '{id}'             => '<id:\w+>',
                     ],
                     'extraPatterns' => [
                         'OPTIONS {id}'              =>  'options',
@@ -89,7 +132,7 @@ $config = [
                         'OPTIONS login'             =>  'options',
                         'GET get-permissions'       =>  'get-permissions',
                         'OPTIONS get-permissions'   =>  'options',
-                    ]
+                    ],
                 ],
                 [
                     'class'         => 'yii\rest\UrlRule',
@@ -100,21 +143,21 @@ $config = [
                     ],
                     'extraPatterns' => [
                         'GET public'       =>  'public',
-                        'OPTIONS public'    =>  'options',
-                    ]
+                        'OPTIONS public'   =>  'options',
+                    ],
                 ],
                 [
-	                'class'         => 'yii\rest\UrlRule',
-	                'controller'    => 'v1/page',
-	                'pluralize'     => false,
-	                'tokens'        => [
-	                ],
-	                'extraPatterns' => [
-		                'GET sse'       =>  'sse',
-		                'OPTIONS sse'    =>  'sse',
-	                ]
+                    'class'         => 'yii\rest\UrlRule',
+                    'controller'    => 'v1/page',
+                    'pluralize'     => false,
+                    'tokens'        => [
+                    ],
+                    'extraPatterns' => [
+                        'GET sse'       =>  'sse',
+                        'OPTIONS sse'    =>  'sse',
+                    ],
                 ],
-            ]
+            ],
         ],
         'response' => [
             'class' => 'yii\web\Response',
@@ -130,7 +173,6 @@ $config = [
                 if(is_string($responseData) && json_decode($responseData)) {
                     $responseData = json_decode($responseData, true);
                 }
-
 
                 if($response->statusCode >= 200 && $response->statusCode <= 299) {
                     $response->data = [
@@ -151,7 +193,14 @@ $config = [
         ],
         'sse' => [
 	        'class' => \odannyc\Yii2SSE\LibSSE::class
-        ]
+        ],
+        'search' => [
+            'class' => 'app\components\Search',
+            'models' => [
+                'app\models\Course',
+                'app\models\School',
+            ],
+        ],
 
     ],
     'modules' => [

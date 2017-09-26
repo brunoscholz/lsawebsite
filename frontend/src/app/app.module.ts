@@ -30,6 +30,7 @@ import {GlobalService} from './model/global.service';
 import {UserService} from './model/user.service';
 import {UserDataService} from './model/user-data.service';
 import {SettingDataService} from './model/setting-data.service';
+import { SearchService } from './model/search.service';
 
 @NgModule({
     imports: [
@@ -61,6 +62,7 @@ import {SettingDataService} from './model/setting-data.service';
         GlobalService,
         SettingDataService,
         UserDataService,
+        SearchService,
     ],
     bootstrap: [AppComponent]
 })

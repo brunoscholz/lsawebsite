@@ -1,0 +1,73 @@
+<div class="row" *ngIf="_errorMessage">
+  <div class="col-sm-12">
+    <p class="alert alert-danger">{{_errorMessage}}</p>
+  </div>
+</div>
+
+<div class="animated fadeIn" *ngIf="!_courses && !_errorMessage">
+  <span class="spinner"></span>
+</div>
+<div class="animated fadeIn" *ngIf="_courses">
+  <div class="row">
+    <div class="col-lg-12">
+    	<div class="card">
+        <div class="card-header">
+          <i class="fa fa-align-justify"></i> Courses
+        </div>
+        <div class="card-block">
+          <div class="table-responsive">
+            
+            <table class="table table-striped table-bordered table-condensed">
+              <thead>
+              <tr>
+                <th width="8%"> </th>
+                <th>Name</th>
+                <th>About</th>
+                <th class="text-xs-center">Cost</th>
+                <th class="text-xs-center">School</th>
+                <th width="20%" class="text-xs-center"></th>
+              </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let course of _courses">
+                  <td class="text-xs-center">
+                    picture
+                  </td>
+                  <td class="text-xs-center">
+                  	<a class="link" (click)="viewCourse(course)">{{course.name}}</a>
+                  </td>
+                  <td>
+                    {{course.about}}
+                  </td>
+                  <td>
+                    {{course.cost}}
+                  </td>
+                  <td>
+                    <a class="link" (click)="viewSchool(course.school.schoolId)">{{course.school.name}}</a>
+                  </td>
+
+                  <td class="text-xs-center">
+                    <div *ngIf="course.status != 'REM'">
+                      <button class="btn btn-primary btn-sm" type="button" (click)="editCourse(course)">
+                        <i class="fa fa-edit"></i> Edit
+                      </button>
+                      <button class="btn btn-danger btn-sm" type="button">
+                        <i class="fa fa-remove"></i> Remove
+                      </button>
+                    </div>
+                  </td>
+
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+        <div class="card-footer">
+            <a class="btn btn-primary btn-sm" [routerLink]="['/course', 'create']" routerLinkActive="active"><i class="fa fa-plus-square"></i> Create New Course</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -3,7 +3,7 @@ import {Router} from "@angular/router";
 import swal, {SweetAlertOptions} from 'sweetalert2';
 
 import {UserDataService} from "../model/user-data.service";
-import {User} from "../model/user";
+import {User} from "../model/general";
 import {StaffService} from "../model/staff.service";
 
 @Component({
@@ -40,7 +40,7 @@ export class UserListComponent implements OnInit{
     }
 
     public viewUser(user:User):void {
-        this._router.navigate(['/user', user.id]);
+        this._router.navigate(['/user', user.userId]);
     }
 
     public confirmDeleteUser(user:User):void {
@@ -61,7 +61,7 @@ export class UserListComponent implements OnInit{
             confirmButtonText: 'Yes, delete it!',
             preConfirm: function () {
                 return new Promise(function (resolve, reject) {
-                    parent._userDataService.deleteUserById(user.id)
+                    parent._userDataService.deleteUserById(user.userId)
                         .subscribe(
                             result => {
                                 parent.getUsers();

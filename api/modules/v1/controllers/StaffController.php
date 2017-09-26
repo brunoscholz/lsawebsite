@@ -81,7 +81,7 @@
 	        // setup access
 	        $behaviors['access'] = [
 		        'class' => AccessControl::className(),
-		        'only' => ['index', 'view', 'create', 'update', 'delete', 'getPermissions'], //only be applied to
+		        'only' => ['view', 'create', 'update', 'delete', 'getPermissions'], //only be applied to
 		        'rules' => [
 			        [
 				        'allow' => true,
@@ -164,7 +164,7 @@
 	     * @return User
 	     * @throws HttpException
 	     */
-        public function actionCreate(){
+        public function actionCreate() {
             $model = new User();
             $model->load(\Yii::$app->getRequest()->getBodyParams(), '');
 

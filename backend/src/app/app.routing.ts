@@ -1,12 +1,12 @@
-import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
 
 // Layouts
-import {FullLayoutComponent} from './layouts/full-layout.component';
-import {SimpleLayoutComponent}  from './layouts/simple-layout.component';
-import {P404Component} from './pages/404.component';
+import { FullLayoutComponent } from './layouts/full-layout.component';
+import { SimpleLayoutComponent }  from './layouts/simple-layout.component';
+import { P404Component } from './pages/404.component';
 
-import {AuthGuard} from './model/auth.guard';
+import { AuthGuard } from './model/auth.guard';
 
 export const routes: Routes = [
     {
@@ -37,7 +37,23 @@ export const routes: Routes = [
             {
                 path: 'setting',
                 loadChildren: 'app/setting/setting.module#SettingModule'
-            }
+            },
+            {
+                path: 'school',
+                loadChildren: 'app/school/school.module#SchoolModule'
+            },
+            {
+                path: 'course',
+                loadChildren: 'app/course/course.module#CourseModule'
+            },
+            {
+                path: 'student',
+                loadChildren: 'app/student/student.module#StudentModule'
+            },
+            {
+                path: 'instructor',
+                loadChildren: 'app/instructor/instructor.module#InstructorModule'
+            },
         ]
     },
     {

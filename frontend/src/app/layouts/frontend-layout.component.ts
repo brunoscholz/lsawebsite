@@ -3,12 +3,15 @@ import {UserService} from "../model/user.service";
 
 @Component({
     selector: 'app-frontend',
-    templateUrl: './frontend-layout.component.html'
+    templateUrl: './frontend-layout.component.html',
+    styleUrls: ['./frontend-layout.component.scss']
 })
 export class FrontendLayoutComponent implements OnInit {
 
     public disabled: boolean = false;
     public status: { isopen: boolean } = {isopen: false};
+
+    public menuItems: any = {};
 
     public userData: any = {};
 
@@ -20,6 +23,27 @@ export class FrontendLayoutComponent implements OnInit {
         if (jwtValue != null) {
             this.userData = jwtValue.data;
         }
+
+        this.buildMenu();
+    }
+
+    buildMenu() {
+        let items = [
+            {
+                label: '<img class="icon" src="assets/img/icons/user.svg" alt="dropdown image">',
+                value: [{
+                    label: '<li><a data-toggle="modal" data-target="#signup-modal" style="cursor: pointer;">Sign Up</a></li>',
+                    value: false
+                },
+                {
+                    label: '<li><a data-toggle="modal" data-target="#signin-modal" style="cursor: pointer;">Sign In</a></li>',
+                    value: false
+                }]
+            }
+            
+        ];
+
+        this.menuItems = items;
     }
 
     public toggled(open: boolean): void {

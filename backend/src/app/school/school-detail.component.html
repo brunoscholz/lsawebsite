@@ -1,0 +1,100 @@
+<div class="row" *ngIf="_errorMessage">
+  <div class="col-sm-12">
+    <p class="alert alert-danger">{{_errorMessage}}</p>
+  </div>
+</div>
+<div class="animated fadeIn" *ngIf="!_school && !_errorMessage">
+  <span class="spinner"></span>
+</div>
+<div class="animated fadeIn" *ngIf="_school">
+  <div class="school-profile">
+    <div class="row section">
+      <div class="col-md-8">
+        <h1>{{_school.name}}</h1>
+        <p class="secondary">{{_school.description}}</p>
+        <hr class="divider">
+
+        <h1>Facilities</h1>
+        <div class="facilities section">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="feature on"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span> Wifi</div>
+            </div>
+            <div class="col-md-4">
+              <div class="feature off"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Facility Off</div>
+            </div>
+            <div class="col-md-4">
+              <div class="feature off"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Facility Off</div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4">
+              <div class="feature on"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span> Facility On</div>
+            </div>
+            <div class="col-md-4">
+              <div class="feature off"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Facility Off</div>
+            </div>
+            <div class="col-md-4">
+              <div class="feature on"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span> Facility On</div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4">
+              <div class="feature on"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span> Facility On</div>
+            </div>
+            <div class="col-md-4">
+              <div class="feature off"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Facility Off</div>
+            </div>
+            <div class="col-md-4">
+              <div class="feature off"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Facility Off</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <!--Card-->
+        <div class="card">
+
+            <!--Card image-->
+            <div class="card-image">
+              <img class="img-responsive" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%282%29.jpg">
+              <span class="card-title">{{_school.name}}</span>
+            </div>
+
+            <!--Card content-->
+            <div class="card-content">
+              <p>{{_school.about}}</p>
+            </div>
+
+        </div>
+        <!--/.Card-->
+      </div>
+
+    </div>
+
+    <div class="row section">
+      <div class="col-md-12">
+        <h1>Courses</h1>
+        <section class="vertical-cards section --medium"><h1 class="section-title"></h1><p class="section-subtitle">Looking for the best deal in the market. We have it waiting for you.</p><div class="section"><div class="small-cards"><div class="small-cards-container"><div class="small-card"><a class="card-link" href="/courses/course/view?id=Ge4GFOyc0ttyxdj0B5kqT"><div class="small-card-img-container"><img class="small-card-img" src="http://via.placeholder.com/200x230" alt=""></div><div class="small-card-title"><h1>General English</h1></div><div class="small-card-review"><img class="icon" src="assets/img/icons/star-full.svg" alt=""><img class="icon" src="assets/img/icons/star-full.svg" alt=""><img class="icon" src="assets/img/icons/star-disabled.svg" alt=""><img class="icon" src="assets/img/icons/star-disabled.svg" alt=""><img class="icon" src="assets/img/icons/star-disabled.svg" alt=""></div><div class="small-card-review-comments"><p class="review-comments-text"><span class="--bold">960 </span>comments</p></div><div class="small-card-price"><p><span class="card-price-details">AUD </span><span class="--bold">3319 </span><span class="card-price-details">/ 2 weeks</span></p></div></a></div></div></div></div></section><hr class="divisor"><a href="#">View all</a>
+      </div>
+    </div>
+
+    <div class="row section">
+      <div class="col-md-12">
+        <h1>Comments</h1>
+        
+      </div>
+    </div>
+
+    <div class="row section">
+      <div class="col-md-12">
+        <h1>Contact</h1>
+        
+      </div>
+    </div>
+
+  </div>
+</div>

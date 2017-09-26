@@ -1,0 +1,254 @@
+<div class="row" *ngIf="_errorMessage">
+  <div class="col-sm-12">
+    <p class="alert alert-danger">{{_errorMessage}}</p>
+  </div>
+</div>
+<div class="animated fadeIn" *ngIf="!_course && !_errorMessage">
+  <span class="spinner"></span>
+</div>
+<div class="animated fadeIn" *ngIf="_course">
+  <div class="course-view">
+
+	  <div class="row section">
+	    <div class="col-md-8">
+	      <h1>{{_course.name}}, at {{_course.school.name}}</h1>
+	      <p class="secondary">{{_course.about}}</p>
+	      <hr class="divider">
+
+	      <h1>By Numbers</h1>
+	      <div class="facilities section">
+			  <div class="row">
+			    <div class="col-md-4">
+			      <div class="feature on">Lectures: 15</div>
+			    </div>
+			    <div class="col-md-4">
+			      <div class="feature on">Video: 2 hours</div>
+			    </div>
+			    <div class="col-md-4">
+			      <div class="feature on">Tests: 3</div>
+			    </div>
+			  </div>
+
+			  <div class="row">
+			    <div class="col-md-4">
+			      <div class="feature on">Students: 98</div>
+			    </div>
+			    <div class="col-md-4">
+			      <div class="feature on">Skill Level: All Levels</div>
+			    </div>
+			    <div class="col-md-4">
+			      <div class="feature on">Languages: English</div>
+			    </div>
+			  </div>
+
+			  <div class="row">
+			    <div class="col-md-4">
+			      <div class="feature on">
+			      	<img src="assets/img/icons/star-full.svg" class="icon">
+			      	<img src="assets/img/icons/star-full.svg" class="icon">
+			      	<img src="assets/img/icons/star-full.svg" class="icon">
+			      	<img src="assets/img/icons/star-disabled.svg" class="icon">
+			      	<img src="assets/img/icons/star-disabled.svg" class="icon">
+			      </div>
+			    </div>
+			    <div class="col-md-4">
+			      <div class="feature on">&nbsp;</div>
+			    </div>
+			    <div class="col-md-4">
+			      <div class="feature on">&nbsp;</div>
+			    </div>
+			  </div>
+			</div>
+	      
+	      
+	      <h1>Features</h1>
+	      <div class="facilities section">
+			<div class="row">
+				<div class="col-md-4">
+					<div class="feature on"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span> <?= $value->name ?></div>
+				</div>
+				<div class="col-md-4">
+					<div class="feature on"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span> <?= $value->name ?></div>
+				</div>
+				<div class="col-md-4">
+					<div class="feature off"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span> <?= $value->name ?></div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<div class="feature on"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span> <?= $value->name ?></div>
+				</div>
+				<div class="col-md-4">
+					<div class="feature off"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span> <?= $value->name ?></div>
+				</div>
+				<div class="col-md-4">
+					<div class="feature on"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span> <?= $value->name ?></div>
+				</div>
+			</div>
+		  </div>
+
+		  <h1>Content</h1>
+		  <div id="w2" class="section"><div id="accordion" class="panel-group" role="tablist" aria-multiselectable="true"><div class="panel panel-primary"><div id="heading0" class="panel-heading" role="tab"><h4 class="panel-title"><a href="#collapse0" role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="false" aria-controls="collapseOne" class="collapsed">Chapter 1</a></h4></div><div id="collapse0" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading0" aria-expanded="false" style="height: 0px;"><div class="panel-body"><ul><li>1) Introduction</li><li>2) Verb To Be</li></ul></div></div></div><div class="panel panel-primary"><div id="heading1" class="panel-heading" role="tab"><h4 class="panel-title"><a class="collapsed" href="#collapse1" role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="false" aria-controls="collapseOne">Chapter 2</a></h4></div><div id="collapse1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading1" aria-expanded="false" style="height: 0px;"><div class="panel-body"><ul><li>1) Regular Verbs</li><li>2) Irregular Verbs</li></ul></div></div></div><div class="panel panel-primary"><div id="heading2" class="panel-heading" role="tab"><h4 class="panel-title"><a class="" href="#collapse2" role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="true" aria-controls="collapseOne">Chapter 3</a></h4></div><div id="collapse2" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading2" aria-expanded="true" style=""><div class="panel-body"><ul><li>1) Auxiliary Verbs</li><li>2) Phrasal Verbs</li></ul></div></div></div></div></div>
+
+	      <h1>Instructors</h1>
+	      <div class="section">
+  			<div class="row">
+
+  				<div class="col-lg-3 col-sm-6">
+			      <div class="card hovercard">
+			        <div class="cardheader" style="background: url('http://lorempixel.com/850/280/nature/8/');">
+
+			        </div>
+			        <div class="avatar">
+			          <img alt="" src="http://lorempixel.com/100/100/people/9/">
+			        </div>
+			        <div class="info">
+			          <div class="title">
+			            <a target="_blank" href="http://scripteden.com/">Script Eden</a>
+			          </div>
+			          <div class="desc">Passionate designer</div>
+			          <div class="desc">Curious developer</div>
+			          <div class="desc">Tech geek</div>
+			        </div>
+			        <div class="bottom">
+			          <a class="btn round btn-danger btn-twitter btn-sm" href="https://twitter.com/webmaniac">
+			            <i class="fa fa-twitter"></i>
+			          </a>
+			          <a class="btn round btn-danger btn-sm" rel="publisher" href="https://plus.google.com/+ahmshahnuralam">
+			            <i class="fa fa-google-plus"></i>
+			          </a>
+			          <a class="btn round btn-danger btn-sm" rel="publisher" href="https://plus.google.com/shahnuralam">
+			            <i class="fa fa-facebook"></i>
+			          </a>
+			          <a class="btn round btn-warning btn-sm" rel="publisher" href="https://plus.google.com/shahnuralam">
+			            <i class="fa fa-behance"></i>
+			          </a>
+			        </div>
+			      </div>
+			    </div>
+
+  			</div>
+  		  </div>
+	      
+
+	      <h1>Comments</h1>
+	      <div class="section">
+			  <p class="section-subtitle">
+			    No comments yet...
+			  </p>
+
+			  <div class="row">
+			  
+			    <div class="timeline-centered">
+
+			      <article class="timeline-entry">
+			        <div class="timeline-entry-inner">
+
+			          <div class="timeline-icon" style="-webkit-transform: rotate(-90deg); -moz-transform: rotate(-90deg);">
+			            <i class="entypo-flight"></i> +
+			          </div>
+
+			          <div class="timeline-label">
+			            <h2><a href="#">FORM</a> <span></span></h2>
+			            <p>&nbsp;</p>
+			          </div>
+
+			        </div>
+			      </article>
+
+			      <article class="timeline-entry">
+			        <div class="timeline-entry-inner">
+
+			          <div class="timeline-icon" style="background-image: url('http://lorempixel.com/100/100/people/3/')">
+			            <i class="entypo-feather"></i>
+			          </div>
+
+			          <div class="timeline-label">
+			            <h2><a href="#">Art Ramadani</a> <span>posted a status update</span></h2>
+			            <p>Tolerably earnestly middleton extremely distrusts she boy now not. Add and offered prepare how cordial two promise. Greatly who affixed suppose but enquire compact prepare all put. Added forth chief trees but rooms think may.</p>
+			          </div>
+			        </div>
+			      </article>
+
+			      <article class="timeline-entry">
+			        <div class="timeline-entry-inner">
+
+			          <div class="timeline-icon" style="background-image: url('http://lorempixel.com/100/100/people/9/')">
+			            <i class="entypo-suitcase"></i>
+			          </div>
+
+			          <div class="timeline-label">
+			            <h2><a href="#">Job Meeting</a></h2>
+			            <p>You have a meeting at <strong>Laborator Office</strong> Today.</p>
+			          </div>
+			        </div>
+			      </article>
+
+			      <article class="timeline-entry">
+			        <div class="timeline-entry-inner">
+
+			          <div class="timeline-icon" style="background-image: url('http://lorempixel.com/100/100/people/7/')">
+			            <i class="entypo-location"></i>
+			          </div>
+
+			          <div class="timeline-label">
+			            <h2><a href="#">Arlind Nushi</a> <span>checked in at</span> <a href="#">Laborator</a></h2>
+
+			            <blockquote>Great place, feeling like in home.</blockquote>
+
+			            
+			          </div>
+			        </div>
+			      </article>
+
+			      <article class="timeline-entry">
+			        <div class="timeline-entry-inner">
+
+			          <div class="timeline-icon" style="background-image: url('http://lorempixel.com/100/100/people/4/')">
+			            <i class="entypo-camera"></i>
+			          </div>
+
+			          <div class="timeline-label">
+			            <h2><a href="#">Arber Nushi</a> <span>changed his</span> <a href="#">Profile Picture</a></h2>
+
+			            <blockquote>Pianoforte principles our unaffected not for astonished travelling are particular.</blockquote>
+
+			          </div>
+			        </div>
+			      </article>
+
+			    </div>
+			  </div>
+			</div>
+
+
+	    </div>
+
+	    <!--School & Menu-->
+	    <div class="col-md-4">
+	      <!--Card-->
+	      <div class="card">
+
+	          <!--Card image-->
+	          <div class="card-image" style="min-height: 50vh;">
+	            <img class="img-responsive" src="http://lorempixel.com/550/700/nature/2/">
+	            <span class="card-title">{{_course.school.name}}</span>
+	            <div class="school-options">
+	              <div class="school-option">
+	                <a class="btn btn-primary"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Compare</a>
+	              </div>
+	              <div class="school-option">
+	                <a class="btn btn-primary">Book Now!</a>
+	              </div>
+	            </div>
+	          </div>
+
+	      </div>
+	      <!--/.Card-->
+	    </div>
+	  <!--/.School & Menu-->
+
+	  </div>
+	  <!--/.Section-->
+	</div>
+</div>

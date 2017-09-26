@@ -56,6 +56,7 @@
                 if ($identity === null) {
                     $this->handleFailure($response);
                 }
+
                 return $identity;
             }
 

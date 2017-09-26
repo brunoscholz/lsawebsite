@@ -6,7 +6,7 @@ import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 
 
 import {UserDataService} from "../model/user-data.service";
-import {User} from "../model/user";
+import {User} from "../model/general";
 import {StaffService} from "../model/staff.service";
 
 import * as moment from "moment";
@@ -17,7 +17,7 @@ import * as moment from "moment";
 export class UserFormComponent implements OnInit, OnDestroy{
     private _mode:string = '';
 
-    private _id:number;
+    private _id:string;
     private _parameters:any;
     private _user:User;
 
@@ -141,7 +141,7 @@ export class UserFormComponent implements OnInit, OnDestroy{
         this._parameters = this._activatedRoute.params.subscribe(params => {
             // plus(+) is to convert 'id' to number
             if(typeof params['id'] !== "undefined") {
-                this._id = Number.parseInt(params['id']);
+                this._id = params['id'];
                 this._errorMessage = "";
                 this._userDataService.getUserById(this._id)
                     .subscribe(

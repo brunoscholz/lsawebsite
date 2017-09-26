@@ -2,8 +2,9 @@
 
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=localhost;dbname=boilerplate',
+    'dsn' => 'mysql:host=localhost;dbname=booking',
     'username' => 'root',
-    'password' => 'root',
+    'password' => '',
     'charset' => 'utf8',
+    'tablePrefix' => 'tbl_',
 ];
