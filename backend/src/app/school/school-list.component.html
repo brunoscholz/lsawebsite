@@ -31,7 +31,7 @@
               <tbody>
                 <tr *ngFor="let school of _schools">
                   <td class="text-xs-center">
-                    picture
+                    <img src="{{school.media[0].image.large}}" style="height: 50px;">
                   </td>
                   <td class="text-xs-center">
                     <a class="link" (click)="viewSchool(school)">{{school.name}}</a>

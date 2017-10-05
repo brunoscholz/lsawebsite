@@ -87,6 +87,12 @@ class SchoolController extends RestController
         {
             //$temp = RestUtils::loadQueryIntoVar($model);
             $temp = $model->toArray();
+            $tmpMedia = array();
+			foreach ($model->media as $media) {
+				$tmpMedia[] = $media->toArray();
+			}
+			$temp['media'] = $tmpMedia;
+
             $models[] = $temp;
         }
 

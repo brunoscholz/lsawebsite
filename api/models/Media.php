@@ -55,6 +55,20 @@ class Media extends \yii\db\ActiveRecord
         ];
     }
 
+    public function fields()
+    {
+        $fields = parent::fields();
+        $fields[] = 'image';
+        $fields[] = 'video';
+        /*$fields[] = 'user';
+        $fields[] = 'course';
+        $fields[] = 'geography';
+        $fields[] = 'instructor';
+        $fields[] = 'school';
+        $fields[] = 'student';*/
+        return $fields;
+    }
+
     /**
      * @inheritdoc
      */
@@ -135,5 +149,15 @@ class Media extends \yii\db\ActiveRecord
     public function getVideo()
     {
         return $this->hasOne(Video::className(), ['videoId' => 'videoId']);
+    }
+
+    public function afterFind()
+    {
+        //$this->image = $this->image->toArray();
+        /*if(is_null($this->image) || empty($this->image)) {
+            $this->image = new Image();
+            $this->image->thumb = 'assets/img/generic-avatar.png';
+            $this->image->large = 'assets/img/generic-cover.jpg';
+        }*/
     }
 }

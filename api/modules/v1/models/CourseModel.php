@@ -14,7 +14,7 @@ use app\components\RestUtils;
 use yii\base\Model;
 use yii\widgets\ActiveForm;
 
-class InstructorModel extends Model
+class CourseModel extends Model
 {
 	private $_course;
 

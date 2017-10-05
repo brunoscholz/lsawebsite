@@ -10,6 +10,7 @@
 	use yii\rest\Controller;
 	use odannyc\Yii2SSE\SSEBase;
 
+	use app\components\RestUtils;
 
 	class PageController extends Controller
 	{
@@ -41,6 +42,7 @@
 				'class' => \yii\filters\VerbFilter::className(),
 				'actions' => [
 					'sse'  => ['get'],
+					'id'  => ['get'],
 				],
 			];
 
@@ -61,16 +63,16 @@
 			// re-add authentication filter
 			$behaviors['authenticator'] = $auth;
 			// avoid authentication on CORS-pre-flight requests (HTTP OPTIONS method)
-			$behaviors['authenticator']['except'] = ['options', 'sse'];
+			$behaviors['authenticator']['except'] = ['options', 'sse', 'id'];
 
 			// setup access
 			$behaviors['access'] = [
 				'class' => AccessControl::className(),
-				'only' => ['sse'], //only be applied to
+				'only' => ['sse', 'id'], //only be applied to
 				'rules' => [
 					[
 						'allow' => true,
-						'actions' => ['sse'],
+						'actions' => ['sse', 'id'],
 						'roles' => ['?'],
 					],
 				],
@@ -103,6 +105,10 @@
 
 		public function actionOptions($id = null) {
 			return "ok";
+		}
+
+		public function actionId() {
+			return RestUtils::generateId();
 		}
 	}
 

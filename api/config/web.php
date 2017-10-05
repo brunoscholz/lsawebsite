@@ -153,6 +153,7 @@ $config = [
                     'tokens'        => [
                     ],
                     'extraPatterns' => [
+                        'GET id'        =>  'id',
                         'GET sse'       =>  'sse',
                         'OPTIONS sse'    =>  'sse',
                     ],

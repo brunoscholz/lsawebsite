@@ -93,6 +93,11 @@ class CourseController extends RestController
 		{
 			//$temp = RestUtils::loadQueryIntoVar($model);
 			$temp = $model->toArray();
+			$tmpMedia = array();
+			foreach ($model->media as $media) {
+				$tmpMedia[] = $media->toArray();
+			}
+			$temp['media'] = $tmpMedia;
 
 			$models[] = $temp;
 		}
@@ -163,7 +168,7 @@ class CourseController extends RestController
 	 * @throws HttpException
 	 */
 	public function actionCreate() {
-		$model = new CourseModel();
+		/*$model = new CourseModel();
 		$model->load(\Yii::$app->getRequest()->getBodyParams(), '');
 
 		if ($model->validate() && $model->save()) {
@@ -176,7 +181,7 @@ class CourseController extends RestController
 			throw new HttpException(422, json_encode($model->errors));
 		}
 
-		return $model;
+		return $model;*/
 	}
 
 	/**

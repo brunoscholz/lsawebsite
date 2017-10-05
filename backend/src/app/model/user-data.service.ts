@@ -135,21 +135,34 @@ export class UserDataService {
 
     /* STUDENTS */
     // POST /v1/student
+    /*{
+        expertise : "verbs, to be or not, grammar",
+        name : "Instructor Zero",
+        user : { username: "zero", email: "zero@usernames.com", password: "123456" }
+    }*/
     addStudent(student:Student):Observable<any>{
         let headers = this.getHeaders();
 
+        let payload = {
+            "Student": { "name": student.name, "birthday": student.birthday, "phone": student.phone, "emergencyPhone": student.emergencyPhone },
+            "Location": { "address": student.location.address, "streetNumber": student.location.streetNumber, "neighborhood": student.location.neighborhood, "postCode": student.location.postCode },
+            "User": { "username": student.user.username,"email": student.user.email, "password": student.user.password }
+        }
+
+        console.log(payload);
+
         return this._authHttp.post(
             this._globalService.apiHost+'/student',
-            JSON.stringify(student),
+            JSON.stringify(payload),
             {
                 headers: headers
             }
         )
-            .map(response => response.json())
-            .map((response) => {
-                return response;
-            })
-            .catch(this.handleError);
+        .map(response => response.json())
+        .map((response) => {
+            return response;
+        })
+        .catch(this.handleError);
     }
 
     // DELETE /v1/student/1

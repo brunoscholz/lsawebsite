@@ -213,63 +213,63 @@ export class StudentFormComponent implements OnInit, OnDestroy {
 
   public onSubmit() {
     this._submitted = true;
-        this._resetFormErrors();
-        if(this._mode == 'create') {
-            this._userService.addStudent(this._student)
-                .subscribe(
-                    result => {
-                        if(result.success) {
-                            this._router.navigate(['/student']);
-                        } else {
-                            this._submitted = false;
-                        }
-                    },
-                    error => {
-                        this._submitted = false;
-                        // Validation errors
-                        if(error.status == 422) {
-                            let errorFields = JSON.parse(error.data.message);
-                            this._setFormErrors(errorFields);
-                        }
-                        // Unauthorized Access
-                        else if(error.status == 401 || error.status == 403) {
-                            this._staffService.unauthorizedAccess(error);
-                        }
-                        // All other errors
-                        else {
-                            this._errorMessage = error.data.message;
-                        }
-                    }
-                );
-        } else if(this._mode == 'update') {
-            this._userService.updateStudentById(this._student)
-                .subscribe(
-                    result => {
-                        if(result.success) {
-                            this._router.navigate(['/student']);
-                        } else {
-                            this._submitted = false;
-                        }
-                    },
-                    error => {
-                        this._submitted = false;
-                        // Validation errors
-                        if(error.status == 422) {
-                            let errorFields = JSON.parse(error.data.message);
-                            this._setFormErrors(errorFields);
-                            //this._setFormErrors(error.data);
-                        }
-                        // Unauthorized Access
-                        else if(error.status == 401 || error.status == 403) {
-                            this._staffService.unauthorizedAccess(error);
-                        }
-                        // All other errors
-                        else {
-                            this._errorMessage = error.data.message;
-                        }
-                    }
-                );
+    this._resetFormErrors();
+    if(this._mode == 'create') {
+      this._userService.addStudent(this._student)
+      .subscribe(
+        result => {
+          if(result.success) {
+            this._router.navigate(['/student']);
+          } else {
+            this._submitted = false;
+          }
+        },
+        error => {
+          this._submitted = false;
+          // Validation errors
+          if(error.status == 422) {
+            let errorFields = JSON.parse(error.data.message);
+            this._setFormErrors(errorFields);
+          }
+          // Unauthorized Access
+          else if(error.status == 401 || error.status == 403) {
+            this._staffService.unauthorizedAccess(error);
+          }
+          // All other errors
+          else {
+            this._errorMessage = error.data.message;
+          }
         }
+      );
+    } else if(this._mode == 'update') {
+      this._userService.updateStudentById(this._student)
+      .subscribe(
+        result => {
+          if(result.success) {
+            this._router.navigate(['/student']);
+          } else {
+            this._submitted = false;
+          }
+        },
+        error => {
+          this._submitted = false;
+          // Validation errors
+          if(error.status == 422) {
+            let errorFields = JSON.parse(error.data.message);
+            this._setFormErrors(errorFields);
+            //this._setFormErrors(error.data);
+          }
+          // Unauthorized Access
+          else if(error.status == 401 || error.status == 403) {
+            this._staffService.unauthorizedAccess(error);
+          }
+          // All other errors
+          else {
+            this._errorMessage = error.data.message;
+          }
+        }
+      );
+    }
   }
 
   public onChangeDateTime(type:string, dateTime:string) {}
