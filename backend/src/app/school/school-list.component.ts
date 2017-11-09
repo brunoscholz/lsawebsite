@@ -15,11 +15,15 @@ export class SchoolListComponent implements OnInit {
     private _errorMessage:string;
     private _schools:School[];
 
+    public userData:any = {};
+
     constructor(private _schoolDataService:SchoolDataService,
                 private _staffService:StaffService,
                 private _router:Router) {}
 
     ngOnInit() {
+        let jwtValue:any = this._staffService.getJWTValue();
+        this.userData = jwtValue.data;
         this.getSchools();
     }
 

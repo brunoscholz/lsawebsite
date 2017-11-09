@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { SchoolListComponent } from './school-list.component';
-import { SchoolFormComponent } from './school-form.component';
 import { SchoolDetailComponent } from './school-detail.component';
 import { SchoolRoutingModule } from './school-routing.module';
 
@@ -16,7 +15,6 @@ import { SchoolRoutingModule } from './school-routing.module';
     ],
     declarations: [
         SchoolListComponent,
-        SchoolFormComponent,
         SchoolDetailComponent,
     ]
 })

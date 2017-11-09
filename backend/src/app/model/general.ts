@@ -242,6 +242,7 @@ export class Location {
     locationId: string;
     geographyId: string;
     address: string;
+    address2: string;
     streetNumber: string;
     formattedAddress: string;
     neighborhood: string;
@@ -316,6 +317,7 @@ export class Student {
     emergencyPhone: string;
     locationId: string;
     status: string;
+
     location: Location;
     user: User;
 
@@ -345,9 +347,45 @@ export class User {
     }
 }
 
+export class Agent {
+    agentId: string;
+    userId: string;
+    name: string;
+    about: string;
+    rating: number;
+    status: string;
+    user: User;
+
+    //schoolagents: SchoolAgent[];
+    media: Media[];
+    ratings: Rating[];
+}
+
 /*********************/
 /*       STUFF       */
 /*********************/
 
 export class Relationship {}
 export class ReferenceTransaction {}
+
+export interface ISearchData {
+  schools: School[];
+  instructors: Instructor[];
+  courses: Course[];
+  agents: Agent[];
+}
+
+export class IPayload {
+  q: string;
+  startDate: string;
+  endDate: string;
+  courseType: string;
+  accomodation: string;
+  pickup: Checkbox;
+};
+
+export class Checkbox {
+    name:string;
+    description:string;
+    checked:boolean;
+}

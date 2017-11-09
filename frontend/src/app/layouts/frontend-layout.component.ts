@@ -4,7 +4,7 @@ import {UserService} from "../model/user.service";
 @Component({
     selector: 'app-frontend',
     templateUrl: './frontend-layout.component.html',
-    styleUrls: ['./frontend-layout.component.scss']
+    styleUrls: ['./frontend-layout.component.css']
 })
 export class FrontendLayoutComponent implements OnInit {
 
@@ -15,7 +15,7 @@ export class FrontendLayoutComponent implements OnInit {
 
     public userData: any = {};
 
-    constructor(private _userService: UserService) {
+    constructor(public _userService: UserService) {
     }
 
     ngOnInit(): void {

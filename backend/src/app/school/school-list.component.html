@@ -61,7 +61,7 @@
           </div>
         </div>
         <div class="card-footer">
-            <a class="btn btn-primary btn-sm" [routerLink]="['/school', 'create']" routerLinkActive="active"><i class="fa fa-plus-square"></i> Create New School</a>
+            <a *ngIf="userData.roleLabel == 'Administrator'" class="btn btn-primary btn-sm" [routerLink]="['/school', 'create']" routerLinkActive="active"><i class="fa fa-plus-square"></i> Create New School</a>
         </div>
       </div>
 

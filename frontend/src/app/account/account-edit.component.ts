@@ -17,25 +17,25 @@ import {UserService} from "../model/user.service";
 })
 export class AccountEditComponent implements OnInit {
 
-    private _errorMessage:string;
+    _errorMessage:string;
 
-    private _mode:string = '';
-    private _user:User;
-    private _originalEmail:string = '';
-    private _form:FormGroup;
-    private _formErrors:any;
+    _mode:string = '';
+    _user:User;
+    _originalEmail:string = '';
+    _form:FormGroup;
+    _formErrors:any;
 
 
-    private _submitted:boolean = false;
+    _submitted:boolean = false;
 
 
     public userData:any = {};
 
 
-    constructor(private _userService:UserService,
-                private _userDataService:UserDataService,
-                private _router:Router,
-                private _formBuilder:FormBuilder) {
+    constructor(public _userService:UserService,
+                public _userDataService:UserDataService,
+                public _router:Router,
+                public _formBuilder:FormBuilder) {
 
         // Construct form group
         this._form = _formBuilder.group({
@@ -52,7 +52,7 @@ export class AccountEditComponent implements OnInit {
             .subscribe(data => this.onValueChanged(data));
     }
 
-    private _setFormErrors(errorFields:any):void{
+    public _setFormErrors(errorFields:any):void{
         for (let key in errorFields) {
             let errorField = errorFields[key];
             // skip loop if the property is from prototype
@@ -64,14 +64,14 @@ export class AccountEditComponent implements OnInit {
         }
     }
 
-    private _resetFormErrors():void{
+    public _resetFormErrors():void{
         this._formErrors = {
             email: {valid: true, message: ''},
             password: {valid: true, message: ''},
         };
     }
 
-    private _isValid(field):boolean {
+    public _isValid(field):boolean {
         let isValid:boolean = false;
 
         // If the field is not touched and invalid, it is considered as initial loaded form. Thus set as true
@@ -99,7 +99,7 @@ export class AccountEditComponent implements OnInit {
         }
     }
 
-    private _resetUser(){
+    public _resetUser(){
         this._user = new User();
         this._user.email = '';
         this._user.password = '';

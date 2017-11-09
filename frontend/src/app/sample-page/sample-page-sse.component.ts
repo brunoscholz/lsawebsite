@@ -11,11 +11,11 @@ const EventSource: any = window['EventSource'];
     templateUrl: './sample-page-sse.component.html',
 })
 export class SamplePageSSEComponent implements OnInit {
-    constructor(private _globalService:GlobalService,
-                private zone: NgZone) {
+    constructor(public _globalService:GlobalService,
+                public zone: NgZone) {
     }
 
-    private stocks;
+    public stocks;
 
     ngOnInit() {
         let observable = Observable.create(observer => {

@@ -79,7 +79,9 @@ export class TimepickerComponent implements OnInit, OnDestroy{
 
     ngOnChanges(changes) {}
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.setTab('date');
+    }
 
     ngOnDestroy() {}
 

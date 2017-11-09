@@ -35,7 +35,9 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
 
 	const ROLE_USER = 10;
-	const ROLE_STAFF = 50;
+    const ROLE_AGENT = 30;
+    const ROLE_INSTRUCTOR = 40;
+    const ROLE_STAFF = 50;
 	const ROLE_ADMIN = 99;
 
     const USER_EXISTS = '401';
@@ -204,6 +206,12 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 		    case self::ROLE_ADMIN:
 			    $roleName = 'admin';
 			    break;
+            case self::ROLE_INSTRUCTOR:
+                $roleName = 'instructor';
+                break;
+            case self::ROLE_AGENT:
+                $roleName = 'agent';
+                break;
 	    }
 	    return $roleName;
     }
@@ -220,6 +228,12 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 			case self::ROLE_ADMIN:
 				$roleLabel = Yii::t('app', 'Administrator');
 				break;
+            case self::ROLE_INSTRUCTOR:
+                $roleLabel = Yii::t('app', 'Instructor');
+                break;
+            case self::ROLE_AGENT:
+                $roleLabel = Yii::t('app', 'Agent');
+                break;
 		}
 		return $roleLabel;
 	}

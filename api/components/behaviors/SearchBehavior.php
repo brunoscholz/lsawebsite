@@ -87,6 +87,8 @@ class SearchBehavior extends Behavior
             call_user_func($this->searchScope, $query, $term);
         }
 
+        //var_dump($query->createCommand()->rawsql);
+
         return $query;
     }
 }

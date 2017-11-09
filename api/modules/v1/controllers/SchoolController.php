@@ -71,6 +71,9 @@ class SchoolController extends RestController
 			],
 		];
 
+		$behaviors['authenticator']['except'][] = 'view';
+		$behaviors['authenticator']['except'][] = 'index';
+
 		return $behaviors;
 	}
 
@@ -134,14 +137,20 @@ class SchoolController extends RestController
 	public function actionView($id) {
 		$models = array('success'=>true,'status'=>200);
 
-		$school = School::find()->where([
+		$q = School::find()->where([
 			'schoolId'    =>  $id
 		])->andWhere([
 			'status' => 'ACT'
-		])->one();
+		])->asArray();
+
+		/*var_dump($q->createCommand()->rawsql);
+		die();*/
+
+		$school = $q->one();
+
 		if($school) {
 			//$temp = RestUtils::loadQueryIntoVar($school);
-			return $school->toArray();
+			return $school;
 		} else {
 			throw new NotFoundHttpException("Object not found: $id");
 		}

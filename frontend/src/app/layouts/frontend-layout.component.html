@@ -11,52 +11,33 @@
         </div>
       </a>
     </div>
-    <div class="sign">
-      <div class="sign-icon">
 
-        <ul class="nav navbar-nav d-md-down-none">
-          <li class="nav-item px-3">
-            <a class="nav-link" routerLinkActive="active" [routerLink]="['/']" [routerLinkActiveOptions]="{exact:true}">Home</a>
-          </li>
-          <li class="nav-item px-3">
-            <a class="nav-link" routerLinkActive="active" [routerLink]="['/']">Sign Up</a>
-          </li>
-          <li class="nav-item px-3">
-            <a class="nav-link" routerLinkActive="active" [routerLink]="['/']">Sign In</a>
-          </li>
-        </ul>
-
-      </div>
-      <div class="sign-text">
-
-        <ul class="nav navbar-nav ml-auto mr-4" *ngIf="this._userService.isLoggedIn() == true">
-          <li class="nav-item px-3 d-md-down-none">
-            <span>{{userData.username}} ({{userData.roleLabel}})</span>
-          </li>
-          <li class="nav-item px-3 d-md-down-none">
-            <a class="nav-link" routerLinkActive="active" [routerLink]="['/account']">Account</a>
-          </li>
-          <li class="nav-item px-3 d-md-down-none">
-            <a class="nav-link" routerLinkActive="active" [routerLink]="['/logout']">Logout</a>
-          </li>
-        </ul>
-
-        <ul class="nav navbar-nav d-md-down-none">
-          <li class="nav-item px-3">
-            <a class="nav-link" routerLinkActive="active" [routerLink]="['/']" [routerLinkActiveOptions]="{exact:true}">Home</a>
-          </li>
-
-          <li class="nav-item px-3">
-            <a class="nav-link" routerLinkActive="active" [routerLink]="['/']">Sign Up</a>
-          </li>
-          <li class="nav-item px-3">
-            <a class="nav-link" routerLinkActive="active" [routerLink]="['/']">Sign In</a>
-          </li>
-
-        </ul>
-
-      </div>
+    <div class="sign dropdown" style="float:right;">
+      <img src="assets/img/icons/sign-icon.svg">
+      <ul class="dropdown-content" *ngIf="this._userService.isLoggedIn() == false">
+        <li>
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/']" [routerLinkActiveOptions]="{exact:true}">Home</a>
+        </li>
+        <li>
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/signup']">Sign Up</a>
+        </li>
+        <li>
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/login']">Sign In</a>
+        </li>
+      </ul>
+      <ul class="dropdown-content" *ngIf="this._userService.isLoggedIn() == true">
+        <li>
+          <span>{{userData.username}} ({{userData.roleLabel}})</span>
+        </li>
+        <li>
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/account']">Account</a>
+        </li>
+        <li>
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/logout']">Logout</a>
+        </li>
+      </ul>
     </div>
+
   </div>
 </div>
 <!-- END HEADER -->
@@ -66,3 +47,11 @@
     <router-outlet></router-outlet>
   </div>
 </section>
+
+<footer id="the-footer-conatiner">
+
+  <footer class="the-footer">
+    &copy; Copyright 2017.
+  </footer>
+
+</footer>

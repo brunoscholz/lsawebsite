@@ -1,0 +1,397 @@
+@import url("https://fonts.googleapis.com/css?family=Lato:400,400i,700|Raleway:400,700");
+@media (min-width: 320px) {
+  .hide-xxs {
+    display: none; } }
+
+@media (min-width: 480px) {
+  .hide-xs {
+    display: none; } }
+
+@media (min-width: 640px) {
+  .hide-sm {
+    display: none; } }
+
+@media (min-width: 768px) {
+  .hide-md {
+    display: none; } }
+
+@media (min-width: 992px) {
+  .hide-lg {
+    display: none; } }
+
+@media (min-width: 1200px) {
+  .hide-xl {
+    display: none; } }
+
+@media (min-width: 320px) {
+  .show-xxs {
+    display: block; } }
+
+@media (min-width: 480px) {
+  .show-xs {
+    display: block; } }
+
+@media (min-width: 640px) {
+  .show-sm {
+    display: block; } }
+
+@media (min-width: 768px) {
+  .show-md {
+    display: block; } }
+
+@media (min-width: 992px) {
+  .show-lg {
+    display: block; } }
+
+@media (min-width: 1200px) {
+  .show-xl {
+    display: block; } }
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: "Lato", sans-serif !important;
+  font-weight: 400;
+  color: #6C647B !important;
+  font-size: 14pt;
+  background-color: #FDFCFF !important;
+}
+
+.title {
+  font-family: "Raleway", serif;
+  font-weight: 400;
+  color: #6C647B;
+  font-size: 18pt;
+  margin-bottom: 0.5em;
+  font-size: 24pt;
+}
+
+@media (min-width: 480px) {
+  .title {
+    font-size: 36pt;
+  }
+}
+
+.subtitle {
+  margin-bottom: 1em;
+  font-size: 18pt;
+  font-style: italic;
+  color: rgba(108, 100, 123, 0.5);
+  /*color: #b5b1bd;*/
+}
+
+@media (min-width: 480px) {
+  .subtitle {
+    font-size: 24pt;
+  }
+}
+
+.section-title {
+  font-family: "Raleway", serif;
+  font-weight: 400;
+  color: #6C647B;
+  font-size: 18pt;
+  margin-bottom: 0.5em;
+  font-size: 14pt;
+  font-weight: 400;
+  line-height: 150%;
+}
+
+@media (min-width: 480px) {
+  .section-title {
+    font-size: 18pt;
+  }
+}
+
+.section-subtitle {
+  margin-bottom: 1em;
+  font-size: 12pt;
+  font-style: italic;
+  color: rgba(108, 100, 123, 0.5);
+  line-height: 150%;
+}
+
+@media (min-width: 480px) {
+  .section-subtitle {
+    font-size: 14pt;
+  }
+}
+
+.small-card-title h1, .big-card-title h1 {
+  font-size: 2rem !important;
+}
+
+.text {
+  margin-bottom: 1em;
+  font-size: 12pt;
+  line-height: 150%;
+}
+
+@media (min-width: 480px) {
+  .text {
+    font-size: 14pt;
+  }
+}
+
+.text-small {
+  margin-bottom: 1em;
+  font-size: 8pt;
+}
+
+@media (min-width: 480px) {
+  .text-small {
+    font-size: 10pt;
+  }
+}
+
+.--text-primary, .primary {
+  color: #DD5555 !important;
+}
+
+.--text-secondary, .secondary {
+  color: #b5b1bd !important;
+}
+
+.--text-center {
+  text-align: center !important;
+}
+
+.--bold {
+  font-weight: 700 !important;
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.section {
+  padding: 0.5em 0;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding: 1em 0;
+  }
+}
+
+.container {
+  width: 100%;
+  padding: 0 0.5em;
+  height: auto;
+}
+
+@media (min-width: 768px) {
+  .container {
+    width: 80%;
+    padding: 0;
+    margin: 0 auto;
+  }
+}
+
+hr.divisor {
+  width: 80%;
+  border: none;
+  text-align: center;
+  border-bottom: 2px solid rgba(108, 100, 123, 0.2);
+}
+
+.--medium {
+  padding: 2em 0;
+}
+@media (min-width: 768px) {
+  .--medium {
+    padding: 2em 0;
+  }
+}
+
+.--large {
+  padding: 10em 0;
+}
+@media (min-width: 768px) {
+  .--large {
+    padding: 10em 0;
+  }
+}
+
+.--hiden {
+  display: none;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+}
+
+.icon.clickable {
+  cursor: pointer;
+  opacity: 0.5;
+  transition: all 300ms ease;
+}
+
+.icon.clickable:hover {
+  opacity: 1;
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+p {
+  line-height: 150%;
+}
+
+a {
+  text-decoration: none;
+  color: #DD5555;
+}
+
+button {
+  cursor: pointer;
+}
+
+.app {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  color: #4F4F4F;
+}
+
+/* Grid */
+.section {
+  padding: 2em 0;
+}
+
+.section.is-medium {
+  padding: 3em 0;
+}
+
+.section.is-large {
+  padding: 5em 0;
+}
+
+/* Text */
+.title {
+  font-size: 20pt;
+  font-family: 'Raleway', serif;
+  font-family: 700;
+  margin-bottom: .5em;
+}
+
+.subtitle {
+  opacity: .5;
+}
+
+.muted {
+  opacity: .3;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.location {
+  font-size: 12pt;
+  font-style: italic;
+  opacity: .5
+}
+
+.center {
+  text-align: center;
+}
+
+/* Buttons */
+.btn-primary {
+  padding: 1em 2em;
+  margin: 2em 0;
+  display: flex;
+  align-items: center;
+  font-size: 14pt;
+  border: none;
+  border-radius: .2em;
+  background-color: #DD5555;
+  color: white;
+}
+
+.large {
+  padding: 1em 5em
+}
+
+.rounded {
+  border-radius: 200em;
+}
+
+.has-shadow {
+  box-shadow: 0px 10px 40px -10px rgba(0, 0, 0, 0.5);
+}
+
+.floating-center {
+  position: fixed;
+  bottom: 1em;
+  left: 5.2em;
+}
+
+/* Input */
+.input-label {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 700;
+  font-size: 8pt;
+}
+
+input {
+  width: 100%;
+  padding: 1em 0;
+  margin-bottom: 2em;
+  border: none;
+  border-bottom: 1px solid #E0E0E0;
+  font-size: 14pt;
+  color: #4F4F4F;
+}
+
+input[type="password"] {
+  margin-bottom: 1em;
+}
+
+input::placeholder {
+  font-family: 'Roboto', sans-serif;
+  opacity: .2;
+}
+
+.forget-pass {
+  font-size: 8pt;
+  font-style: italic;
+  text-decoration: underline;
+  margin-bottom: 3em;
+  cursor: pointer
+}
+
+.api-sign {
+  font-size: 12pt;
+  text-align: center
+}
+
+.facebook-btn {
+  color: #2F80ED;
+  font-weight: 700;
+}
+
+.google-btn {
+  color: #EB5757;
+  font-weight: 700;
+}
+
+/* Components */
+.card-group {
+  margin-bottom: 5em;
+}
+
+.card-group-title {
+  width: 100%;
+  padding: 0 2em;
+  margin-bottom: 2em;
+}

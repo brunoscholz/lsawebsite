@@ -90,6 +90,9 @@ class Search extends Component
             }
         }
 
+        /*var_dump($res);
+        die();*/
+
         return [
             'results' => $res,
             'query' => $term

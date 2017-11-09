@@ -1,36 +1,97 @@
-<header>
-  <div id="app-header">
-    <div class="header-text">
-      <h1 class="title">Make your dream of<br><span class="--bold">studying abroad </span>come true.</h1>
-    </div>
-  </div>
-</header>
+<div class="home-container">
 
-<div class="search-bar-mobile hide-xs">
-  <div id="search-bar-mobile-input">
-    <button id="mobile-search-toggler" data-toggle="modal" data-target="#search-mobile-modal" class="mobile-input">
-      <img src="assets/img/icons/search.svg" class="icon">
-      <p>Find your School overseas.</p>
-    </button>
-  </div>
-</div>
-<div class="search-box search-bar no-filters" role="search">
-<form [formGroup]="_searchForm" (ngSubmit)="onSubmit(_searchForm.value)">
-    <div class="input-container">
-      <div class="input-field">
-        <p class="input-label">Search for...</p>
-	    <input type="text" placeholder="City or Course" [formControl]="_searchForm.controls['term']">
+  <section class="section is-large">
+
+    <div class="search-bar-mobile hide-xs">
+      <div id="search-bar-mobile-input">
+        <button id="mobile-search-toggler" data-toggle="modal" data-target="#search-mobile-modal" class="mobile-input">
+          <img src="assets/img/icons/search.svg" class="icon">
+          <p>Find your School overseas.</p>
+        </button>
       </div>
-      <button type="submit" class="btn-primary">Search</button>
     </div>
-  </form>
-</div>
+    <div class="search-box search-bar no-filters" role="search">
+      <form [formGroup]="_searchForm" (ngSubmit)="onSubmit(_searchForm.value)">
+        <div class="input-container">
+          <div class="input-field">
+            <p class="input-label">Search for...</p>
+            <input type="text" class="form-control" id="term" placeholder="Enter your search" [formControl]="_searchForm.controls['term']">
+          </div>
+          <button type="submit" class="btn btn-sm btn-primary" ><i class="fa fa-dot-circle-o"></i> Search</button>
+        </div>
+      </form>
+    </div>
 
-<section class="section">
-  <div class="container">
-    <section id="w5" class="section --medium"><h1 class="section-title"><span class="--bold">Where </span>does your next adventure begins?</h1><div class="section"><div class="big-cards"><div class="big-cards-container"><div class="big-card"><a class="card-link" href="/search/default/search-get?cityId=100"><div class="big-card-img-container"><img class="big-card-img" src="http://via.placeholder.com/200x230" alt=""></div><div class="big-card-title"><h1 class="--text-center">Emerald</h1></div></a></div><div class="big-card"><a class="card-link" href="/search/default/search-get?cityId=101"><div class="big-card-img-container"><img class="big-card-img" src="http://via.placeholder.com/200x230" alt=""></div><div class="big-card-title"><h1 class="--text-center">Gatton</h1></div></a></div><div class="big-card"><a class="card-link" href="/search/default/search-get?cityId=160"><div class="big-card-img-container"><img class="big-card-img" src="http://via.placeholder.com/200x230" alt=""></div><div class="big-card-title"><h1 class="--text-center">Rosebery</h1></div></a></div><div class="big-card"><a class="card-link" href="/search/default/search-get?cityId=212"><div class="big-card-img-container"><img class="big-card-img" src="http://via.placeholder.com/200x230" alt=""></div><div class="big-card-title"><h1 class="--text-center">Kalgoorlie</h1></div></a></div><div class="big-card"><a class="card-link" href="/search/default/search-get?cityId=48"><div class="big-card-img-container"><img class="big-card-img" src="http://via.placeholder.com/200x230" alt=""></div><div class="big-card-title"><h1 class="--text-center">Moruya</h1></div></a></div></div></div></div></section><hr class="divisor">
-    <section id="w6" class="vertical-cards section --medium"><h1 class="section-title"><span class="--bold">Best Reviewed </span>Schools</h1><p class="section-subtitle">Australia has an amazing variety of high quality schools for you to choose from.</p><div class="section"><div class="small-cards"><div class="small-cards-container"><div class="small-card"><a class="card-link" href="/schools/school/view?id=tB2QzNW4dLlCOKHs8kDYk"><div class="small-card-img-container"><img class="small-card-img" src="http://via.placeholder.com/200x230" alt=""></div><div class="small-card-title"><h1>Browns</h1></div><div class="small-card-review"><img class="icon" src="assets/img/icons/star-full.svg" alt=""><img class="icon" src="assets/img/icons/star-full.svg" alt=""><img class="icon" src="assets/img/icons/star-full.svg" alt=""><img class="icon" src="assets/img/icons/star-disabled.svg" alt=""><img class="icon" src="assets/img/icons/star-disabled.svg" alt=""></div><div class="small-card-review-comments"><p class="review-comments-text"><span class="--bold">532 </span>comments</p></div></a></div><div class="small-card"><a class="card-link" href="/schools/school/view?id=tENDkwBqQAjcXTqCAqxlt"><div class="small-card-img-container"><img class="small-card-img" src="http://via.placeholder.com/200x230" alt=""></div><div class="small-card-title"><h1>Yale University</h1></div><div class="small-card-review"><img class="icon" src="assets/img/icons/star-full.svg" alt=""><img class="icon" src="assets/img/icons/star-disabled.svg" alt=""><img class="icon" src="assets/img/icons/star-disabled.svg" alt=""><img class="icon" src="assets/img/icons/star-disabled.svg" alt=""><img class="icon" src="assets/img/icons/star-disabled.svg" alt=""></div><div class="small-card-review-comments"><p class="review-comments-text"><span class="--bold">582 </span>comments</p></div></a></div></div></div></div></section><hr class="divisor">
-    <section id="w7" class="vertical-cards section --medium"><h1 class="section-title">Schools with the <span class="--bold">best price</span></h1><p class="section-subtitle">Looking for the best deal in the market. We have it waiting for you.</p><div class="section"><div class="small-cards"><div class="small-cards-container"><div class="small-card"><a class="card-link" href="tB2QzNW4dLlCOKHs8kDYk"><div class="small-card-img-container"><img class="small-card-img" src="http://via.placeholder.com/200x230" alt=""></div><div class="small-card-title"><h1>Browns</h1></div><div class="small-card-review"><img class="icon" src="assets/img/icons/star-full.svg" alt=""><img class="icon" src="assets/img/icons/star-disabled.svg" alt=""><img class="icon" src="assets/img/icons/star-disabled.svg" alt=""><img class="icon" src="assets/img/icons/star-disabled.svg" alt=""><img class="icon" src="assets/img/icons/star-disabled.svg" alt=""></div><div class="small-card-review-comments"><p class="review-comments-text"><span class="--bold">298 </span>comments</p></div><div class="small-card-price"><p><span class="card-price-details">AUD </span><span class="--bold">1075 </span><span class="card-price-details">/ 2 weeks</span></p></div></a></div><div class="small-card"><a class="card-link" href="tENDkwBqQAjcXTqCAqxlt"><div class="small-card-img-container"><img class="small-card-img" src="http://via.placeholder.com/200x230" alt=""></div><div class="small-card-title"><h1>Yale University</h1></div><div class="small-card-review"><img class="icon" src="assets/img/icons/star-full.svg" alt=""><img class="icon" src="assets/img/icons/star-full.svg" alt=""><img class="icon" src="assets/img/icons/star-full.svg" alt=""><img class="icon" src="assets/img/icons/star-full.svg" alt=""><img class="icon" src="assets/img/icons/star-disabled.svg" alt=""></div><div class="small-card-review-comments"><p class="review-comments-text"><span class="--bold">366 </span>comments</p></div><div class="small-card-price"><p><span class="card-price-details">AUD </span><span class="--bold">1647 </span><span class="card-price-details">/ 2 weeks</span></p></div></a></div></div></div></div></section><hr class="divisor">
-    <section id="w8" class="vertical-cards section --medium"><h1 class="section-title">Looking for an <span class="--bold">Univeristy?</span></h1><p class="section-subtitle">I you are hoping for a career launch, Australia has some of the best universities in the world.</p><div class="section"><div class="small-cards"><div class="small-cards-container"><div class="small-card"><a class="card-link" href="tB2QzNW4dLlCOKHs8kDYk"><div class="small-card-img-container"><img class="small-card-img" src="http://via.placeholder.com/200x230" alt=""></div><div class="small-card-title"><h1>Browns</h1></div><div class="small-card-review"><img class="icon" src="assets/img/icons/star-full.svg" alt=""><img class="icon" src="assets/img/icons/star-full.svg" alt=""><img class="icon" src="assets/img/icons/star-full.svg" alt=""><img class="icon" src="assets/img/icons/star-full.svg" alt=""><img class="icon" src="assets/img/icons/star-disabled.svg" alt=""></div><div class="small-card-review-comments"><p class="review-comments-text"><span class="--bold">618 </span>comments</p></div><div class="small-card-price"><p><span class="card-price-details">AUD </span><span class="--bold">1112 </span><span class="card-price-details">/ 2 weeks</span></p></div></a></div><div class="small-card"><a class="card-link" href="tENDkwBqQAjcXTqCAqxlt"><div class="small-card-img-container"><img class="small-card-img" src="http://via.placeholder.com/200x230" alt=""></div><div class="small-card-title"><h1>Yale University</h1></div><div class="small-card-review"><img class="icon" src="assets/img/icons/star-full.svg" alt=""><img class="icon" src="assets/img/icons/star-full.svg" alt=""><img class="icon" src="assets/img/icons/star-full.svg" alt=""><img class="icon" src="assets/img/icons/star-full.svg" alt=""><img class="icon" src="assets/img/icons/star-disabled.svg" alt=""></div><div class="small-card-review-comments"><p class="review-comments-text"><span class="--bold">549 </span>comments</p></div><div class="small-card-price"><p><span class="card-price-details">AUD </span><span class="--bold">3159 </span><span class="card-price-details">/ 2 weeks</span></p></div></a></div></div></div></div></section><hr class="divisor">
-  </div>
-</section> <!-- //main section -->
+    <div class="row" *ngIf="_errorMessage">
+      <div class="col-sm-12">
+        <p class="alert alert-danger">{{_errorMessage}}</p>
+      </div>
+    </div>
+    <div class="animated fadeIn" *ngIf="!_featured && !_errorMessage">
+      <span class="spinner"></span>
+    </div>
+    <div class="animated fadeIn" *ngIf="_featured">
+      <div class="row">
+        <div class="col-lg-12">
+
+          <!-- Big Cards -->
+          <div class="card-group" style="margin-top: 15px;">
+            <div class="card-group-title">
+              <p class="title">Make your dream of<br><span class="bold">studying abroad </span>come true.</p>
+              <p class="subtitle">Choose the city of your <span class="bold">dreams!</span></p>
+            </div>
+            <section class="big-cards">
+              <div class="h-scroll">
+                <big-card *ngFor="let city of _featured.City" [city]="city.model" (click)="viewCity(city.model)"></big-card>
+              </div>
+            </section>
+          </div>
+
+
+          <!-- Small Cards -->
+
+          <!-- Learn English -->
+          <div class="card-group">
+            <div class="card-group-title">
+              <p class="title"><span class="bold">Best Reviewed </span>Schools </p>
+              <p class="subtitle">Australia has an amazing variety of high quality schools for you to choose from.</p>
+            </div>
+            <section class="small-cards">
+              <div class="h-scroll">
+                <small-card *ngFor="let school of _featured.School" [school]="school.model" (click)="viewSchool(school.model.schoolId)"></small-card>
+              </div>
+            </section>
+          </div>
+
+          <!-- Business -->
+          <div class="card-group">
+            <div class="card-group-title">
+              <p class="title">Courses with the <span class="bold">best price</span></p>
+              <p class="subtitle">Looking for the best deal in the market. We have it waiting for you.</p>
+            </div>
+            <section class="small-cards">
+              <div class="h-scroll">
+                <small-card *ngFor="let course of _featured.Course" [course]="course.model" (click)="viewCourse(course.model.courseId)"></small-card>
+              </div>
+            </section>
+          </div>
+
+          <!-- University -->
+          <div class="card-group">
+            <div class="card-group-title">
+              <p class="title">Looking for an <span class="bold">Univeristy?</span></p>
+              <p class="subtitle">I you are hoping for a career launch, Australia has some of the best universities in the world.</p>
+            </div>
+            <section class="small-cards">
+              <div class="h-scroll">
+                <small-card></small-card>
+              </div>
+            </section>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </section>
+</div>

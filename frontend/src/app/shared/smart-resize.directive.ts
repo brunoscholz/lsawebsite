@@ -9,13 +9,13 @@ import { Directive, HostListener } from '@angular/core';
 export class SmartResizeDirective {
 
   //Check if element has class
-  private hasClass(target:any, elementClassName:string) {
+  hasClass(target:any, elementClassName:string) {
     return new RegExp('(\\s|^)' + elementClassName + '(\\s|$)').test(target.className);
   }
 
-  private body = document.body;
-  private html = document.documentElement;
-  private height:number;
+  body = document.body;
+  html = document.documentElement;
+  height:number;
 
   constructor() {
     if (this.hasClass(document.querySelector('body'), 'fixed-nav')) {

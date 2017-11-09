@@ -9,16 +9,16 @@ import {Router, ActivatedRoute} from "@angular/router";
   templateUrl: './login.component.html',
 })
 export class LoginComponent implements OnInit {
-    private _loginForm:FormGroup;
-    private _formErrors:any;
-    private _submitted:boolean = false;
-    private _errorMessage:string = '';
-    private _returnURL:string = '/';
+    _loginForm:FormGroup;
+    _formErrors:any;
+    _submitted:boolean = false;
+    _errorMessage:string = '';
+    _returnURL:string = '/';
 
-    constructor(private _userService:UserService,
-                private _router:Router,
-                private _activatedRoute:ActivatedRoute,
-                private _formBuilder:FormBuilder) {
+    constructor(public _userService:UserService,
+                public _router:Router,
+                public _activatedRoute:ActivatedRoute,
+                public _formBuilder:FormBuilder) {
 
         this._loginForm = _formBuilder.group({
             username: ['', Validators.required],
@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
 
     }
 
-    private _setFormErrors(errorFields:any):void{
+    public _setFormErrors(errorFields:any):void{
         for (let key in errorFields) {
             // skip loop if the property is from prototype
             if (!errorFields.hasOwnProperty(key)) continue;
@@ -40,14 +40,14 @@ export class LoginComponent implements OnInit {
         }
     }
 
-    private _resetFormErrors():void{
+    public _resetFormErrors():void{
         this._formErrors = {
             username: {valid: true, message: ''},
             password: {valid: true, message: ''},
         };
     }
 
-    private _isValid(field):boolean {
+    public _isValid(field):boolean {
         let isValid:boolean = false;
 
         // If the field is not touched and invalid, it is considered as initial loaded form. Thus set as true

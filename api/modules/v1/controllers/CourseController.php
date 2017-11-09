@@ -71,6 +71,9 @@ class CourseController extends RestController
 			],
 		];
 
+		$behaviors['authenticator']['except'][] = 'view';
+		$behaviors['authenticator']['except'][] = 'index';
+
 		return $behaviors;
 	}
 
@@ -149,9 +152,10 @@ class CourseController extends RestController
 			'courseId'    =>  $id
 		])->andWhere([
 			'status' => 'ACT'
-		])->one();
+		])->asArray()->one();
+
 		if($course) {
-			$models = $course->toArray();
+			$models = $course;
 
 			return $models;
 		} else {

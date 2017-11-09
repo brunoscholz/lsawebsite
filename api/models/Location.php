@@ -10,6 +10,7 @@ use Yii;
  * @property string $locationId
  * @property string $geographyId
  * @property string $address
+ * @property string $address2
  * @property string $streetNumber
  * @property string $formattedAddress
  * @property string $neighborhood
@@ -41,11 +42,11 @@ class Location extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['locationId', 'address', 'streetNumber', 'formattedAddress', 'neighborhood', 'postCode', 'latitude', 'longitude', 'remarks'], 'required'],
+            [['locationId', 'address', 'streetNumber', 'formattedAddress', 'latitude', 'longitude'], 'required'],
             [['latitude', 'longitude'], 'number'],
             [['remarks'], 'string'],
             [['locationId', 'geographyId'], 'string', 'max' => 21],
-            [['address', 'formattedAddress'], 'string', 'max' => 100],
+            [['address', 'address2', 'formattedAddress'], 'string', 'max' => 100],
             [['streetNumber'], 'string', 'max' => 6],
             [['neighborhood'], 'string', 'max' => 60],
             [['postCode'], 'string', 'max' => 15],
@@ -63,6 +64,7 @@ class Location extends \yii\db\ActiveRecord
             'locationId' => Yii::t('app', 'Location ID'),
             'geographyId' => Yii::t('app', 'Geography ID'),
             'address' => Yii::t('app', 'Address'),
+            'address2' => Yii::t('app', 'Address 2'),
             'streetNumber' => Yii::t('app', 'Street Number'),
             'formattedAddress' => Yii::t('app', 'Formatted Address'),
             'neighborhood' => Yii::t('app', 'Neighborhood'),

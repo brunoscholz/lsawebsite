@@ -1,11 +1,11 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
-import {Router, ActivatedRoute} from "@angular/router";
-import {CustomValidators} from 'ng2-validation';
-import {ContainsValidators} from "../shared/contains-validator.directive";
-import {FormGroup, FormBuilder, Validators, FormArray} from "@angular/forms";
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router, ActivatedRoute } from "@angular/router";
+import { CustomValidators } from 'ng2-validation';
+import { ContainsValidators } from "../shared/contains-validator.directive";
+import { FormGroup, FormBuilder, Validators, FormArray } from "@angular/forms";
 
 import { SchoolDataService } from "../model/school-data.service";
-import { School, User, Location } from "../model/general";
+import { School, User, Location, Media, Image } from "../model/general";
 import { StaffService } from "../model/staff.service";
 
 import * as moment from "moment";
@@ -27,6 +27,8 @@ export class SchoolFormComponent implements OnInit, OnDestroy {
   private _form:FormGroup;
   private _formErrors:any;
   private _submitted:boolean = false;
+
+  _image: Image;
 
   // Status Types
   private _statusTypes:any = {};
@@ -59,6 +61,7 @@ export class SchoolFormComponent implements OnInit, OnDestroy {
 
       abn: ['', Validators.compose([
         Validators.required,
+        abnValidator
       ])],
 
       cricos: ['', Validators.compose([
@@ -84,18 +87,14 @@ export class SchoolFormComponent implements OnInit, OnDestroy {
   }
 
   initLocation() {
-    // initialize our address
-    // try locate the geographyId
-    // latitude: number;
     // longitude: number;
     return this._formBuilder.group({
-        address: ['', Validators.required],
-        neighborhood: [''],
-        city: [''],
-        state: [''],
-        postcode: [''],
-        streetNumber: [''],
+        address2: ['', Validators.required],
     });
+  }
+
+  fillLocation(ev: Location) {
+    this._school.location = ev;
   }
 
   initUser() {
@@ -110,11 +109,12 @@ export class SchoolFormComponent implements OnInit, OnDestroy {
         CustomValidators.email,
       ])],
       password: ['', Validators.compose([
-        Validators.minLength(6)
+        Validators.required,
+        passwordValidator
       ])],
-      confirmPassword: ['', Validators.compose([
-        Validators.minLength(6)
-      ])]
+      confirmPassword: ['', Validators.required]
+    }, { 
+      validator: matchingPasswords('password', 'confirmPassword')
     });
   }
 
@@ -174,12 +174,7 @@ export class SchoolFormComponent implements OnInit, OnDestroy {
       description: {valid: true, message: ''},
       abn: {valid: true, message: ''},
       cricos: {valid: true, message: ''},
-      address: {valid: true, message: ''},
-      neighborhood: {valid: true, message: ''},
-      city: {valid: true, message: ''},
-      state: {valid: true, message: ''},
-      postcode: {valid: true, message: ''},
-      streetNumber: {valid: true, message: ''},
+      location: {valid: true, message: ''},
     };
   }
 
@@ -187,6 +182,7 @@ export class SchoolFormComponent implements OnInit, OnDestroy {
     this._school = new School();
     this._school.location = new Location();
     this._school.user = new User();
+    this._school.media = [];
   }
 
   public ngOnInit() {
@@ -215,6 +211,7 @@ export class SchoolFormComponent implements OnInit, OnDestroy {
           );
       } else {
         this._mode = 'create';
+        this._image = new Image();
       }
     });
   }
@@ -226,64 +223,139 @@ export class SchoolFormComponent implements OnInit, OnDestroy {
 
   public onSubmit() {
     this._submitted = true;
-        this._resetFormErrors();
-        if(this._mode == 'create') {
-            this._schoolService.addSchool(this._school)
-                .subscribe(
-                    result => {
-                        if(result.success) {
-                            this._router.navigate(['/school']);
-                        } else {
-                            this._submitted = false;
-                        }
-                    },
-                    error => {
-                        this._submitted = false;
-                        // Validation errors
-                        if(error.status == 422) {
-                            let errorFields = JSON.parse(error.data.message);
-                            this._setFormErrors(errorFields);
-                        }
-                        // Unauthorized Access
-                        else if(error.status == 401 || error.status == 403) {
-                            this._staffService.unauthorizedAccess(error);
-                        }
-                        // All other errors
-                        else {
-                            this._errorMessage = error.data.message;
-                        }
-                    }
-                );
-        } else if(this._mode == 'update') {
-            this._schoolService.updateSchoolById(this._school)
-                .subscribe(
-                    result => {
-                        if(result.success) {
-                            this._router.navigate(['/school']);
-                        } else {
-                            this._submitted = false;
-                        }
-                    },
-                    error => {
-                        this._submitted = false;
-                        // Validation errors
-                        if(error.status == 422) {
-                            let errorFields = JSON.parse(error.data.message);
-                            this._setFormErrors(errorFields);
-                            //this._setFormErrors(error.data);
-                        }
-                        // Unauthorized Access
-                        else if(error.status == 401 || error.status == 403) {
-                            this._staffService.unauthorizedAccess(error);
-                        }
-                        // All other errors
-                        else {
-                            this._errorMessage = error.data.message;
-                        }
-                    }
-                );
-        }
+    this._resetFormErrors();
+
+    let med = new Media();
+    med.image = this._image;
+    this._school.media.push(med);
+
+    if(this._mode == 'create') {
+      this._schoolService.addSchool(this._school)
+      .subscribe (
+        result => {
+          if(result.success) {
+            this._router.navigate(['/school']);
+          } else {
+            this._submitted = false;
+          }
+        },
+        error => {
+          this._submitted = false;
+          // Validation errors
+          if(error.status == 422) {
+            let errorFields = JSON.parse(error.data.message);
+            this._setFormErrors(errorFields);
+          }
+          // Unauthorized Access
+          else if(error.status == 401 || error.status == 403) {
+            this._staffService.unauthorizedAccess(error);
+          }
+          // All other errors
+          else {
+            this._errorMessage = error.data.message;
+          }
+        });
+    } else if(this._mode == 'update') {
+      this._schoolService.updateSchoolById(this._school)
+      .subscribe(
+        result => {
+          if(result.success) {
+            this._router.navigate(['/school']);
+          } else {
+            this._submitted = false;
+          }
+        },
+        error => {
+          this._submitted = false;
+          // Validation errors
+          if(error.status == 422) {
+            let errorFields = JSON.parse(error.data.message);
+            this._setFormErrors(errorFields);
+            //this._setFormErrors(error.data);
+          }
+          // Unauthorized Access
+          else if(error.status == 401 || error.status == 403) {
+            this._staffService.unauthorizedAccess(error);
+          }
+          // All other errors
+          else {
+            this._errorMessage = error.data.message;
+          }
+        });
+    }
+  }
+
+  fileChangeEvent(evt, mode) {
+    let self = this;
+    let files = evt.target.files;
+    let file = files[0];
+
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+
+    reader.onload = function () {
+      let binaryString = reader.result;
+
+      if(mode == 'thumb')
+        self._image.thumb = binaryString;
+      else if (mode == 'cover')
+        self._image.large = binaryString;
+
+      //console.log(binaryString);
+    };
+    reader.onerror = function (error) {
+      console.log('Invalid Image: ', error);
+    };
   }
 
   public onChangeDateTime(type:string, dateTime:string) {}
+}
+
+function abnValidator(control) {
+  // valid for testing
+  // 11223491505
+  let weights = [10, 1, 3, 5, 7, 9, 11, 13, 15, 17, 19];
+
+  let abn = control.value;
+
+  if(abn == undefined)
+    return null;
+
+  abn = abn.replace(/-/g, "");
+  abn = abn.replace(/_/g, "");
+  abn = abn.replace("/[^\d]/g", "");
+
+  let sum = 0;
+  for (let i = 0; i < weights.length; i++) {
+    let digit = abn[i] - (i ? 0 : 1);
+    sum += weights[i] * digit;
+  }
+
+  let valid = (sum % 89);
+  return (valid == 0) ? null : {
+    invalidABN: {
+      valid: false
+    }
+  }
+}
+
+function passwordValidator(control) {
+  // {6,21}           - Assert password is between 6 and 21 characters
+  // (?=.*[0-9])       - Assert a string has at least one number
+  let EMAIL_REGEXP = /^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{6,21}$/;
+  return EMAIL_REGEXP.test(control.value) ? null : {
+    invalidPassword: {
+      valid: false
+    }
+  }
+}
+
+function matchingPasswords(passwordKey: string, passwordConfirmationKey: string) {
+  return (group: FormGroup) => {
+    let passwordInput = group.controls[passwordKey];
+    let passwordConfirmationInput = group.controls[passwordConfirmationKey];
+    if (passwordInput.value !== passwordConfirmationInput.value) {
+      return passwordConfirmationInput.setErrors( { 'notEquivalent': true} );
+    }
+  }
 }

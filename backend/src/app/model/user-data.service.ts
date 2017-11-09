@@ -140,16 +140,28 @@ export class UserDataService {
         name : "Instructor Zero",
         user : { username: "zero", email: "zero@usernames.com", password: "123456" }
     }*/
-    addStudent(student:Student):Observable<any>{
+    addStudent(student:Student): Observable<any> {
         let headers = this.getHeaders();
+
+        //console.log(student.location);
+
+        let geo = student.location.geography;
+
+        delete student.location.geography;
+        //student.location['Geography'] = geo;
 
         let payload = {
             "Student": { "name": student.name, "birthday": student.birthday, "phone": student.phone, "emergencyPhone": student.emergencyPhone },
-            "Location": { "address": student.location.address, "streetNumber": student.location.streetNumber, "neighborhood": student.location.neighborhood, "postCode": student.location.postCode },
-            "User": { "username": student.user.username,"email": student.user.email, "password": student.user.password }
+            "Location": student.location,
+            "Geography": geo,
+            "User": student.user,
+            "Media": student.media
         }
 
-        console.log(payload);
+        /*return Observable.create(observer => {
+            observer.next('nothing');
+            observer.complete();
+        });*/
 
         return this._authHttp.post(
             this._globalService.apiHost+'/student',

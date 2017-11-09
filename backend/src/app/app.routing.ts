@@ -27,6 +27,10 @@ export const routes: Routes = [
                 loadChildren: 'app/dashboard/dashboard.module#DashboardModule'
             },
             {
+                path: 'search',
+                loadChildren: 'app/search/search.module#SearchModule'
+            },
+            {
                 path: 'staff',
                 loadChildren: 'app/staff/staff.module#StaffModule'
             },

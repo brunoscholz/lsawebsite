@@ -1,0 +1,57 @@
+<div class="small-card-container" *ngIf="_mode == 'course'">
+  <div class="small-card">
+    <!-- Image -->
+    <div class="small-card-img">
+      <div class="small-card-compare-btn">
+        <div class="icon-plus"></div>
+      </div>
+      <img src="assets/img/gold.jpg" alt="">
+    </div>
+
+    <!-- Body -->
+    <div class="small-card-body">
+      <p class="small-card-title">{{course.name || course.title}}</p>
+      <div class="small-card-rating">
+        <div class="icon-star"></div>
+        <div class="icon-star"></div>
+        <div class="icon-star"></div>
+        <div class="icon-star"></div>
+        <div class="icon-star"></div>
+      </div>
+      <p class="small-card-reviews-btn"><span class="bold">250</span> Reviews</p>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="small-card-container" *ngIf="_mode == 'school'">
+  <div class="small-card">
+    <!-- Image -->
+    <div class="small-card-img">
+      <div class="small-card-compare-btn">
+        <div class="icon-plus"></div>
+      </div>
+      <img src="assets/img/gold.jpg" alt="">
+    </div>
+
+    <!-- Body -->
+    <div class="small-card-body">
+      <p class="small-card-title">{{school.name || school.title}}</p>
+      <div class="small-card-rating">
+        <div class="icon-star"></div>
+        <div class="icon-star"></div>
+        <div class="icon-star"></div>
+        <div class="icon-star"></div>
+        <div class="icon-star"></div>
+      </div>
+      <p class="small-card-reviews-btn"><span class="bold">250</span> Reviews</p>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="small-card-container" *ngIf="_mode == 'none'">
+  <p>Nothing found here</p>
+</div>

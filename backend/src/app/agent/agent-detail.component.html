@@ -1,0 +1,95 @@
+<div class="row" *ngIf="_errorMessage">
+  <div class="col-sm-12">
+  <p class="alert alert-danger">{{_errorMessage}}</p>
+  </div>
+</div>
+<div class="animated fadeIn" *ngIf="!_instructor && !_errorMessage">
+  <span class="spinner"></span>
+</div>
+<div class="animated fadeIn" *ngIf="_instructor">
+  <div class="course-view">
+
+    <div class="row section">
+      <div class="col-md-8">
+        <h1>{{_instructor.name}}</h1>
+        <p class="secondary">{{_instructor.about}}</p>
+        <hr class="divider">
+
+        <h1>Ratings</h1>
+        <div class="facilities section">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="feature on">Likes: 15</div>
+            </div>
+            <div class="col-md-4">
+              <div class="feature on">Reviews: 4</div>
+            </div>
+            <div class="col-md-4">
+              <div class="feature on">Since: 1/2017</div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4">
+              <div class="feature on">
+              <img src="assets/img/icons/star-full.svg" class="icon">
+              <img src="assets/img/icons/star-full.svg" class="icon">
+              <img src="assets/img/icons/star-full.svg" class="icon">
+              <img src="assets/img/icons/star-disabled.svg" class="icon">
+              <img src="assets/img/icons/star-disabled.svg" class="icon">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="feature on">&nbsp;</div>
+            </div>
+            <div class="col-md-4">
+              <div class="feature on">&nbsp;</div>
+            </div>
+          </div>
+        </div>
+
+        <h1>Institutions</h1>
+
+      </div>
+      <!-- ./col -->
+
+      <!--School & Menu-->
+      <div class="col-md-4">
+        
+        <div class="card hovercard">
+          <div class="cardheader" style="background: url('http://lorempixel.com/850/280/nature/3/');">
+
+          </div>
+          <div class="avatar">
+            <img alt="" src="http://lorempixel.com/100/100/people/5/">
+          </div>
+          <div class="info">
+            <div class="title">
+              <a target="_blank" href="#">{{_instructor.name}}</a>
+            </div>
+            <div class="desc">Passionate designer</div>
+            <div class="desc">Curious developer</div>
+            <div class="desc">Tech geek</div>
+          </div>
+          <div class="bottom">
+            <a class="btn round btn-danger btn-twitter btn-sm" href="https://twitter.com/...">
+              <i class="fa fa-twitter"></i>
+            </a>
+            <a class="btn round btn-danger btn-sm" rel="publisher" href="https://plus.google.com/...">
+              <i class="fa fa-google-plus"></i>
+            </a>
+            <a class="btn round btn-danger btn-sm" rel="publisher" href="https://plus.google.com/...">
+              <i class="fa fa-facebook"></i>
+            </a>
+            <a class="btn round btn-warning btn-sm" rel="publisher" href="https://plus.google.com/...">
+              <i class="fa fa-behance"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!--/.School & Menu-->
+    </div>
+
+  </div>
+</div>

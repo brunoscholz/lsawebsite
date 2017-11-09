@@ -6,10 +6,10 @@ import {ActivatedRoute} from "@angular/router";
     templateUrl: './sample-page.component.html',
 })
 export class SamplePageComponent implements OnInit {
-    private _id:number;
-    private _parameters:any;
+    _id:number;
+    _parameters:any;
 
-    constructor(private _activatedRoute:ActivatedRoute) {
+    constructor(public _activatedRoute:ActivatedRoute) {
     }
 
     ngOnInit() {

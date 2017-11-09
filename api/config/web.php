@@ -8,10 +8,12 @@ $config = [
     'bootstrap' => ['log'],
     'components' => [
         'request' => [
+            'enableCookieValidation' => true,
+            'enableCsrfValidation' => false,
             'cookieValidationKey' => 'K0I9yOJPLBqbaam4IWrqtelfxp1m1zEXB04f5H6D',
             'parsers' => [
                 'application/json' => 'yii\web\JsonParser',
-            ]
+            ],
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -54,12 +56,12 @@ $config = [
                     'class'         => 'yii\rest\UrlRule',
                     'controller'    => 'v1/search',
                     'pluralize'     => false,
-                    'tokens' => [
-                        '{q}'             => '<q:\w+>',
-                    ],
+                    //'only'          => ['index, featured, options'],
                     'extraPatterns' => [
-                        'GET search'      =>  'search'
-                    ]
+                        'POST index' => 'index',
+                        'GET featured' => 'featured',
+                        'OPTIONS featured' => 'options',
+                    ],
                 ],
                 [
                     'class'         => 'yii\rest\UrlRule',
@@ -202,6 +204,13 @@ $config = [
                 'app\models\School',
             ],
         ],
+        /*'featured' => [
+            'class' => 'app\components\Search',
+            'models' => [
+                'app\models\Course',
+                'app\models\School',
+            ],
+        ],*/
 
     ],
     'modules' => [

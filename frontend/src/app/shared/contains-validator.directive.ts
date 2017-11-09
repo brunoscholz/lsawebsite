@@ -1,4 +1,4 @@
-import {Directive, forwardRef, Input, OnInit, OnChanges, SimpleChanges, NgModule} from '@angular/core';
+/*import {Directive, forwardRef, Input, OnInit, OnChanges, SimpleChanges, NgModule} from '@angular/core';
 import {NG_VALIDATORS, Validator, AbstractControl, ValidatorFn, Validators} from '@angular/forms';
 
 @Directive({
@@ -44,18 +44,22 @@ export const contains = (listValues?:any): ValidatorFn => {
         let v:string = control.value+"";
 
         return listValues.indexOf(v) >= 0 ? null : {contains: true};
-
     }
+}
 
-};
+export function contains (listValues?:any): ValidatorFn {
+    return function (control: AbstractControl): {[key: string]: boolean} {
+        if(isPresent(Validators.required(control))) return null;
+
+        let v:string = control.value+"";
+
+        return listValues.indexOf(v) >= 0 ? null : {contains: true};
+    }
+}
 
 function isPresent(obj) {
     return obj !== undefined && obj !== null;
 }
-
-
-
-
 
 export const ContainsValidators:any = {
     contains,
@@ -67,3 +71,4 @@ export const ContainsValidators:any = {
 })
 export class ContainsModule {
 }
+*/

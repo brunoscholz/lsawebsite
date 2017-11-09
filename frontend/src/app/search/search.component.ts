@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { CustomValidators } from 'ng2-validation';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray } from "@angular/forms";
 
-import { SearchService } from "../model/search.service";
 import { UserService } from "../model/user.service";
+import { SearchService } from "../model/search.service";
+import { IPayload, ISearchData, Instructor, Course, School, Agent, Checkbox } from "../model/general";
+
+import * as moment from "moment";
+import * as _ from "underscore";
 
 @Component({
   selector: 'app-search',
@@ -12,79 +15,142 @@ import { UserService } from "../model/user.service";
   styleUrls: ['../layouts/frontend-layout.component.scss']
 })
 export class SearchComponent implements OnInit {
-	private _searchForm:FormGroup;
-    private _formErrors:any;
-    private _submitted:boolean = false;
-    private _errorMessage:string = '';
-    private _returnURL:string = '/';
+  _parameters:any = {};
+  _term: IPayload = new IPayload();
+  _data: any;
 
-    _term:string;
+  _mode: string = '';
+  _errorMessage: string;
 
-	_result : any = {};
+  _form:FormGroup;
+  _submitted:boolean = false;
 
-    constructor(private _searchService: SearchService,
-    			private _userService: UserService,
-    			private _formBuilder:FormBuilder,
-                private _route: ActivatedRoute,
-                private _router: Router) {
+  _courseTypes = {};
+  _accomodationTypes = {};
 
+  constructor(public _searchService:SearchService,
+              public _userService:UserService,
+              public _router:Router,
+              public _activatedRoute:ActivatedRoute,
+              public _formBuilder:FormBuilder) {
 
-        this._searchForm = _formBuilder.group({
-            term: ['', Validators.minLength(3)]
-        });
-        
-        this._searchForm.valueChanges.subscribe(data => this.onValueChanged(data));
-    }
+    // Construct form group
+    this._form = _formBuilder.group({
+      term: [''],
+      startDate: ['', Validators.compose([])],
+      endDate: ['', Validators.compose([])],
+      courseType: [''],
+      accomodation: [''],
+      pickup: ['']
+    }, {
+      validator: validateDateTime(['startDate', 'endDate'])
+    });
 
-     public onValueChanged(data?: any) {
-        if (!this._searchForm) { return; }
-        const form = this._searchForm;
-        for (let field in this._formErrors) {
-            // clear previous error message (if any)
-            let control = form.get(field);
-            if (control && control.dirty) {
-                this._formErrors[field].valid = true;
-                this._formErrors[field].message = '';
-            }
+    this._courseTypes = SearchService.getCourseTypes();
+    this._accomodationTypes = SearchService.getAccomodationTypes();
+    this._form.valueChanges.subscribe(data => this.onValueChanged(data));
+  }
+
+  onValueChanged(data?: any) {}
+
+  private _resetData() {
+    this._term = new IPayload();
+    this._term.pickup = new Checkbox();
+  }
+
+  public ngOnInit(): void {
+    this._resetData();
+    this._parameters = this._activatedRoute.params.subscribe(params => {
+      // plus(+) is to convert 'id' to number
+      if(typeof params['term'] !== "undefined") {
+        this._term.q = params['term'];
+        this._errorMessage = "";
+        this.search();
+      } else {
+        this._mode = 'search';
+      }
+    });
+  }
+
+  public ngOnDestroy() {
+    this._parameters.unsubscribe();
+    this._term = new IPayload();
+  }
+
+  public onSubmit() {
+    this._submitted = true;
+    this.search();
+  }
+
+  search() {
+    this._data = {};
+    this._submitted = false;
+
+    this._searchService.search(this._term)
+      .subscribe(
+        searchData => {
+
+          let ret = _.groupBy(searchData, function(obj) { return obj["type"]; });
+          this._data = ret;
+
+          this._mode = 'list';
+          this._submitted = false;
+        },
+        error => {
+          // unauthorized access
+          this._submitted = false;
+          this._mode = 'search';
+          if(error.status == 401 || error.status == 403) {
+            this._userService.unauthorizedAccess(error);
+          } else {
+            this._errorMessage = error.data.message;
+          }
         }
+      );
+  }
+
+  public viewCity(cityId: string): void {
+    this._router.navigate(['/city', cityId]);
+  }
+
+  public viewAgent(agentId: string): void {
+    this._router.navigate(['/agent', agentId]);
+  }
+
+  public viewInstructor(instructorId: string): void {
+    this._router.navigate(['/instructor', instructorId]);
+  }
+
+  public viewSchool(schoolId: string): void {
+    this._router.navigate(['/school', schoolId]);
+  }
+
+  public viewCourse(courseId: string): void {
+    this._router.navigate(['/course', courseId]);
+  }
+  
+  public onChangeDateTime(type:string, dateTime:string) {
+    let formattedDateTime:string = null;
+    if(moment(dateTime).isValid()) {
+      formattedDateTime = moment(dateTime).format("YYYY-MM-DD");
     }
+    if(type == 'startDate') {
+      this._term.startDate = formattedDateTime;
+    } else if(type == 'endDate') {
+      this._term.endDate = formattedDateTime;
+    }
+  }
+}
 
-    ngOnInit() {
-        //this._resetFormErrors();
-        this._term = this._route.snapshot.params['term'];
-        this._searchForm.controls['term'].setValue(this._term);
-
-        if (this._term != undefined) {
-            this.search(this._term);
+function validateDateTime(fieldKeys:any){
+  return (group: FormGroup) => {
+    for(let i = 0; i < fieldKeys.length; i++) {
+      let field = group.controls[fieldKeys[i]];
+      if(typeof field !== "undefined" && (field.value != "" && field.value != null)) {
+        if(moment(field.value, "YYYY-MM-DD", true).isValid() == false) {
+          return field.setErrors({validateDateTime: true});
         }
+      }
     }
-
-    public search(term) {
-        this._result = null;
-        this._searchService.search(term)
-            .subscribe(
-                res => {
-                    this._result = res
-                    console.log(res);
-                },
-                error =>  {
-                    // unauthorized access
-                    if(error.status == 401 || error.status == 403) {
-                        this._userService.unauthorizedAccess(error);
-                    } else {
-                        this._errorMessage = error.data.message;
-                    }
-                }
-            );
-    }
-
-    public onSubmit(elementValues: any) {
-        this._submitted = true;
-    	this._result = null;
-        this.search(elementValues.term);
-    }
-
-    gotoSchool(schoolId) {
-        this._router.navigate(['/school', schoolId]);
-    }
+  }
 }

@@ -14,9 +14,9 @@ import {AuthHttp} from 'angular2-jwt';
 @Injectable()
 export class SettingDataService {
 
-    constructor(private _globalService:GlobalService,
-                private _userService:UserService,
-                private _authHttp: AuthHttp){
+    constructor(public _globalService:GlobalService,
+                public _userService:UserService,
+                public _authHttp: AuthHttp) {
     }
 
     // POST /v1/setting

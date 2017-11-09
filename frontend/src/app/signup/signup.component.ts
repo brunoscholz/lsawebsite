@@ -10,15 +10,15 @@ import {Router} from "@angular/router";
   templateUrl: './signup.component.html',
 })
 export class SignupComponent implements OnInit {
-    private _signupForm:FormGroup;
-    private _formErrors:any;
-    private _submitted:boolean = false;
-    private _errorMessage:string = '';
-    private _showConfirmation:boolean = false;
+    _signupForm:FormGroup;
+    _formErrors:any;
+    _submitted:boolean = false;
+    _errorMessage:string = '';
+    _showConfirmation:boolean = false;
 
-    constructor(private _userService:UserService,
-                private _router:Router,
-                private _formBuilder:FormBuilder) {
+    constructor(public _userService:UserService,
+                public _router:Router,
+                public _formBuilder:FormBuilder) {
 
         let password = new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)]));
         let passwordConfirm = new FormControl('', Validators.compose([Validators.required, CustomValidators.equalTo(password)]));

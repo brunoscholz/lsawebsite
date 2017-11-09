@@ -161,97 +161,21 @@
                             </div>
                         </div>
 
-                        <h1>Location</h1>
                         <!-- location -->
-                        <div class="form-group-wrapper">
-                            <div class="form-group row" [ngClass]="{'has-danger': !_isValid('location.address')}">
-                                <label class="col-sm-12" for="address">Address <span class="required">*</span></label>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="address" placeholder="Enter your address" [formControl]="_form.controls['location'].controls[0].controls['address']" [ngClass]="{'form-control-danger': !_isValid('location.address')}" [(ngModel)]="_school.location.address" />
-                                </div><div class="clearfix"></div>
-                                <div class="col-sm-12" *ngIf="!_formErrors.address.valid">
-                                    <span class="help-block help-block-error">{{_formErrors.address.message}}</span>
-                                </div>
-                                <div class="col-sm-12">
-                                    <p class="help-text">* Street name</p>
-                                </div>
-                            </div>
-                        </div>
+                        <h1>Location</h1>
+                        <google-map (change)="fillLocation($event)"></google-map>
 
                         <div class="form-group-wrapper">
-                            <div class="form-group row" [ngClass]="{'has-danger': !_isValid('location.streetNumber')}">
-                                <label class="col-sm-12" for="streetNumber">Street Number <span class="required">*</span></label>
+                            <div class="form-group row" [ngClass]="{'has-danger': !_isValid('location.address2')}">
+                                <label class="col-sm-12" for="address2">Address 2 <span class="required">*</span></label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="streetNumber" placeholder="Enter the street number" [formControl]="_form.controls['location'].controls[0].controls['streetNumber']" [ngClass]="{'form-control-danger': !_isValid('location.streetNumber')}" [(ngModel)]="_school.location.streetNumber" />
+                                    <input type="text" class="form-control" id="address2" placeholder="Any complement on the address" [formControl]="_form.controls['location'].controls[0].controls['address2']" [ngClass]="{'form-control-danger': !_isValid('location.address2')}" [(ngModel)]="_school.location.address2" />
                                 </div><div class="clearfix"></div>
-                                <div class="col-sm-12" *ngIf="!_formErrors.streetNumber.valid">
-                                    <span class="help-block help-block-error">{{_formErrors.streetNumber.message}}</span>
+                                <div class="col-sm-12" *ngIf="!_formErrors.location.valid">
+                                    <span class="help-block help-block-error">{{_formErrors.location.message}}</span>
                                 </div>
                                 <div class="col-sm-12">
-                                    <p class="help-text">* Street number</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group-wrapper">
-                            <div class="form-group row" [ngClass]="{'has-danger': !_isValid('location.neighborhood')}">
-                                <label class="col-sm-12" for="neighborhood">Neighborhood <span class="required">*</span></label>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="neighborhood" placeholder="Enter the neighborhood" [formControl]="_form.controls['location'].controls[0].controls['neighborhood']" [ngClass]="{'form-control-danger': !_isValid('location.neighborhood')}" [(ngModel)]="_school.location.neighborhood" />
-                                </div><div class="clearfix"></div>
-                                <div class="col-sm-12" *ngIf="!_formErrors.neighborhood.valid">
-                                    <span class="help-block help-block-error">{{_formErrors.neighborhood.message}}</span>
-                                </div>
-                                <div class="col-sm-12">
-                                    <p class="help-text"> </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group-wrapper">
-                            <div class="form-group row" [ngClass]="{'has-danger': !_isValid('location.city')}">
-                                <label class="col-sm-12" for="city">City <span class="required">*</span></label>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="city" placeholder="Enter the city" [formControl]="_form.controls['location'].controls[0].controls['city']" [ngClass]="{'form-control-danger': !_isValid('location.city')}" [(ngModel)]="_school.location.city" />
-                                </div><div class="clearfix"></div>
-                                <div class="col-sm-12" *ngIf="!_formErrors.city.valid">
-                                    <span class="help-block help-block-error">{{_formErrors.city.message}}</span>
-                                </div>
-                                <div class="col-sm-12">
-                                    <p class="help-text">* City name</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group-wrapper">
-                            <div class="form-group row">
-                                <label class="col-sm-12" for="state">State <span class="required">*</span></label>
-                                <div class="col-sm-6">
-                                    <select class="form-control" id="state" [formControl]="_form.controls['location'].controls[0].controls['state']" [ngClass]="{'form-control-danger': !_isValid('location.state')}" [(ngModel)]="_school.location.state">
-                                      <option value="0" selected> --- </option>
-                                        <option *ngFor="let state of _states" [value]="state.value" [selected]="">{{state.label}}</option>
-                                    </select>
-                                </div><div class="clearfix"></div>
-                                <div class="col-sm-12" *ngIf="!_formErrors.state.valid">
-                                    <span class="help-block help-block-error">{{_formErrors.state.message}}</span>
-                                </div>
-                                <div class="col-sm-12">
-                                    <p class="help-text">* State name</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group-wrapper">
-                            <div class="form-group row" [ngClass]="{'has-danger': !_isValid('location.postcode')}">
-                                <label class="col-sm-12" for="postcode">Post Code <span class="required">*</span></label>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="postcode" placeholder="Enter the post code" [formControl]="_form.controls['location'].controls[0].controls['postcode']" [ngClass]="{'form-control-danger': !_isValid('location.postcode')}" [(ngModel)]="_school.location.postcode" />
-                                </div><div class="clearfix"></div>
-                                <div class="col-sm-12" *ngIf="!_formErrors.postcode.valid">
-                                    <span class="help-block help-block-error">{{_formErrors.postcode.message}}</span>
-                                </div>
-                                <div class="col-sm-12">
-                                    <p class="help-text"> </p>
+                                    <p class="help-text">* Complement like apt number</p>
                                 </div>
                             </div>
                         </div>

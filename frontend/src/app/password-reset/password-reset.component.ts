@@ -9,19 +9,19 @@ import {Router, ActivatedRoute, Params} from "@angular/router";
   templateUrl: './password-reset.component.html',
 })
 export class PasswordResetComponent implements OnInit {
-    private _passwordResetForm:FormGroup;
-    private _formErrors:any;
-    private _submitted:boolean = false;
-    private _isTokenVerified:boolean = false;
-    private _errorMessage:string = '';
-    private _showConfirmation:boolean = false;
+    _passwordResetForm:FormGroup;
+    _formErrors:any;
+    _submitted:boolean = false;
+    _isTokenVerified:boolean = false;
+    _errorMessage:string = '';
+    _showConfirmation:boolean = false;
 
     private _token:string = '';
 
-    constructor(private _userService:UserService,
-                private _router:Router,
-                private _activatedRoute:ActivatedRoute,
-                private _formBuilder:FormBuilder) {
+    constructor(public _userService:UserService,
+                public _router:Router,
+                public _activatedRoute:ActivatedRoute,
+                public _formBuilder:FormBuilder) {
 
     }
 

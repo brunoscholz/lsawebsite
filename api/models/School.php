@@ -80,20 +80,19 @@ class School extends \yii\db\ActiveRecord
                         'location.geography',
                     ]);
                     //$model->select(['name']);
-                    $model->andWhere(['tbl_school.status' => 'ACT']);
                     $model->orFilterWhere(['like', 'tbl_school.name', $term]);
                     $model->orFilterWhere(['like', 'tbl_geography.cityName', $term]);
+                    $model->andFilterWhere(['tbl_school.status' => 'ACT']);
                 },
                 'searchFields' => function ($model) {
                     /** @var self $model */
                     return [
                         'type' => 'School',
                         'id' => $model->schoolId,
-                        'title' => $model->name,
+                        'name' => $model->name,
                         'body' => strip_tags($model->description),
                         'picture' => $model->media,
                         'reviews' => $model->ratings,
-                        'url' => '/schools/school/view',
                         //['name' => 'url', 'value' => $model->url, 'type' => SearchBehavior::FIELD_KEYWORD],
                         // ['name' => 'model', 'value' => 'page', 'type' => SearchBehavior::FIELD_UNSTORED],
                     ];
@@ -179,9 +178,9 @@ class School extends \yii\db\ActiveRecord
         $fields[] = 'relationships';
         $fields[] = 'location';
         $fields[] = 'user';
-        $fields[] = 'schoolawards';
-        $fields[] = 'schoolcampis';
-        $fields[] = 'schoolfeatures';
+        $fields[] = 'schoolAwards';
+        $fields[] = 'schoolCampis';
+        $fields[] = 'schoolFeatures';
         return $fields;
     }
 
@@ -266,24 +265,24 @@ class School extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getSchoolawards()
+    public function getSchoolAwards()
     {
-        return $this->hasMany(Schoolawards::className(), ['schoolId' => 'schoolId']);
+        return $this->hasMany(SchoolAwards::className(), ['schoolId' => 'schoolId']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getSchoolcampis()
+    public function getSchoolCampis()
     {
-        return $this->hasMany(Schoolcampi::className(), ['schoolId' => 'schoolId']);
+        return $this->hasMany(SchoolCampi::className(), ['schoolId' => 'schoolId']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getSchoolfeatures()
+    public function getSchoolFeatures()
     {
-        return $this->hasMany(Schoolfeatures::className(), ['schoolId' => 'schoolId']);
+        return $this->hasMany(SchoolFeatures::className(), ['schoolId' => 'schoolId']);
     }
 }

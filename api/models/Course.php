@@ -69,13 +69,13 @@ class Course extends \yii\db\ActiveRecord
     public function fields()
     {
         $fields = parent::fields();
-        $fields[] = 'coursetype';
+        $fields[] = 'courseType';
         $fields[] = 'school';
-        $fields[] = 'schoolcampi';
-        $fields[] = 'courseenrolls';
-        $fields[] = 'coursefeatures';
-        $fields[] = 'courseinstructors';
-        $fields[] = 'coursesections';
+        $fields[] = 'schoolCampi';
+        $fields[] = 'courseEnrolls';
+        $fields[] = 'courseFeatures';
+        $fields[] = 'courseInstructors';
+        $fields[] = 'courseSections';
         $fields[] = 'media';
         $fields[] = 'ratings';
         $fields[] = 'relationships';
@@ -121,23 +121,31 @@ class Course extends \yii\db\ActiveRecord
                         'school.location',
                         'school.location.geography',
                     ]);
-                    $model->andWhere(['tbl_course.status' => 'ACT']);
                     
                     $model->orFilterWhere(['like', 'tbl_course.name', $term]);
                     $model->orFilterWhere(['like', 'tbl_geography.cityName', $term]);
+                    $model->andFilterWhere(['tbl_course.status' => 'ACT']);
                     //$model->select(['tbl_course.name', 'cost']);
                 },
                 'searchFields' => function ($model) {
                     /** @var self $model */
+                    /*$temp = $model->toArray();
+                    $tmpMedia = array();
+                    foreach ($model->media as $media) {
+                        $tmpMedia[] = $media->toArray();
+                    }
+                    $temp['media'] = $tmpMedia;
+                        'model' => $temp,*/
+
+
                     return [
                         'type' => 'Course',
                         'id' => $model->courseId,
-                        'title' => $model->name,
+                        'name' => $model->name,
                         'body' => strip_tags($model->about),
                         'cost' => $model->cost,
                         'picture' => $model->media,
                         'reviews' => $model->ratings,
-                        'url' => '/courses/course/view',
                         //['name' => 'url', 'value' => $model->url, 'type' => SearchBehavior::FIELD_KEYWORD],
                         // ['name' => 'model', 'value' => 'page', 'type' => SearchBehavior::FIELD_UNSTORED],
                     ];
@@ -149,7 +157,7 @@ class Course extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getSchoolcampi()
+    public function getSchoolCampi()
     {
         return $this->hasOne(SchoolCampi::className(), ['schoolCampiId' => 'schoolCampiId']);
     }
@@ -157,7 +165,7 @@ class Course extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCoursetype()
+    public function getCourseType()
     {
         return $this->hasOne(CourseType::className(), ['courseTypeId' => 'courseTypeId']);
     }
@@ -173,7 +181,7 @@ class Course extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCourseenrolls()
+    public function getCourseEnrolls()
     {
         return $this->hasMany(CourseEnroll::className(), ['courseId' => 'courseId']);
     }
@@ -181,7 +189,7 @@ class Course extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCoursefeatures()
+    public function getCourseFeatures()
     {
         return $this->hasMany(CourseFeatures::className(), ['courseId' => 'courseId']);
     }
@@ -189,7 +197,7 @@ class Course extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCourseinstructors()
+    public function getCourseInstructors()
     {
         return $this->hasMany(CourseInstructor::className(), ['courseId' => 'courseId']);
     }
@@ -197,7 +205,7 @@ class Course extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCoursesections()
+    public function getCourseSections()
     {
         return $this->hasMany(CourseSection::className(), ['courseId' => 'courseId']);
     }

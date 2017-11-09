@@ -10,15 +10,15 @@ import {Router} from "@angular/router";
   templateUrl: './password-reset-request.component.html',
 })
 export class PasswordResetRequestComponent implements OnInit {
-    private _passwordResetRequestForm:FormGroup;
-    private _formErrors:any;
-    private _submitted:boolean = false;
-    private _errorMessage:string = '';
-    private _showConfirmation:boolean = false;
+    _passwordResetRequestForm:FormGroup;
+    _formErrors:any;
+    _submitted:boolean = false;
+    _errorMessage:string = '';
+    _showConfirmation:boolean = false;
 
-    constructor(private _userService:UserService,
-                private _router:Router,
-                private _formBuilder:FormBuilder) {
+    constructor(public _userService:UserService,
+                public _router:Router,
+                public _formBuilder:FormBuilder) {
 
 
         this._passwordResetRequestForm = _formBuilder.group({

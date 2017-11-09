@@ -1,4 +1,3 @@
-
 <div class="search-bar-mobile hide-xs">
   <div id="search-bar-mobile-input">
     <button id="mobile-search-toggler" data-toggle="modal" data-target="#search-mobile-modal" class="mobile-input">
@@ -8,13 +7,14 @@
   </div>
 </div>
 <div class="search-box search-bar no-filters" role="search">
-<form [formGroup]="_searchForm" (ngSubmit)="onSubmit(_searchForm.value)">
+  <form [formGroup]="_form" (ngSubmit)="onSubmit()">
     <div class="input-container">
       <div class="input-field">
         <p class="input-label">Search for...</p>
-	    <input type="text" placeholder="City or Course" [formControl]="_searchForm.controls['term']">
+        <input type="text" class="form-control" id="term" placeholder="Enter your search" [formControl]="_form.controls['term']" [(ngModel)]="_term.q" />
       </div>
-      <button type="submit" class="btn-primary">Search</button>
+      <button type="submit" class="btn btn-sm btn-primary" ><i class="fa fa-dot-circle-o"></i> Search</button>
+      <div *ngIf="_submitted" class="spinner"></div>
     </div>
   </form>
 </div>
@@ -24,79 +24,34 @@
     <p class="alert alert-danger">{{_errorMessage}}</p>
   </div>
 </div>
-<div class="animated fadeIn" *ngIf="!_result && !_errorMessage">
+<div class="animated fadeIn" *ngIf="!_data && !_errorMessage">
   <span class="spinner"></span>
 </div>
-<div class="animated fadeIn" *ngIf="_result">
+<div class="animated fadeIn" *ngIf="_data">
+
   <div class="row">
-    <div class="col-lg-12">
+    <div class="col-md-12">
+      <!-- Nav tabs -->
+      <tabset>
+        <tab>
+          <!-- <tab heading="Home"> -->
+          <ng-template tabHeading><i class="icon-calculator"></i> Schools</ng-template>
+          <small-card *ngFor="let school of _data.School" [school]="school" (click)="viewSchool(school.id)"></small-card>
 
-      <ul class="nav nav-pills nav-fill">
-        <li class="nav-item">
-          <a class="nav-link active" href="#">Active</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Longer nav link</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#">Disabled</a>
-        </li>
-      </ul>
+        </tab>
+        <tab>
+          <ng-template tabHeading><i class="icon-basket-loaded"></i> Courses</ng-template>
+          <small-card *ngFor="let course of _data.Course" [course]="course" (click)="viewCourse(course.id)"></small-card>
 
-      <div class="card">
-        <div class="card-header">
-          <i class="fa fa-align-justify"></i> Schools
-        </div>
-        <div class="card-block">
-          <div class="table-responsive">
-            
-            <table class="table table-striped table-bordered table-condensed">
-              <thead>
-              <tr>
-                <th width="8%"> </th>
-                <th>Name</th>
-                <th>Description</th>
-                <th class="text-xs-center">Reviews</th>
-                <!-- <th width="20%" class="text-xs-center"></th> -->
-              </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let school of _result.hits">
-                  <td class="text-xs-center">
-                    
-                  </td>
-                  <td class="text-xs-center">
-                    <a class="link" (click)="gotoSchool(school.id)">{{school.title}}</a>
-                  </td>
-                  <td>
-                    {{school.body}}
-                  </td>
-                  <td>
-                    {{school.reviews.length}}
-                  </td>
+        </tab>
+        <tab>
+          <ng-template tabHeading><i class="icon-pie-chart"></i> Charts</ng-template>
+          
 
-                  <!-- <td class="text-xs-center">
-                    <div *ngIf="school.status != 'REM'">
-                      <button class="btn btn-primary btn-sm" type="button" (click)="viewOffer(offer)">
-                        <i class="fa fa-edit"></i>
-                      </button>
-                      <button class="btn btn-danger btn-sm" type="button" (click)="confirmDeleteOffer(offer)">
-                        <i class="fa fa-remove"></i>
-                      </button>
-                    </div>
-                  </td> -->
+        </tab>
+      </tabset>
+    </div><!--/.col-->
 
-                </tr>
-              </tbody>
-            </table>
+  </div><!--/.row-->
 
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
 </div>

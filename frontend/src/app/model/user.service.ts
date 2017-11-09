@@ -14,13 +14,13 @@ import {AuthHttp, JwtHelper} from 'angular2-jwt';
 
 @Injectable()
 export class UserService {
-    private loggedIn = false;
+    loggedIn = false;
     public redirectURL = '';
     public jwtHelper: JwtHelper = new JwtHelper();
 
-    constructor(private _globalService: GlobalService,
-                private _router: Router,
-                private _authHttp: AuthHttp) {
+    constructor(public _globalService: GlobalService,
+                public _router: Router,
+                public _authHttp: AuthHttp) {
         this.loggedIn = this.isLoggedIn();
     }
 

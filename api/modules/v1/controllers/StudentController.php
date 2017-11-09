@@ -18,6 +18,7 @@ use yii\web\ServerErrorHttpException;
 use app\controllers\RestController;
 
 use app\models\Student;
+use app\modules\v1\models\StudentModel;
 use app\models\User;
 use app\components\RestUtils;
 
@@ -84,8 +85,13 @@ class StudentController extends RestController
 
         foreach ($data->each() as $model)
         {
-            //$temp = RestUtils::loadQueryIntoVar($model);
             $temp = $model->toArray();
+            $tmpMedia = array();
+            foreach ($model->media as $media) {
+                $tmpMedia[] = $media->toArray();
+            }
+
+            $temp['media'] = $tmpMedia;
             $models[] = $temp;
         }
 
@@ -107,24 +113,21 @@ class StudentController extends RestController
         }
     }
 
-    public function actionCreate(){
-        /*$model = new Student();
+    public function actionCreate() {
+        $model = new StudentModel();
         $model->load(\Yii::$app->getRequest()->getBodyParams(), '');
 
         if ($model->validate() && $model->save()) {
             $response = \Yii::$app->getResponse();
             $response->setStatusCode(201);
-            $id = implode(',', array_values($model->getPrimaryKey(true)));
+            $id = $model->student->studentId;
             $response->getHeaders()->set('Location', Url::toRoute([$id], true));
         } else {
             // Validation error
-            throw new HttpException(422, json_encode($model->errors));
+            throw new HttpException(422, json_encode($model->errorList()));
         }
 
-        return $model;*/
-        $response = \Yii::$app->getResponse();
-        $response->setStatusCode(204);
-        return "ok";
+        return $model;
     }
 
     public function actionUpdate($id) {

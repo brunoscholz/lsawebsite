@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { SchoolListComponent } from './school-list.component';
+import { SchoolDetailComponent } from './school-detail.component';
 
 const routes: Routes = [
     {
@@ -15,20 +16,6 @@ const routes: Routes = [
                 component: SchoolListComponent,
                 data: {
                     title: 'List',
-                }
-            },
-            {
-                path: 'create',
-                component: SchoolFormComponent,
-                data: {
-                    title: 'Create'
-                }
-            },
-            {
-                path: 'edit/:schoolId',
-                component: SchoolFormComponent,
-                data: {
-                    title: 'Update'
                 }
             },
             {

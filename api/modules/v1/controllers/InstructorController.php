@@ -80,8 +80,12 @@ class InstructorController extends RestController
 
         foreach ($data->each() as $model)
         {
-            //$temp = RestUtils::loadQueryIntoVar($model);
             $temp = $model->toArray();
+            $tmpMedia = array();
+            foreach ($model->media as $media) {
+                $tmpMedia[] = $media->toArray();
+            }
+            $temp['media'] = $tmpMedia;
 
             $models[] = $temp;
         }

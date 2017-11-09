@@ -42,6 +42,10 @@ export const routes: Routes = [
                 loadChildren: 'app/school/school.module#SchoolModule'
             },
             {
+                path: 'course',
+                loadChildren: 'app/course/course.module#CourseModule'
+            },
+            {
                 path: 'login',
                 loadChildren: 'app/login/login.module#LoginModule'
             },

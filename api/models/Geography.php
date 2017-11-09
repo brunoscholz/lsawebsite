@@ -34,7 +34,7 @@ class Geography extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['geographyId', 'cityCode', 'cityName', 'stateCode', 'stateName', 'countryCode', 'countryName'], 'required'],
+            [['geographyId', 'cityName', 'countryCode', 'countryName'], 'required'],
             [['geographyId'], 'string', 'max' => 21],
             [['cityCode', 'stateCode', 'countryCode'], 'string', 'max' => 3],
             [['cityName', 'stateName'], 'string', 'max' => 42],

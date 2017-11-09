@@ -8,15 +8,14 @@ import {UserDataService} from "../model/user-data.service";
     templateUrl: './account.component.html',
 })
 export class AccountComponent implements OnInit {
-    private _errorMessage:string;
-
-    private _mode:string = '';
-    private _user:User;
+     _errorMessage:string;
+     _mode:string = '';
+     _user:User;
 
     public userData:any = {};
 
-    constructor(private _userService:UserService,
-                private _userDataService:UserDataService) {
+    constructor(public _userService:UserService,
+                public _userDataService:UserDataService) {
     }
 
     public ngOnInit() {

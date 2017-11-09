@@ -1,5 +1,6 @@
 import { NgModule }           from '@angular/core';
 import { CommonModule }       from '@angular/common';
+import { AgmCoreModule }      from '@agm/core';
 
 
 import { FormsModule, ReactiveFormsModule }        from '@angular/forms';
@@ -11,10 +12,12 @@ import { ContainsValidator } from './contains-validator.directive';
 import { AuthModule } from './auth.module';
 import { TimepickerComponent } from './timepicker/timepicker.component';
 
+import { MapComponent } from '../maps/map.component';
 
 @NgModule({
     imports: [
         CommonModule,
+        AgmCoreModule,
         FormsModule,
         ReactiveFormsModule,
         AuthModule,
@@ -26,6 +29,7 @@ import { TimepickerComponent } from './timepicker/timepicker.component';
         KeysPipe,
         ContainsValidator,
         TimepickerComponent,
+        MapComponent,
     ],
     exports: [
         FormsModule,
@@ -36,6 +40,7 @@ import { TimepickerComponent } from './timepicker/timepicker.component';
         KeysPipe,
         ContainsValidator,
         TimepickerComponent,
+        MapComponent,
     ],
     providers: []
 })

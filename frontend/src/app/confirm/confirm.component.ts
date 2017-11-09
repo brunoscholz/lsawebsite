@@ -7,13 +7,13 @@ import {Router, ActivatedRoute, Params} from "@angular/router";
   templateUrl: './confirm.component.html',
 })
 export class ConfirmComponent implements OnInit {
-    private _submitted:boolean = false;
-    private _errorMessage:string = '';
-    private _isConfirmed:boolean = false;
+    _submitted:boolean = false;
+    _errorMessage:string = '';
+    _isConfirmed:boolean = false;
 
-    constructor(private _userService:UserService,
-                private _router:Router,
-                private _activatedRoute:ActivatedRoute) {
+    constructor(public _userService:UserService,
+                public _router:Router,
+                public _activatedRoute:ActivatedRoute) {
 
     }
 
@@ -33,7 +33,7 @@ export class ConfirmComponent implements OnInit {
         });
     }
 
-    private onConfirm(id, auth_key) {
+    public onConfirm(id, auth_key) {
         this._errorMessage = '';
         this._submitted = true;
         this._isConfirmed = false;
