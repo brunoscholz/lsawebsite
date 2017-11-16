@@ -7,6 +7,8 @@ import { CourseListComponent } from './course-list.component';
 import { CourseDetailComponent } from './course-detail.component';
 import { CourseRoutingModule } from './course-routing.module';
 
+// CourseEnroll?
+
         //SharedModule,
 @NgModule({
     imports: [

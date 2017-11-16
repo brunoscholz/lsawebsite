@@ -9,6 +9,7 @@ import { UserService } from "../model/user.service";
 
 @Component({
     templateUrl: './course-detail.component.html',
+    styleUrls: ['../layouts/frontend-layout.component.scss', './course-detail.component.css']
 })
 export class CourseDetailComponent implements OnInit {
     _id: string;

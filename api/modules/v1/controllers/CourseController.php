@@ -152,12 +152,34 @@ class CourseController extends RestController
 			'courseId'    =>  $id
 		])->andWhere([
 			'status' => 'ACT'
-		])->asArray()->one();
+		])->one();
 
 		if($course) {
-			$models = $course;
+			//$models = $course;
+			$temp = $course->toArray();
 
-			return $models;
+			$tmpMedia = array();
+			foreach ($course->media as $media) {
+				if($media)
+					$tmpMedia[] = $media->toArray();
+			}
+			$temp['media'] = $tmpMedia;
+
+			return $temp;
+			/*die();
+
+			if($course->school)
+				$temp['school'] = $course->school->toArray();
+
+			if($course->courseType)
+				$temp['courseType'] = $course->courseType->toArray();
+
+			if($course->schoolCampi)
+				$temp['schoolCampi'] = $course->schoolCampi->toArray();
+
+			//$models[] = $temp;
+
+			return $temp;*/
 		} else {
 			throw new NotFoundHttpException("Object not found: $id");
 		}

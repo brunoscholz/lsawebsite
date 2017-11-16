@@ -1,0 +1,6 @@
+<div class="form-group-wrapper">
+  <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
+    <agm-marker *ngFor="let mark of markers" [latitude]="mark.lat" [longitude]="mark.lng" [label]="mark.label" [iconUrl]="mark.icon"></agm-marker>
+  </agm-map>
+</div>
+<div class="clearfix"></div><br>

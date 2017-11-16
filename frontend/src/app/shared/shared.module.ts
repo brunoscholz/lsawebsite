@@ -1,6 +1,6 @@
 import { NgModule }           from '@angular/core';
 import { CommonModule }       from '@angular/common';
-
+import { AgmCoreModule }      from '@agm/core';
 
 import { FormsModule, ReactiveFormsModule }        from '@angular/forms';
 import { MomentModule } from 'angular2-moment';
@@ -17,10 +17,13 @@ import { BigCardComponent } from '../cards/big-card.component';
 import { SmallCardComponent } from '../cards/small-card.component';
 import { SearchBarComponent } from '../search/search-bar.component';
 
+import { MapComponent } from "../maps/map.component";
+
         //ContainsModule.provideContains(contains),
 @NgModule({
     imports: [
         CommonModule,
+        AgmCoreModule,
         FormsModule,
         ReactiveFormsModule,
         AuthModule,
@@ -33,6 +36,7 @@ import { SearchBarComponent } from '../search/search-bar.component';
         BigCardComponent,
         SmallCardComponent,
         SearchBarComponent,
+        MapComponent,
     ],
     exports: [
         FormsModule,
@@ -45,6 +49,7 @@ import { SearchBarComponent } from '../search/search-bar.component';
         BigCardComponent,
         SmallCardComponent,
         SearchBarComponent,
+        MapComponent,
     ],
     providers: []
 })

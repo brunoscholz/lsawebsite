@@ -8,7 +8,8 @@ import { School } from "../model/general";
 import { UserService } from "../model/user.service";
 
 @Component({
-    templateUrl: './school-detail.component.html'
+    templateUrl: './school-detail.component.html',
+    styleUrls: ['./school-detail.component.css']
 })
 export class SchoolDetailComponent implements OnInit {
     _id: string;

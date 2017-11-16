@@ -12,7 +12,7 @@ import * as _ from "underscore";
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
-  styleUrls: ['../layouts/frontend-layout.component.scss']
+  styleUrls: ['../index/index.component.css', './search.component.css']
 })
 export class SearchComponent implements OnInit {
   _parameters:any = {};

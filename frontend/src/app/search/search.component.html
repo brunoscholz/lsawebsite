@@ -30,26 +30,60 @@
 <div class="animated fadeIn" *ngIf="_data">
 
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-8">
+      
       <!-- Nav tabs -->
-      <tabset>
-        <tab>
-          <!-- <tab heading="Home"> -->
-          <ng-template tabHeading><i class="icon-calculator"></i> Schools</ng-template>
-          <small-card *ngFor="let school of _data.School" [school]="school" (click)="viewSchool(school.id)"></small-card>
-
-        </tab>
-        <tab>
-          <ng-template tabHeading><i class="icon-basket-loaded"></i> Courses</ng-template>
-          <small-card *ngFor="let course of _data.Course" [course]="course" (click)="viewCourse(course.id)"></small-card>
-
-        </tab>
-        <tab>
-          <ng-template tabHeading><i class="icon-pie-chart"></i> Charts</ng-template>
+      <div class="tabs">
+        <input id="tab1" type="radio" name="tabs" checked>
+        <label for="tab1">Schools</label>
           
+        <input id="tab2" type="radio" name="tabs">
+        <label for="tab2">Courses</label>
+          
+        <input id="tab3" type="radio" name="tabs">
+        <label for="tab3">Tourism</label>
+          
+        <input id="tab4" type="radio" name="tabs">
+        <label for="tab4">Work</label>
 
-        </tab>
-      </tabset>
+        <input id="tab5" type="radio" name="tabs">
+        <label for="tab5">Lifestyle</label>
+          
+        <section id="content1">
+          <p>
+            <small-card *ngFor="let course of _data.Course" [course]="course" (click)="viewCourse(course.id)"></small-card>
+          </p>
+        </section>
+          
+        <section id="content2">
+          <p>
+            <small-card *ngFor="let school of _data.School" [school]="school" (click)="viewSchool(school.id)"></small-card>
+          </p>
+        </section>
+          
+        <section id="content3">
+          <p>
+            None here yet.
+          </p>
+        </section>
+          
+        <section id="content4">
+          <p>
+            None here yet.
+          </p>
+        </section>
+
+        <section id="content5">
+          <p>
+            None here yet.
+          </p>
+        </section>
+
+      </div>
+    </div><!--/.col-->
+
+    <div class="col-md-4">
+      <google-map></google-map>
     </div><!--/.col-->
 
   </div><!--/.row-->

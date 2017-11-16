@@ -31,13 +31,20 @@ import { UserService } from './model/user.service';
 import { UserDataService } from './model/user-data.service';
 import { SettingDataService } from './model/setting-data.service';
 import { SearchService } from './model/search.service';
+import { MapService } from './model/map.service';
 import { SchoolDataService } from './model/school-data.service';
 import { CourseDataService } from './model/course-data.service';
+
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
     imports: [
         BrowserModule,
         AppRoutingModule,
+        AgmCoreModule.forRoot({
+          apiKey: "AIzaSyAVHeYMn-9TSAZG5OmlW6xhem5Lpd9fe2s",
+          libraries: ["places"]
+        }),
         BsDropdownModule.forRoot(),
         TabsModule.forRoot(),
         ChartsModule,
@@ -65,6 +72,7 @@ import { CourseDataService } from './model/course-data.service';
         SettingDataService,
         UserDataService,
         SearchService,
+        MapService,
         SchoolDataService,
         CourseDataService,
     ],
