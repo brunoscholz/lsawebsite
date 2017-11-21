@@ -146,8 +146,6 @@ class CourseController extends RestController
 	 * @throws NotFoundHttpException
 	 */
 	public function actionView($id) {
-		$models = array('success'=>true,'status'=>200);
-
 		$course = Course::find()->where([
 			'courseId'    =>  $id
 		])->andWhere([

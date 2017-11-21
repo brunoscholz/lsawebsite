@@ -76,6 +76,16 @@ class Location extends \yii\db\ActiveRecord
         ];
     }
 
+    public function fields()
+    {
+        $fields = parent::fields();
+        $fields[] = 'geography';
+        $fields[] = 'schools';
+        $fields[] = 'schoolCampis';
+        $fields[] = 'students';
+        return $fields;
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -103,9 +113,9 @@ class Location extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getSchoolcampis()
+    public function getSchoolCampis()
     {
-        return $this->hasMany(Schoolcampi::className(), ['locationId' => 'locationId']);
+        return $this->hasMany(SchoolCampi::className(), ['locationId' => 'locationId']);
     }
 
     /**

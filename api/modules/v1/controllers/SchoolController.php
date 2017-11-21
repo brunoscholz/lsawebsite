@@ -135,22 +135,29 @@ class SchoolController extends RestController
 	 * @throws NotFoundHttpException
 	 */
 	public function actionView($id) {
-		$models = array('success'=>true,'status'=>200);
 
-		$q = School::find()->where([
+		$school = School::find()->where([
 			'schoolId'    =>  $id
 		])->andWhere([
 			'status' => 'ACT'
-		])->asArray();
-
-		/*var_dump($q->createCommand()->rawsql);
-		die();*/
-
-		$school = $q->one();
+		])->one();
 
 		if($school) {
-			//$temp = RestUtils::loadQueryIntoVar($school);
-			return $school;
+			$temp = $school->toArray();
+
+			$tmpMedia = array();
+			foreach ($school->media as $media) {
+				if($media)
+					$tmpMedia[] = $media->toArray();
+			}
+			$temp['media'] = $tmpMedia;
+
+			if($school->location) {
+				$tmpLoc = $school->location->toArray();
+				$temp['location'] = $tmpLoc;
+			}
+
+			return $temp;
 		} else {
 			throw new NotFoundHttpException("Object not found: $id");
 		}

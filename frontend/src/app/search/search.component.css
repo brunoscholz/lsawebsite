@@ -13,7 +13,7 @@
   border-top: 1px solid #ddd;
 }
 
-input {
+input[type="radio"] {
   display: none;
 }
 
@@ -36,7 +36,8 @@ label:before {
 /*label[for*='1']:before { content: '\f1cb'; }
 label[for*='2']:before { content: '\f17d'; }
 label[for*='3']:before { content: '\f16b'; }
-label[for*='4']:before { content: '\f1a9'; }*/
+label[for*='4']:before { content: '\f1a9'; }
+label[for*='5']:before { content: '\f1a9'; }*/
 
 label:hover {
   color: #DD5555;
