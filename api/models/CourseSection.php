@@ -71,7 +71,7 @@ class CourseSection extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCoursesectionitems()
+    public function getCourseSectionItems()
     {
         return $this->hasMany(CourseSectionItem::className(), ['courseSectionId' => 'courseSectionId'])->orderBy(['order'=>SORT_ASC]);
     }
@@ -79,7 +79,7 @@ class CourseSection extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCoursesectionresources()
+    public function getCourseSectionResources()
     {
         return $this->hasMany(CourseSectionResource::className(), ['courseSectionId' => 'courseSectionId'])->orderBy(['order'=>SORT_ASC]);
     }

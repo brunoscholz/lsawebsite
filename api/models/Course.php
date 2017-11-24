@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 use app\components\behaviors\SearchBehavior;
 
 /**
@@ -38,6 +39,20 @@ use app\components\behaviors\SearchBehavior;
  */
 class Course extends \yii\db\ActiveRecord
 {
+    const STATUS_ACTIVE = 'ACT';
+    const STATUS_REMOVED = 'REM';
+    const STATUS_BANNED = 'BAN';
+    const STATUS_NOT_VERIFIED = 'PEN';
+
+    public static function statusArray() {
+        return [
+            self::STATUS_ACTIVE,
+            self::STATUS_NOT_VERIFIED,
+            self::STATUS_BANNED,
+            self::STATUS_REMOVED,
+        ];
+    }
+
     /**
      * @inheritdoc
      */
@@ -49,67 +64,18 @@ class Course extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public function rules()
+    public static function primaryKey()
     {
-        return [
-            [['courseId', 'startDate', 'endDate', 'periodOfDay', 'cost', 'name', 'about', 'remarks', 'rating', 'created_at', 'updated_at'], 'required'],
-            [['startDate', 'endDate', 'rating', 'created_at', 'updated_at'], 'integer'],
-            [['periodOfDay', 'remarks'], 'string'],
-            [['cost', 'discount'], 'number'],
-            [['courseId', 'courseTypeId', 'schoolId', 'schoolCampiId'], 'string', 'max' => 21],
-            [['name'], 'string', 'max' => 120],
-            [['about'], 'string', 'max' => 255],
-            [['status'], 'string', 'max' => 3],
-            [['schoolCampiId'], 'exist', 'skipOnError' => true, 'targetClass' => SchoolCampi::className(), 'targetAttribute' => ['schoolCampiId' => 'schoolCampiId']],
-            [['courseTypeId'], 'exist', 'skipOnError' => true, 'targetClass' => CourseType::className(), 'targetAttribute' => ['courseTypeId' => 'courseTypeId']],
-            [['schoolId'], 'exist', 'skipOnError' => true, 'targetClass' => School::className(), 'targetAttribute' => ['schoolId' => 'schoolId']],
-        ];
-    }
-
-    public function fields()
-    {
-        $fields = parent::fields();
-        $fields[] = 'courseType';
-        $fields[] = 'school';
-        $fields[] = 'schoolCampi';
-        $fields[] = 'courseEnrolls';
-        $fields[] = 'courseFeatures';
-        $fields[] = 'courseInstructors';
-        $fields[] = 'courseSections';
-        $fields[] = 'media';
-        $fields[] = 'ratings';
-        $fields[] = 'relationships';
-        return $fields;
+        return ['schoolId'];
     }
 
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
-    {
-        return [
-            'courseId' => Yii::t('app', 'Course ID'),
-            'courseTypeId' => Yii::t('app', 'Course Type ID'),
-            'schoolId' => Yii::t('app', 'School ID'),
-            'schoolCampiId' => Yii::t('app', 'School Campi ID'),
-            'startDate' => Yii::t('app', 'Start Date'),
-            'endDate' => Yii::t('app', 'End Date'),
-            'periodOfDay' => Yii::t('app', 'Period Of Day'),
-            'cost' => Yii::t('app', 'Cost'),
-            'discount' => Yii::t('app', 'Discount'),
-            'name' => Yii::t('app', 'Name'),
-            'about' => Yii::t('app', 'About'),
-            'remarks' => Yii::t('app', 'Remarks'),
-            'rating' => Yii::t('app', 'Rating'),
-            'created_at' => Yii::t('app', 'Created At'),
-            'updated_at' => Yii::t('app', 'Updated At'),
-            'status' => Yii::t('app', 'Status'),
-        ];
-    }
-
     public function behaviors()
     {
         return [
+            TimestampBehavior::className(),
             'search' => [
                 'class' => SearchBehavior::className(),
                 'searchScope' => function ($model, $term) {
@@ -151,6 +117,92 @@ class Course extends \yii\db\ActiveRecord
                     ];
                 }
             ],
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [['courseId', 'startDate', 'endDate', 'periodOfDay', 'cost', 'name', 'about', 'remarks', 'rating', 'created_at', 'updated_at'], 'required'],
+            [['startDate', 'endDate', 'rating', 'created_at', 'updated_at'], 'integer'],
+            [['periodOfDay', 'remarks'], 'string'],
+            [['cost', 'discount'], 'number'],
+            [['courseId', 'courseTypeId', 'schoolId', 'schoolCampiId'], 'string', 'max' => 21],
+            [['name'], 'string', 'max' => 120],
+            [['about'], 'string', 'max' => 255],
+            [['status'], 'string', 'max' => 3],
+            [['schoolCampiId'], 'exist', 'skipOnError' => true, 'targetClass' => SchoolCampi::className(), 'targetAttribute' => ['schoolCampiId' => 'schoolCampiId']],
+            [['courseTypeId'], 'exist', 'skipOnError' => true, 'targetClass' => CourseType::className(), 'targetAttribute' => ['courseTypeId' => 'courseTypeId']],
+            [['schoolId'], 'exist', 'skipOnError' => true, 'targetClass' => School::className(), 'targetAttribute' => ['schoolId' => 'schoolId']],
+        ];
+    }
+
+    public function fields()
+    {
+        $fields = parent::fields();
+        $fields[] = 'courseType';
+        $fields[] = 'media';
+        /*$fields[] = 'school';
+        $fields[] = 'schoolCampi';*/
+        $fields[] = 'courseEnrolls';
+        $fields[] = 'courseFeatures';
+        $fields[] = 'courseInstructors';
+        $fields[] = 'courseSections';
+        $fields[] = 'ratings';
+        $fields[] = 'relationships';
+        return $fields;
+    }
+
+    /*public function toArray(array $fields = [], array $expand = [], $recursive = false) {
+        if (empty($fields)) {
+            $fields = ['username', 'id'];
+        }
+
+        return parent::toArray($fields, $expand, $recursive);
+    }*/
+
+    /*public function extraFields ()
+    {
+        return ["media", "school", "courseType", "courseFeatures"];
+        $fields = array();
+        $fields[] = 'courseType';
+        $fields[] = 'school';
+        $fields[] = 'schoolCampi';
+        $fields[] = 'courseEnrolls';
+        $fields[] = 'courseFeatures';
+        $fields[] = 'courseInstructors';
+        $fields[] = 'courseSections';
+        $fields[] = 'media';
+        $fields[] = 'ratings';
+        $fields[] = 'relationships';
+        return $fields;
+    }*/
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'courseId' => Yii::t('app', 'Course ID'),
+            'courseTypeId' => Yii::t('app', 'Course Type ID'),
+            'schoolId' => Yii::t('app', 'School ID'),
+            'schoolCampiId' => Yii::t('app', 'School Campi ID'),
+            'startDate' => Yii::t('app', 'Start Date'),
+            'endDate' => Yii::t('app', 'End Date'),
+            'periodOfDay' => Yii::t('app', 'Period Of Day'),
+            'cost' => Yii::t('app', 'Cost'),
+            'discount' => Yii::t('app', 'Discount'),
+            'name' => Yii::t('app', 'Name'),
+            'about' => Yii::t('app', 'About'),
+            'remarks' => Yii::t('app', 'Remarks'),
+            'rating' => Yii::t('app', 'Rating'),
+            'created_at' => Yii::t('app', 'Created At'),
+            'updated_at' => Yii::t('app', 'Updated At'),
+            'status' => Yii::t('app', 'Status'),
         ];
     }
 
@@ -217,6 +269,12 @@ class Course extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Media::className(), ['courseId' => 'courseId']);
     }
+
+    /*public function getImage()
+    {
+        return $this->hasMany(Image::className(), ['mediaId' => 'mediaId'])
+            ->viaTable('tbl_media', ['courseId' => 'courseId']);
+    }*/
 
     /**
      * @return \yii\db\ActiveQuery

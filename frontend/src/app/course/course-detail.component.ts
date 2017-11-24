@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
-import swal, { SweetAlertOptions } from 'sweetalert2';
+//import swal, { SweetAlertOptions } from 'sweetalert2';
 
 import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
 

@@ -80,9 +80,9 @@ class Location extends \yii\db\ActiveRecord
     {
         $fields = parent::fields();
         $fields[] = 'geography';
-        $fields[] = 'schools';
+        /*$fields[] = 'schools';
         $fields[] = 'schoolCampis';
-        $fields[] = 'students';
+        $fields[] = 'students';*/
         return $fields;
     }
 

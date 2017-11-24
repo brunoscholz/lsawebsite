@@ -62,7 +62,7 @@ class SchoolFeatures extends \yii\db\ActiveRecord
      */
     public function getSchoolCampi()
     {
-        return $this->hasOne(Schoolcampi::className(), ['schoolCampiId' => 'schoolCampiId']);
+        return $this->hasOne(SchoolCampi::className(), ['schoolCampiId' => 'schoolCampiId']);
     }
 
     /**

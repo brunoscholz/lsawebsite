@@ -74,9 +74,9 @@ class Relationship extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getReferencetransactions()
+    public function getReferenceTransactions()
     {
-        return $this->hasMany(Referencetransaction::className(), ['relationshipId' => 'relationshipId']);
+        return $this->hasMany(ReferenceTransaction::className(), ['relationshipId' => 'relationshipId']);
     }
 
     /**
@@ -108,7 +108,7 @@ class Relationship extends \yii\db\ActiveRecord
      */
     public function getReference()
     {
-        return $this->hasOne(Referencetransaction::className(), ['referenceTransactionId' => 'referenceId']);
+        return $this->hasOne(ReferenceTransaction::className(), ['referenceTransactionId' => 'referenceId']);
     }
 
     /**

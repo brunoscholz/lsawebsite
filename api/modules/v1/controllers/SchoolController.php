@@ -17,6 +17,7 @@ use yii\web\ServerErrorHttpException;
 
 use app\models\School;
 
+use yii\helpers\ArrayHelper;
 use app\components\RestUtils;
 
 
@@ -143,7 +144,8 @@ class SchoolController extends RestController
 		])->one();
 
 		if($school) {
-			$temp = $school->toArray();
+			//$temp = $school->toArray();
+			$temp = ArrayHelper::toArray($school, [], false);
 
 			$tmpMedia = array();
 			foreach ($school->media as $media) {

@@ -84,8 +84,8 @@ class SchoolCampi extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getSchoolfeatures()
+    public function getSchoolFeatures()
     {
-        return $this->hasMany(Schoolfeatures::className(), ['schoolCampiId' => 'schoolCampiId']);
+        return $this->hasMany(SchoolFeatures::className(), ['schoolCampiId' => 'schoolCampiId']);
     }
 }

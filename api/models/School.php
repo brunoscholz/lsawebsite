@@ -206,6 +206,11 @@ class School extends \yii\db\ActiveRecord
         ];
     }
 
+    public function toArrayCourse(array $fields = [], array $expand = [], $recursive = false) {
+        $fields = parent::fields();
+        return parent::toArray($fields, $expand, $recursive);
+    }
+
     public function isComplete()
     {
         if(is_null($this->location) || $this->yearEstablised == 0 || empty($this->about) || $this->status != self::STATUS_ACTIVE)

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
 //import swal, { SweetAlertOptions } from 'sweetalert2';
+
+import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
+
 import { CustomValidators } from 'ng2-validation';
 import { FormGroup, FormBuilder, Validators, FormArray } from "@angular/forms";
 
@@ -22,12 +25,14 @@ export class SchoolDetailComponent implements OnInit {
   _formErrors:any;
   _submitted:boolean = false;
 
+  _bgImage: any;
   _message: any = {};
 
   constructor(public _schoolDataService: SchoolDataService,
               public _userService: UserService,
               public _route: ActivatedRoute,
               public _router: Router,
+              private _sanitizer: DomSanitizer,
               private _formBuilder:FormBuilder) {
 
     // Construct form group
@@ -66,7 +71,8 @@ export class SchoolDetailComponent implements OnInit {
     this._schoolDataService.getSchoolById(this._id)
     .subscribe(
       school => {
-        this._school = school
+        this._school = school;
+        this._bgImage = this._sanitizer.bypassSecurityTrustStyle(`url(${this._school.media[0].image.large}) 0 0px no-repeat`);
         console.log(school);
       },
       error =>  {

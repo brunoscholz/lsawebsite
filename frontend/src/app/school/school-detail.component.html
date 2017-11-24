@@ -69,7 +69,7 @@
       <div class="col-md-4">
         <!--Card-->
         <div class='card'>
-          <div class='pic' style="background: url(https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%282%29.jpg) 0 0px no-repeat;">
+          <div class='pic' [style.background]="_bgImage">
           </div>
           <div class='content'>
             <div class='header'>
@@ -92,10 +92,10 @@
     <div class="card-group">
       <div class="card-group-title">
         <p class="title"><span class="bold">Courses </span></p>
-        <p class="subtitle"></p>
+        <p class="subtitle" *ngIf="!_school.courses">No courses registered yet...</p>
       </div>
 
-      <section class="facilities">
+      <section class="facilities" *ngIf="_school.courses">
         <section class="small-cards">
           <div class="h-scroll">
             <small-card *ngFor="let course of _school.courses" [course]="course" (click)="viewCourse(course.courseId)"></small-card>
@@ -108,10 +108,10 @@
     <div class="card-group">
       <div class="card-group-title">
         <p class="title"><span class="bold">Comments </span></p>
-        <p class="subtitle"></p>
+        <p class="subtitle" *ngIf="!_school.ratings">No comments yet...</p>
       </div>
 
-      <section class="facilities">
+      <section class="facilities" *ngIf="_school.ratings">
         <div class="col-md-12">
         
         </div>
@@ -121,21 +121,18 @@
     <div class="card-group">
       <div class="card-group-title">
         <p class="title"><span class="bold">Contact </span></p>
-        <p class="subtitle"></p>
+        <p class="subtitle">Send a message to this school...</p>
       </div>
 
       <section class="facilities">
         <div class="col-md-12">
-
           <form [formGroup]="_form" (ngSubmit)="onSubmit()">
-
-
-              <div class="card-block">
-                <!-- <h1>User Credentials</h1> -->
-                <div class="form-group-wrapper">
-                  <div class="form-group row" [ngClass]="{'has-danger': !_isValid('name')}">
+            <div class="card-block">
+              <div class="form-group-wrapper row">
+                <div class="col-sm-6">
+                  <div class="form-group" [ngClass]="{'has-danger': !_isValid('name')}">
                     <label class="col-sm-12" for="name">Name <span class="required">*</span></label>
-                    <div class="col-sm-8">
+                    <div class="col-sm-12">
                       <input type="text" class="form-control" id="name" placeholder="Enter your name" [formControl]="_form.controls['name']" [ngClass]="{'form-control-danger': !_isValid('name')}" [(ngModel)]="_message.name" />
                     </div><div class="clearfix"></div>
                     <div class="col-sm-12" *ngIf="!_formErrors.name.valid">
@@ -145,13 +142,11 @@
                       <p class="help-text">* complete name</p>
                     </div>
                   </div>
-                </div>
-            
-                <div class="form-group-wrapper">
-                  <div class="form-group row" [ngClass]="{'has-danger': !_isValid('email')}">
+
+                  <div class="form-group" [ngClass]="{'has-danger': !_isValid('email')}">
                     <label class="col-sm-12" for="email">Email Address <span class="required">*</span></label>
-                    <div class="col-sm-8">
-                      <input type="email" class="form-control" id="email" placeholder="Enter the email address" [formControl]="_form.controls['email']" [ngClass]="{'form-control-danger': !_isValid('email')}" [(ngModel)]="_message.email" />
+                    <div class="col-sm-12">
+                      <input type="email" class="form-control" id="email" placeholder="Enter your email address" [formControl]="_form.controls['email']" [ngClass]="{'form-control-danger': !_isValid('email')}" [(ngModel)]="_message.email" />
                     </div><div class="clearfix"></div>
                     <div class="col-sm-12" *ngIf="!_formErrors.email.valid">
                       <span class="help-block help-block-error">{{_formErrors.email.message}}</span>
@@ -160,37 +155,39 @@
                       <p class="help-text">* Email must be valid email address. i.e. sample@name.com.</p>
                     </div>
                   </div>
-                </div>
-                <div class="form-group-wrapper">
-                  <div class="form-group row" [ngClass]="{'has-danger': !_isValid('subject')}">
-                    <label class="col-sm-12" for="subject">Subject</label>
-                    <div class="col-sm-6">
+
+                  <div class="form-group" [ngClass]="{'has-danger': !_isValid('subject')}">
+                    <label class="col-sm-12" for="subject">Subject <span class="required">*</span></label>
+                    <div class="col-sm-12">
                       <input type="text" class="form-control" id="subject" placeholder="Enter the subject" [formControl]="_form.controls['subject']" [ngClass]="{'form-control-danger': !_isValid('subject')}" [(ngModel)]="_message.subject"/>
                     </div><div class="clearfix"></div>
                     <div class="col-sm-12" *ngIf="!_formErrors.subject.valid">
                       <span class="help-block help-block-error">{{_formErrors.subject.message}}</span>
                     </div>
-                    <div class="col-sm-12">
-                      <p class="help-text">* subject must be more than 6 characters.</p>
-                    </div>
                   </div>
                 </div>
-                <div class="form-group-wrapper">
-                  <div class="form-group row" [ngClass]="{'has-danger': !_isValid('message')}">
-                    <label class="col-sm-12" for="message">Confirm subject</label>
-                    <div class="col-sm-6">
-                      <input type="text" class="form-control" id="message" placeholder="Enter the message" [formControl]="_form.controls['message']" [ngClass]="{'form-control-danger': !_isValid('message')}" [(ngModel)]="_message.message"/>
+                <div class="col-sm-6">
+                  <div class="form-group" [ngClass]="{'has-danger': !_isValid('message')}">
+                    <label class="col-sm-12" for="message">Message <span class="required">*</span></label>
+                    <div class="col-sm-12">
+                      <textarea rows="13" class="form-control" id="message" placeholder="Enter the message" [formControl]="_form.controls['message']" [ngClass]="{'form-control-danger': !_isValid('message')}" [(ngModel)]="_message.message"></textarea>
                     </div><div class="clearfix"></div>
                     <div class="col-sm-12" *ngIf="!_formErrors.message.valid">
                       <span class="help-block help-block-error">{{_formErrors.message.message}}</span>
                     </div>
-                    <div class="col-sm-12">
-                      <p class="help-text">* subject must be more than 6 characters.</p>
-                    </div>
                   </div>
                 </div>
               </div>
-
+          
+              <div class="form-group-wrapper row">
+                <div class="col-sm-6">
+                </div>
+                <div class="col-sm-6 text-sm-right" style="padding-right: 30px;">
+                  <button type="submit" class="btn btn-primary" [disabled]="!_form.valid || _submitted == true">Send</button>
+                  <div class="spinner spinner-login" *ngIf="_submitted"></div>
+                </div>
+              </div>
+            </div>
           </form>
 
         </div>

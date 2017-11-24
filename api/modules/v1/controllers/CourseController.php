@@ -9,7 +9,11 @@ use yii\filters\AccessControl;
 use yii\filters\auth\CompositeAuth;
 use yii\helpers\Url;
 use yii\rbac\Permission;
-use app\controllers\RestController;
+
+use yii\helpers\ArrayHelper;
+
+//use yii\rest\ActiveController as Controller;
+use app\controllers\RestController as Controller;
 
 use yii\web\HttpException;
 use yii\web\NotFoundHttpException;
@@ -20,7 +24,7 @@ use app\modules\v1\models\CourseModel;
 use app\components\RestUtils;
 
 
-class CourseController extends RestController
+class CourseController extends Controller
 {
 	public $modelClass = 'app\models\Course';
 
@@ -146,6 +150,7 @@ class CourseController extends RestController
 	 * @throws NotFoundHttpException
 	 */
 	public function actionView($id) {
+
 		$course = Course::find()->where([
 			'courseId'    =>  $id
 		])->andWhere([
@@ -153,8 +158,8 @@ class CourseController extends RestController
 		])->one();
 
 		if($course) {
-			//$models = $course;
-			$temp = $course->toArray();
+			//$temp = $course->toArray();
+			$temp = ArrayHelper::toArray($course, [], false);
 
 			$tmpMedia = array();
 			foreach ($course->media as $media) {
@@ -163,21 +168,22 @@ class CourseController extends RestController
 			}
 			$temp['media'] = $tmpMedia;
 
-			return $temp;
-			/*die();
+			//return $temp;
 
 			if($course->school)
-				$temp['school'] = $course->school->toArray();
+				$temp['school'] = $course->school->toArrayCourse();
+				//$temp['school'] = ArrayHelper::toArray($course->school, [], false);
+				//$temp['school'] = $course->school->toArray();
 
-			if($course->courseType)
-				$temp['courseType'] = $course->courseType->toArray();
+/*			if($course->courseType)
+				$temp['courseType'] = $course->courseType->toArray();*/
 
-			if($course->schoolCampi)
-				$temp['schoolCampi'] = $course->schoolCampi->toArray();
+			/*if($course->schoolCampi)
+				$temp['schoolCampi'] = $course->schoolCampi->toArray();*/
 
 			//$models[] = $temp;
 
-			return $temp;*/
+			return $temp;
 		} else {
 			throw new NotFoundHttpException("Object not found: $id");
 		}
@@ -342,5 +348,18 @@ class CourseController extends RestController
 
 	public function actionOptions($id = null) {
 		return "ok";
+	}
+
+	function array_filter_recursive($input) 
+	{ 
+		foreach ($input as &$value) 
+		{ 
+			if (is_array($value)) 
+			{ 
+				$value = array_filter_recursive($value); 
+			} 
+		} 
+
+		return array_filter($input); 
 	}
 }
