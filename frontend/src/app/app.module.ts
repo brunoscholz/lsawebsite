@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { NAV_DROPDOWN_DIRECTIVES } from './shared/nav-dropdown.directive';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { SIDEBAR_TOGGLE_DIRECTIVES } from './shared/sidebar.directive';
@@ -24,6 +25,8 @@ import { P404Component } from './pages/404.component';
 // Shared
 import { AuthGuard } from './model/auth.guard';
 import { SharedModule } from './shared/shared.module';
+
+import { LoginModule } from './login/login.module';
 
 // Model & Services
 import { GlobalService } from './model/global.service';
@@ -47,9 +50,11 @@ import { AgmCoreModule } from '@agm/core';
         }),
         BsDropdownModule.forRoot(),
         TabsModule.forRoot(),
+        ModalModule.forRoot(),
         ChartsModule,
         HttpModule,
         SharedModule,
+        LoginModule,
     ],
     declarations: [
         AppComponent,

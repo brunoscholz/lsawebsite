@@ -19,10 +19,11 @@
           <a class="nav-link" routerLinkActive="active" [routerLink]="['/']" [routerLinkActiveOptions]="{exact:true}">Home</a>
         </li>
         <li>
-          <a class="nav-link" routerLinkActive="active" [routerLink]="['/signup']">Sign Up</a>
+          <a class="nav-link" routerlinkactive="active" (click)="signUpClicked()" style="cursor: pointer;">Sign Up</a>
+          <!-- routerLinkActive="active" [routerLink]="['/signup']" -->
         </li>
         <li>
-          <a class="nav-link" routerLinkActive="active" [routerLink]="['/login']">Sign In</a>
+          <a class="nav-link" routerlinkactive="active" (click)="signInClicked()" style="cursor: pointer;">Sign In</a>
         </li>
       </ul>
       <ul class="dropdown-content" *ngIf="this._userService.isLoggedIn() == true">
@@ -48,10 +49,22 @@
   </div>
 </section>
 
-<footer id="the-footer-conatiner">
+<footer id="footer">
 
   <footer class="the-footer">
     &copy; Copyright 2017.
   </footer>
 
 </footer>
+
+<sign-modal  #signinModal [title]="'Welcome Back'"> 
+<div class="modal-body">
+  <app-login></app-login>
+</div>
+</sign-modal>
+
+<sign-modal  #signupModal [title]="'Be part of the new concept of education.'"> 
+<div class="modal-body">
+  <app-signup></app-signup>
+</div>
+</sign-modal>

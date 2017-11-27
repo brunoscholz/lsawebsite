@@ -53,12 +53,38 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+html, body {
+  height: 100%;
+}
+
 body {
   font-family: "Lato", sans-serif !important;
   font-weight: 400;
   color: #6C647B !important;
   font-size: 14pt;
   background-color: #FDFCFF !important;
+  display: flex;
+  flex-direction: column;
+}
+
+section.section {
+  flex: 1 0 auto;
+}
+
+.footer {
+  height: 50px;
+  margin-top: -50px;
+}
+
+.the-footer {
+  width: 100%;
+  height: 100px;
+  padding: 2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #4F4F4F;
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
 .icon {
@@ -206,15 +232,4 @@ body {
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {
     background-color: #3e8e41;
-}
-
-.the-footer {
-  width: 100%;
-  height: 100px;
-  padding: 2em;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #4F4F4F;
-  background-color: rgba(0, 0, 0, 0.05);
 }

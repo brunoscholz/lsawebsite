@@ -1,5 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {UserService} from "../model/user.service";
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { UserService } from "../model/user.service";
+
+import { ModalDirective } from 'ngx-bootstrap/modal/modal.component';
+import { SignModalCmp } from '../login/sign.modal';
 
 @Component({
     selector: 'app-frontend',
@@ -7,6 +10,9 @@ import {UserService} from "../model/user.service";
     styleUrls: ['./frontend-layout.component.css']
 })
 export class FrontendLayoutComponent implements OnInit {
+    @ViewChild(ModalDirective) public myModal: ModalDirective;
+    @ViewChild('signupModal') public signupModal: SignModalCmp;
+    @ViewChild('signinModal') public signinModal: SignModalCmp;
 
     public disabled: boolean = false;
     public status: { isopen: boolean } = {isopen: false};
@@ -54,5 +60,13 @@ export class FrontendLayoutComponent implements OnInit {
         $event.preventDefault();
         $event.stopPropagation();
         this.status.isopen = !this.status.isopen;
+    }
+
+    signUpClicked() {
+        this.signupModal.show();
+    }
+
+    signInClicked() {
+        this.signinModal.show();
     }
 }

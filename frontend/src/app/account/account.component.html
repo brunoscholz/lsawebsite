@@ -1,78 +1,132 @@
-<div>
-  <section>
+<div class="row" *ngIf="_errorMessage">
+  <div class="col-sm-12">
+    <p class="alert alert-danger">{{_errorMessage}}</p>
+  </div>
+</div>
+<div class="animated fadeIn" *ngIf="!_user && !_errorMessage">
+  <span class="spinner"></span>
+</div>
+<div class="animated fadeIn" *ngIf="_user">
+  <div class="user-profile">
+
     <div class="togglebox">
 
-      <input id="toggle1" type="radio" name="toggle" />
-      <label for="toggle1">Content #1</label>
+      <input id="toggle1" type="radio" name="toggle" checked="checked" />
+      <label for="toggle1">Profile</label>
+      <section id="content1" class="content">
+        <div class="row">
+          <div class="col-sm-12">
+            
+            <div class="card-group">
+              <div class="card-group-title">
+                <p class="title"><span class="bold">Features </span></p>
+                <p class="subtitle"></p>
+              </div>
+
+              <section class="facilities">
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="feature on">
+                      <i class="fa fa-check"></i> <?= $value->name ?>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="feature on"><i class="fa fa-check"></i> <?= $value->name ?></div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="feature off"><i class="fa fa-close"></i> <?= $value->name ?></div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="feature on"><i class="fa fa-check"></i> <?= $value->name ?></div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="feature off"><i class="fa fa-close"></i> <?= $value->name ?></div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="feature on"><i class="fa fa-check"></i> <?= $value->name ?></div>
+                  </div>
+                </div>
+              </section>
+            </div>
+
+            <div class="card-group">
+              <div class="card-group-title">
+                <p class="title"><span class="bold">Features </span></p>
+                <p class="subtitle"></p>
+              </div>
+
+              <section class="facilities">
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="feature on">
+                      <i class="fa fa-check"></i> <?= $value->name ?>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="feature on"><i class="fa fa-check"></i> <?= $value->name ?></div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="feature off"><i class="fa fa-close"></i> <?= $value->name ?></div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="feature on"><i class="fa fa-check"></i> <?= $value->name ?></div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="feature off"><i class="fa fa-close"></i> <?= $value->name ?></div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="feature on"><i class="fa fa-check"></i> <?= $value->name ?></div>
+                  </div>
+                </div>
+              </section>
+            </div>
+
+          </div>
+        </div>
+      </section>
 
       <input id="toggle2" type="radio" name="toggle" />
       <label for="toggle2">Content #2</label>
+      <section id="content2" class="content">
+        <p>
+          Content TWO Bacon ipsum dolor sit amet beef venison beef ribs kielbasa. Sausage pig leberkas, t-bone sirloin shoulder bresaola. Frankfurter rump porchetta ham. Pork belly prosciutto brisket meatloaf short ribs.
+        </p>
+        <p>
+          Brisket meatball turkey short loin boudin leberkas meatloaf chuck andouille pork loin pastrami spare ribs pancetta rump. Frankfurter corned beef beef tenderloin short loin meatloaf swine ground round venison.
+        </p>
+      </section>
 
       <input id="toggle3" type="radio" name="toggle" />
       <label for="toggle3">Content #3</label>
+      <section id="content3" class="content">
+        <p>
+          Content THREE Bacon ipsum dolor sit amet beef venison beef ribs kielbasa. Sausage pig leberkas, t-bone sirloin shoulder bresaola. Frankfurter rump porchetta ham. Pork belly prosciutto brisket meatloaf short ribs.
+        </p>
+        <p>
+          Brisket meatball turkey short loin boudin leberkas meatloaf chuck andouille pork loin pastrami spare ribs pancetta rump. Frankfurter corned beef beef tenderloin short loin meatloaf swine ground round venison.
+        </p>
+      </section>
 
       <input id="toggle4" type="radio" name="toggle" />
       <label for="toggle4">Content #4</label>
-
-
-      <div class="col-sm-8">
-        <section id="content1">
-          <p>
-            Bacon ipsum dolor sit amet beef venison beef ribs kielbasa. Sausage pig leberkas, t-bone sirloin shoulder bresaola. Frankfurter rump porchetta ham. Pork belly prosciutto brisket meatloaf short ribs.
-          </p>
-          <p>
-            Brisket meatball turkey short loin boudin leberkas meatloaf chuck andouille pork loin pastrami spare ribs pancetta rump. Frankfurter corned beef beef tenderloin short loin meatloaf swine ground round venison.
-          </p>
-        </section>
-
-        <section id="content2">
-          <p>
-            Bacon ipsum dolor sit amet beef venison beef ribs kielbasa. Sausage pig leberkas, t-bone sirloin shoulder bresaola. Frankfurter rump porchetta ham. Pork belly prosciutto brisket meatloaf short ribs.
-          </p>
-          <p>
-            Brisket meatball turkey short loin boudin leberkas meatloaf chuck andouille pork loin pastrami spare ribs pancetta rump. Frankfurter corned beef beef tenderloin short loin meatloaf swine ground round venison.
-          </p>
-        </section>
-
-        <section id="content3">
-          <p>
-            Bacon ipsum dolor sit amet beef venison beef ribs kielbasa. Sausage pig leberkas, t-bone sirloin shoulder bresaola. Frankfurter rump porchetta ham. Pork belly prosciutto brisket meatloaf short ribs.
-          </p>
-          <p>
-            Brisket meatball turkey short loin boudin leberkas meatloaf chuck andouille pork loin pastrami spare ribs pancetta rump. Frankfurter corned beef beef tenderloin short loin meatloaf swine ground round venison.
-          </p>
-        </section>
-
-        <section id="content4">
-          <p>
-            Bacon ipsum dolor sit amet beef venison beef ribs kielbasa. Sausage pig leberkas, t-bone sirloin shoulder bresaola. Frankfurter rump porchetta ham. Pork belly prosciutto brisket meatloaf short ribs.
-          </p>
-          <p>
-            Brisket meatball turkey short loin boudin leberkas meatloaf chuck andouille pork loin pastrami spare ribs pancetta rump. Frankfurter corned beef beef tenderloin short loin meatloaf swine ground round venison.
-          </p>
-        </section>
-      </div>
-
+      <section id="content4" class="content">
+        <p>
+          Content FOUR Bacon ipsum dolor sit amet beef venison beef ribs kielbasa. Sausage pig leberkas, t-bone sirloin shoulder bresaola. Frankfurter rump porchetta ham. Pork belly prosciutto brisket meatloaf short ribs.
+        </p>
+        <p>
+          Brisket meatball turkey short loin boudin leberkas meatloaf chuck andouille pork loin pastrami spare ribs pancetta rump. Frankfurter corned beef beef tenderloin short loin meatloaf swine ground round venison.
+        </p>
+      </section>
     </div>
-  </section>
+
+  </div>
 </div>
 
-
-
-<div class="container mt-3">
-  <h1>Account Page</h1>
-  <br />
-
-  <div class="row" *ngIf="_errorMessage">
-    <div class="col-sm-12">
-      <p class="alert alert-danger">{{_errorMessage}}</p>
-    </div>
-  </div>
-  <div class="animated fadeIn" *ngIf="!_mode && !_errorMessage">
-    <span class="spinner"></span>
-
-  </div>
-  <div class="animated fadeIn" *ngIf="_mode == 'view'">
+  <!-- <div class="animated fadeIn" *ngIf="_mode == 'view'">
     <div class="row">
       <div class="col-sm-12">
         <div class="card">
@@ -122,5 +176,4 @@
         </div>
       </div>
     </div>
-  </div>
-</div>
+  </div> -->
