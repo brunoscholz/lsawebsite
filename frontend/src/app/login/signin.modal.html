@@ -1,5 +1,11 @@
-<div class="modal fade" bsModal #modal="bs-modal">
-  <div class="modal-dialog modal-{{size}}">
+<div class="modal fade" bsModal
+    #signinModal="bs-modal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="signinModalLabel"
+    aria-hidden="true"
+    (onHidden)="hide()" >
+  <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title pull-left">{{title}}</h4>
@@ -8,7 +14,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <ng-content></ng-content>
+        <ng-content select=".modal-body"> </ng-content>
       </div>
 
       <!-- <div class="modal-footer">

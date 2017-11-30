@@ -15,6 +15,9 @@ import { AuthModule } from './auth.module';
 
 import { BigCardComponent } from '../cards/big-card.component';
 import { SmallCardComponent } from '../cards/small-card.component';
+
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { SearchModalCmp } from '../search/search.modal';
 import { SearchBarComponent } from '../search/search-bar.component';
 
 import { MapComponent } from "../maps/map.component";
@@ -26,6 +29,7 @@ import { MapComponent } from "../maps/map.component";
         AgmCoreModule,
         FormsModule,
         ReactiveFormsModule,
+        ModalModule,
         AuthModule,
     ],
     declarations: [
@@ -35,6 +39,7 @@ import { MapComponent } from "../maps/map.component";
 
         BigCardComponent,
         SmallCardComponent,
+        SearchModalCmp,
         SearchBarComponent,
         MapComponent,
     ],
@@ -48,6 +53,7 @@ import { MapComponent } from "../maps/map.component";
 
         BigCardComponent,
         SmallCardComponent,
+        SearchModalCmp,
         SearchBarComponent,
         MapComponent,
     ],

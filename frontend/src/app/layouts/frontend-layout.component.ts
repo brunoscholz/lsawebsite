@@ -13,6 +13,9 @@ export class FrontendLayoutComponent implements OnInit {
     @ViewChild(ModalDirective) public myModal: ModalDirective;
     @ViewChild('signupModal') public signupModal: SignModalCmp;
     @ViewChild('signinModal') public signinModal: SignModalCmp;
+    @ViewChild('childModal1') public childModal1:ModalDirective;
+    @ViewChild('childModal2') public childModal2:ModalDirective;
+
 
     public disabled: boolean = false;
     public status: { isopen: boolean } = {isopen: false};
@@ -31,6 +34,10 @@ export class FrontendLayoutComponent implements OnInit {
         }
 
         this.buildMenu();
+
+        /*setTimeout(function() {
+            this.signinModal.open();
+        }, 1000);*/
     }
 
     buildMenu() {
@@ -63,10 +70,25 @@ export class FrontendLayoutComponent implements OnInit {
     }
 
     signUpClicked() {
-        this.signupModal.show();
+        //this.signupModal.show();
+        this.childModal2.show();
     }
 
     signInClicked() {
-        this.signinModal.show();
+        this.childModal1.show();
+        //this.signinModal.show();
+    }
+
+    closeSignIn() {
+        this.signinModal.hide();
+    }
+
+    public showExample():void {
+        this.childModal1.show();
+        this.childModal2.show();
+    }
+
+    public hideChildModal(n):void {
+        this['childModal'+n].hide();
     }
 }

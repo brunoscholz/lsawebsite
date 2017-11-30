@@ -1,16 +1,15 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { UserService } from '../model/user.service';
 import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({
-  selector: 'app-signin',
-  templateUrl: './login.component.html',
+  selector: 'app-login',
+  templateUrl: './login.page.html',
   styleUrls: ['./sign.components.css']
 })
-export class LoginComponent implements OnInit {
-  @Output() onDone:EventEmitter<boolean> = new EventEmitter<boolean>();
+export class LoginPage implements OnInit {
 
   _loginForm:FormGroup;
   _formErrors:any;
@@ -91,7 +90,6 @@ export class LoginComponent implements OnInit {
       .subscribe(
         result => {
           if(result.success) {
-            this.onDone.emit(true);
             this._router.navigate([this._returnURL]);
             console.log(result);
           } else {

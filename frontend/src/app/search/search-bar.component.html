@@ -1,4 +1,38 @@
-<div class="serch-bar-container">
+<div class="search-bar-mobile hide-xs">
+  <div id="search-bar-mobile-input">
+    <button id="mobile-search-toggler" data-toggle="modal" data-target="#search-mobile-modal" (click)="searchModalClicked()" class="mobile-input">
+      <img src="assets/img/icons/search.svg" class="icon">
+      <p>Find your School overseas.</p>
+    </button>
+  </div>
+</div>
+<div class="search-box search-bar no-filters" role="search">
+  <form [formGroup]="_searchForm" (ngSubmit)="onSubmit(_searchForm.value)">
+    <div class="input-container">
+      <div class="input-field">
+        <p class="input-label">Search for...</p>
+        <input type="text" class="form-control" id="term" placeholder="Enter your search" [formControl]="_searchForm.controls['term']">
+      </div>
+      <button type="submit" class="btn btn-sm btn-primary" ><i class="fa fa-dot-circle-o"></i> Search</button>
+    </div>
+  </form>
+</div>
+
+<search-modal  #searchModal [title]="'Find your school overseas.'"> 
+<div class="modal-body">
+  <form [formGroup]="_searchForm" (ngSubmit)="onSubmit(_searchForm.value)">
+    <div class="input-container">
+      <div class="input-field">
+        <p class="input-label">Search for...</p>
+        <input type="text" class="form-control" id="term" placeholder="Enter your search" [formControl]="_searchForm.controls['term']">
+      </div>
+      <button type="submit" class="btn btn-sm btn-primary" ><i class="fa fa-dot-circle-o"></i> Search</button>
+    </div>
+  </form>
+</div>
+</search-modal>
+
+<!-- <div class="serch-bar-container">
   <div class="search-bar">
 
     <div class="where-input">
@@ -33,4 +67,4 @@
 
   </div>
 
-</div>
+</div> -->

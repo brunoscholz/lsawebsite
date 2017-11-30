@@ -1,0 +1,56 @@
+<div class="align-items-center">
+  <div class="row justify-content-center">
+    <div class="col-md-12">
+      
+      <form [formGroup]="_loginForm" (ngSubmit)="onSubmit(_loginForm.value)">
+        <p class="text-muted">Sign In to your account</p>
+
+        <div class="form-group row" [ngClass]="{'has-danger': !_isValid('username')}">
+          <div class="col-md-12">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="icon-user"></i></span>
+              <input class="form-control" type="text" placeholder="Username" [formControl]="_loginForm.controls['username']" [ngClass]="{'form-control-danger': !_isValid('username')}">
+            </div>
+          </div><div class="clearfix"></div>
+          <div class="col-sm-12" *ngIf="!_formErrors.username.valid">
+            <span class="help-block help-block-error">{{_formErrors.username.message}}</span>
+          </div>
+          <div class="col-sm-12">
+            <p class="help-text">* Username only allows alphanumeric, underscore and dashboard between 3 and 25 characters. i.e. sampleusername</p>
+          </div>
+        </div>
+        <div class="form-group row" [ngClass]="{'has-danger': !_isValid('password')}">
+          <div class="col-md-12">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="icon-lock"></i></span>
+              <input class="form-control" type="password" placeholder="Password" [formControl]="_loginForm.controls['password']" [ngClass]="{'form-control-danger': !_isValid('password')}">
+            </div><div class="clearfix"></div>
+            <div class="col-sm-12" *ngIf="!_formErrors.password.valid">
+              <span class="help-block help-block-error">{{_formErrors.password.message}}</span>
+            </div>
+            <div class="col-sm-12">
+              <p class="help-text">* Password must be more than 6 characters.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-6">
+            <button type="submit" class="btn btn-success btn-block px-2" [disabled]="!_loginForm.valid || _submitted == true">Login</button>
+          </div>
+          <div class="col-sm-6 text-sm-right">
+            <a href="#" class="btn btn-link px-0">Forgot password?</a>
+          </div>
+          <div class="col-sm-12" *ngIf="_submitted" >
+            <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+          </div>
+          <div *ngIf="_errorMessage" class="col-sm-12 error-block mt-h">
+            <div class="alert alert-danger">{{_errorMessage}}</div>
+          </div>
+
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>

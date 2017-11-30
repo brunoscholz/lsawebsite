@@ -1,16 +1,18 @@
-import {Component, OnInit} from '@angular/core';
-import {FormGroup, FormBuilder, Validators, FormControl} from '@angular/forms';
-import {CustomValidators} from 'ng2-validation';
+import { Component, OnInit } from '@angular/core'; //, Output, EventEmitter
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { CustomValidators } from 'ng2-validation';
 
-import {UserService} from '../model/user.service';
-import {Router} from "@angular/router";
+import { UserService } from '../model/user.service';
+import { Router } from "@angular/router";
 
 @Component({
-  selector: 'app-signup',
+  selector: 'app-register',
   templateUrl: './signup.component.html',
   styleUrls: ['./sign.components.css']
 })
 export class SignupComponent implements OnInit {
+    //@Output() onDone = new EventEmitter();
+
     _signupForm:FormGroup;
     _formErrors:any;
     _submitted:boolean = false;
@@ -43,7 +45,7 @@ export class SignupComponent implements OnInit {
 
     }
 
-    private _setFormErrors(errorFields:any):void{
+    _setFormErrors(errorFields:any):void{
         for (let key in errorFields) {
             // skip loop if the property is from prototype
             if (!errorFields.hasOwnProperty(key)) continue;
@@ -54,7 +56,7 @@ export class SignupComponent implements OnInit {
         }
     }
 
-    private _resetFormErrors():void{
+    _resetFormErrors():void{
         this._formErrors = {
             username: {valid: true, message: ''},
             email: {valid: true, message: ''},
@@ -63,7 +65,7 @@ export class SignupComponent implements OnInit {
         };
     }
 
-    private _isValid(field):boolean {
+    _isValid(field):boolean {
         let isValid:boolean = false;
 
         // If the field is not touched and invalid, it is considered as initial loaded form. Thus set as true

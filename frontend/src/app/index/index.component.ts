@@ -1,8 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
-
-import { CustomValidators } from 'ng2-validation';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { SearchService } from "../model/search.service";
 import { UserService } from "../model/user.service";
@@ -18,37 +15,12 @@ import * as _ from "underscore";
 })
 //styleUrls: ['../layouts/frontend-layout.component.scss']
 export class IndexComponent implements OnInit {
-	_searchForm:FormGroup;
-	_formErrors:any;
-	_submitted:boolean = false;
-	_errorMessage:string = '';
-	_returnURL:string = '/';
-
+	_errorMessage: string = '';
 	_featured: any;
 
 	constructor(public _searchService: SearchService,
 				public _userService: UserService,
-				public _formBuilder:FormBuilder,
 				public _router: Router) {
-
-		this._searchForm = _formBuilder.group({
-			term: ['', Validators.minLength(3)]
-		});
-		
-		this._searchForm.valueChanges.subscribe(data => this.onValueChanged(data));
-	}
-
-	 public onValueChanged(data?: any) {
-		if (!this._searchForm) { return; }
-		const form = this._searchForm;
-		for (let field in this._formErrors) {
-			// clear previous error message (if any)
-			let control = form.get(field);
-			if (control && control.dirty) {
-				this._formErrors[field].valid = true;
-				this._formErrors[field].message = '';
-			}
-		}
 	}
 
 	ngOnInit() {
@@ -79,12 +51,6 @@ export class IndexComponent implements OnInit {
 
 	public search() {
 		
-	}
-
-	public onSubmit(elementValues: any) {
-		this._submitted = true;
-		//this._result = null;
-		this._router.navigate(['/search', elementValues.term]);
 	}
 
 	public viewCity(city):void {

@@ -2,15 +2,14 @@ import { Component, Input, ViewChild } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap/modal/modal.component';
 
 @Component({
-  selector: '[sign-modal]',
-  templateUrl: './sign.modal.html',
+  selector: 'signin-modal',
+  templateUrl: './signin.modal.html',
   styleUrls: ['./sign.modal.css'],
   exportAs: 'child'
 })
-export class SignModalCmp {
-   @ViewChild(ModalDirective) public modal: ModalDirective;
+export class SigninModalCmp {
+   @ViewChild(ModalDirective) public signinModal: ModalDirective;
    @Input() title?:string;
-   @Input() size?:string = 'md';
 
    // @Output for events??
 
@@ -19,10 +18,10 @@ export class SignModalCmp {
   }
 
   show() {
-    this.modal.show();
+    this.signinModal.show();
   }
 
   hide() {
-    this.modal.hide();
+    this.signinModal.hide();
   }
 }
