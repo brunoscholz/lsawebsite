@@ -2,7 +2,7 @@ import { Component, Input, ViewChild } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap/modal/modal.component';
 
 @Component({
-  selector: '[sign-modal]',
+  selector: 'sign-modal',
   templateUrl: './sign.modal.html',
   styleUrls: ['./sign.modal.css'],
   exportAs: 'child'

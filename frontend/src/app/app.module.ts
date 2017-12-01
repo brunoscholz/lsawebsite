@@ -20,6 +20,8 @@ import { AppRoutingModule } from './app.routing';
 
 // Layouts
 import { FrontendLayoutComponent } from './layouts/frontend-layout.component';
+import { HeaderComponent } from './layouts/header.component';
+import { FooterComponent } from './layouts/footer.component';
 import { P404Component } from './pages/404.component';
 
 // Shared
@@ -59,6 +61,8 @@ import { AgmCoreModule } from '@agm/core';
     declarations: [
         AppComponent,
         FrontendLayoutComponent,
+        HeaderComponent,
+        FooterComponent,
         NAV_DROPDOWN_DIRECTIVES,
         BreadcrumbsComponent,
         SIDEBAR_TOGGLE_DIRECTIVES,

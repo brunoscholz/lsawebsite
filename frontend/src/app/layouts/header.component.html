@@ -1,0 +1,58 @@
+<!-- BEGIN HEADER -->
+<div class="container">
+
+  <div id="top-nav">
+    <div class="logo">
+      <a routerLinkActive="active" [routerLink]="['/']" [routerLinkActiveOptions]="{exact:true}" style="display: inline-flex;">
+        <div class="logo-icon">
+          <img src="assets/img/logo-icon.svg" class="logo-icon">
+        </div>
+        <div class="logo-text">
+          <p><span class="--bold --text-primary">Language Schools</span> | Australia</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="sign dropdown" style="float:right; z-index: 2000;">
+      <img src="assets/img/icons/sign-icon.svg">
+      <ul class="dropdown-content" *showAuthed="false">
+        <li>
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/']" [routerLinkActiveOptions]="{exact:true}">Home</a>
+        </li>
+        <li>
+          <a class="nav-link" routerlinkactive="active" (click)="signUpClicked()" style="cursor: pointer;">Sign Up</a>
+          <!-- routerLinkActive="active" [routerLink]="['/signup']" -->
+        </li>
+        <li>
+          <a class="nav-link" routerlinkactive="active" (click)="signInClicked()" style="cursor: pointer;">Sign In</a>
+        </li>
+      </ul>
+      <ul class="dropdown-content" *showAuthed="true">
+        <li>
+          <span>{{currentUser.username}} ({{basicData.roleLabel}})</span>
+        </li>
+        <li>
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/account']">Profile</a>
+        </li>
+        <li>
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/logout']">Logout</a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+<!-- END HEADER -->
+
+
+<sign-modal id="signinModal" #signinModal [title]="'Welcome Back!'"> 
+  <div class="modal-body">
+    <app-signin (onDone)="closeSignIn()"></app-signin>
+  </div>
+</sign-modal>
+
+<sign-modal id="signupModal" #signupModal [title]="'Be part of the new concept of education.'"> 
+  <div class="modal-body">
+    <app-register></app-register>
+  </div>
+</sign-modal>

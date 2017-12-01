@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
-import { UserService } from '../model/user.service';
+import { UserDataService } from '../model/user-data.service';
 import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({
@@ -17,7 +17,7 @@ export class LoginPage implements OnInit {
   _errorMessage:string = '';
   _returnURL:string = '/';
 
-  constructor(public _userService:UserService,
+  constructor(public _userService:UserDataService,
               public _router:Router,
               public _activatedRoute:ActivatedRoute,
               public _formBuilder:FormBuilder) {
@@ -86,7 +86,7 @@ export class LoginPage implements OnInit {
 
   public onSubmit(elementValues: any) {
     this._submitted = true;
-    this._userService.login(elementValues.username, elementValues.password)
+    this._userService.attemptAuth(elementValues.username, elementValues.password)
       .subscribe(
         result => {
           if(result.success) {

@@ -7,6 +7,8 @@ import { CourseListComponent } from './course-list.component';
 import { CourseDetailComponent } from './course-detail.component';
 import { CourseRoutingModule } from './course-routing.module';
 
+import { EnrollButtonComponent } from '../buttons/enroll-button.component';
+
 // CourseEnroll?
 
         //SharedModule,
@@ -20,6 +22,7 @@ import { CourseRoutingModule } from './course-routing.module';
     declarations: [
         CourseListComponent,
         CourseDetailComponent,
+        EnrollButtonComponent,
     ]
 })
 export class CourseModule {

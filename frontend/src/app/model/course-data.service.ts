@@ -113,6 +113,9 @@ export class CourseDataService {
             .catch(this.handleError);
     }
 
+    enroll(id:string):Observable<any> {
+        return Observable.throw('not implemented');
+    }
 
     public handleError (error: Response | any) {
 

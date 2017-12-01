@@ -13,6 +13,8 @@ import { KeysPipe } from './keys.pipe';
 
 import { AuthModule } from './auth.module';
 
+import { ShowAuthedDirective } from './show-authed.directive';
+
 import { BigCardComponent } from '../cards/big-card.component';
 import { SmallCardComponent } from '../cards/small-card.component';
 
@@ -42,6 +44,7 @@ import { MapComponent } from "../maps/map.component";
         SearchModalCmp,
         SearchBarComponent,
         MapComponent,
+        ShowAuthedDirective,
     ],
     exports: [
         FormsModule,
@@ -56,6 +59,7 @@ import { MapComponent } from "../maps/map.component";
         SearchModalCmp,
         SearchBarComponent,
         MapComponent,
+        ShowAuthedDirective,
     ],
     providers: []
 })

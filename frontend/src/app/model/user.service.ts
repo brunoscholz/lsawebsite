@@ -2,10 +2,12 @@ import {Injectable} from '@angular/core';
 import {Http, Headers, Response} from '@angular/http';
 
 import {GlobalService} from './global.service';
+
+import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
-import {Observable} from 'rxjs/Rx';
+
 import {Router} from "@angular/router";
 
 import {tokenNotExpired} from 'angular2-jwt';
@@ -14,14 +16,13 @@ import {AuthHttp, JwtHelper} from 'angular2-jwt';
 
 @Injectable()
 export class UserService {
-    loggedIn = false;
     public redirectURL = '';
     public jwtHelper: JwtHelper = new JwtHelper();
 
     constructor(public _globalService: GlobalService,
                 public _router: Router,
                 public _authHttp: AuthHttp) {
-        this.loggedIn = this.isLoggedIn();
+        //this.loggedIn = this.isLoggedIn();
     }
 
     public login(username, password) {
@@ -42,11 +43,7 @@ export class UserService {
             .map(response => response.json())
             .map((response) => {
                 if (response.success) {
-                    localStorage.setItem('frontend-token', response.data.access_token);
-                    this.loggedIn = true;
                 } else {
-                    localStorage.removeItem('frontend-token');
-                    this.loggedIn = false;
                 }
                 return response;
             })
@@ -178,9 +175,12 @@ export class UserService {
             .catch(this.handleError);
     }
 
-    public logout(): void {
+    public saveToken(token:string): void {
+        localStorage.setItem('frontend-token', token);
+    }
+
+    public destroyToken(): void {
         localStorage.removeItem('frontend-token');
-        this.loggedIn = false;
     }
 
     public getToken(): any {
@@ -192,7 +192,7 @@ export class UserService {
     }
 
     public unauthorizedAccess(error: any): void {
-        this.logout();
+        this.destroyToken();
         this._router.navigate(['/login']);
     }
 

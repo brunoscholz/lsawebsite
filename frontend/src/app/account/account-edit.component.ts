@@ -3,12 +3,11 @@ import {Router} from "@angular/router";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 import * as _ from "underscore";
-import swal, {SweetAlertOptions} from 'sweetalert2';
 
 import {CustomValidators} from "ng2-validation";
 
 import {UserDataService} from "../model/user-data.service";
-import {User} from "../model/user";
+import {User} from "../model/general";
 import {UserService} from "../model/user.service";
 
 @Component({
@@ -144,52 +143,33 @@ export class AccountEditComponent implements OnInit {
 
             let parent = this;
 
-            swal({
-                title: 'Are you sure?',
-                html: "If you change your email address, you must confirm new email address again. You won't be able to access your account until you confirming new email address.<br /><br  /><strong>New Email Address: "+this._user.email+"</strong><br /><br />You will be logged out. Please login again after confirming new email address.",
-                type: 'question',
-                showLoaderOnConfirm: true,
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, change it!',
-                preConfirm: function () {
-                    return new Promise(function (resolve, reject) {
-                        parent._userDataService.updateUser(tempUser)
-                            .subscribe(
-                                result => {
-                                    if(result.success) {
-                                        parent._router.navigate(['/account']);
-                                    } else {
-                                        parent._submitted = false;
-                                    }
-                                    resolve();
-                                },
-                                error =>  {
+            this._userDataService.updateUser(tempUser)
+                .subscribe(
+                    result => {
+                        if(result.success) {
+                            parent._router.navigate(['/account']);
+                        } else {
+                            parent._submitted = false;
+                        }
+                        //resolve();
+                    },
+                    error =>  {
 
-                                    if(error.status == 422) {
-                                        let errorFields = JSON.parse(error.data.message);
-                                        parent._setFormErrors(errorFields);
-                                    }
-                                    // unauthorized access
-                                    else if(error.status == 401 || error.status == 403) {
-                                        parent._userService.unauthorizedAccess(error);
-                                    } else {
-                                        parent._errorMessage = error.data.message;
-                                    }
-                                    resolve();
+                        if(error.status == 422) {
+                            let errorFields = JSON.parse(error.data.message);
+                            parent._setFormErrors(errorFields);
+                        }
+                        // unauthorized access
+                        else if(error.status == 401 || error.status == 403) {
+                            parent._userService.unauthorizedAccess(error);
+                        } else {
+                            parent._errorMessage = error.data.message;
+                        }
+                        //resolve();
 
-                                }
-                            );
-                    })
-                }
-            }).then(function(result) {
-                // handle confirm, result is needed for modals with input
+                    }
+                );
 
-            }, function(dismiss) {
-                // dismiss can be "cancel" | "close" | "outside"
-                parent._submitted = false;
-            });
         } else if(typeof this._user.password !== "undefined" && this._user.password != '') {
             this._userDataService.updateUser(tempUser)
                 .subscribe(

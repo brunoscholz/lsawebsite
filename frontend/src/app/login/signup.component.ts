@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { CustomValidators } from 'ng2-validation';
 
 import { UserService } from '../model/user.service';
+import { UserDataService } from '../model/user-data.service';
 import { Router } from "@angular/router";
 
 @Component({
@@ -20,6 +21,7 @@ export class SignupComponent implements OnInit {
     _showConfirmation:boolean = false;
 
     constructor(public _userService:UserService,
+                public _userDataService:UserDataService,
                 public _router:Router,
                 public _formBuilder:FormBuilder) {
 
@@ -94,7 +96,7 @@ export class SignupComponent implements OnInit {
 
     ngOnInit() {
         this._resetFormErrors();
-        this._userService.logout();
+        this._userDataService.logout();
     }
 
     public onSubmit(elementValues: any) {

@@ -337,6 +337,8 @@ export class User {
   last_login_ip:string;
   confirmed_at:string;
   blocked_at:string;
+  role:number;
+  role_label:string;
   status:number;
   status_label:string;
   created_at:string;

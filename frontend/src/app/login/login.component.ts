@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
-import { UserService } from '../model/user.service';
+import { UserDataService } from '../model/user-data.service';
 import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({
@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   _errorMessage:string = '';
   _returnURL:string = '/';
 
-  constructor(public _userService:UserService,
+  constructor(public _userService:UserDataService,
               public _router:Router,
               public _activatedRoute:ActivatedRoute,
               public _formBuilder:FormBuilder) {
@@ -79,7 +79,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this._resetFormErrors();
-    this._userService.logout();
+    //this._userService.logout();
 
     // get return url from route parameters or default to '/'
     this._returnURL = this._activatedRoute.snapshot.queryParams['r'] || '/';
@@ -87,13 +87,13 @@ export class LoginComponent implements OnInit {
 
   public onSubmit(elementValues: any) {
     this._submitted = true;
-    this._userService.login(elementValues.username, elementValues.password)
+
+    this._userService.attemptAuth(elementValues.username, elementValues.password)
       .subscribe(
         result => {
           if(result.success) {
             this.onDone.emit(true);
-            this._router.navigate([this._returnURL]);
-            console.log(result);
+          this._router.navigate([this._returnURL]);
           } else {
             this._errorMessage = 'Username or password is incorrect.';
             this._submitted = false;
@@ -104,10 +104,10 @@ export class LoginComponent implements OnInit {
           // Validation error
           if(error.status == 422) {
             this._resetFormErrors();
-            // this._errorMessage = "There was an error on submission. Please check again.";
             let errorFields = JSON.parse(error.data.message);
             this._setFormErrors(errorFields);
           } else {
+            // this._errorMessage = "There was an error on submission. Please check again.";
             this._errorMessage = error.data;
           }
         }
