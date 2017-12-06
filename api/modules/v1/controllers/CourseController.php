@@ -20,6 +20,7 @@ use yii\web\NotFoundHttpException;
 use yii\web\ServerErrorHttpException;
 
 use app\models\Course;
+use app\models\CourseEnroll;
 use app\modules\v1\models\CourseModel;
 use app\components\RestUtils;
 
@@ -51,6 +52,7 @@ class CourseController extends Controller
 				'create' => ['post'],
 				'update' => ['put'],
 				'delete' => ['delete'],
+				'enroll' => ['post'],
 			],
 		];
 				//'getPermissions'    =>  ['get'],
@@ -120,30 +122,6 @@ class CourseController extends Controller
 	/**
 	 * Return requested staff member information
 	 *
-	 * Request: /v1/staff/2
-	 *
-	 * Sample Response:
-	 * {
-	 *   "success": true,
-	 *   "status": 200,
-	 *   "data": {
-	 *	        "id": 2,
-	 *		    "username": "staff",
-	 *		    "email": "staff@staff.com",
-	 *		    "unconfirmed_email": "lygagohur@hotmail.com",
-	 *		    "role": 50,
-	 *		    "role_label": "Staff",
-	 *		    "last_login_at": "2017-05-20 18:58:40",
-	 *		    "last_login_ip": "127.0.0.1",
-	 *		    "confirmed_at": "2017-05-15 09:20:53",
-	 *		    "blocked_at": null,
-	 *		    "status": 10,
-	 *		    "status_label": "Active",
-	 *		    "created_at": "2017-05-15 09:19:02",
-	 *		    "updated_at": "2017-05-21 23:31:32"
-	 *	    }
-	 *   }
-	 *
 	 * @param $id
 	 *
 	 * @return array|null|\yii\db\ActiveRecord
@@ -189,6 +167,39 @@ class CourseController extends Controller
 		}
 	}
 
+	public function actionEnroll() {
+		$params = \Yii::$app->getRequest()->getBodyParams();
+
+		$usr = $stu = null;
+		if(isset($params['courseId']) && !empty($params['courseId']))
+			$usr = $params['courseId'];
+
+		if(isset($params['studentId']) && !empty($params['studentId']))
+			$stu = $params['studentId'];
+
+		if(is_null($usr) || is_null($stu)) {
+			throw new HttpException(422, json_encode('Invalid Parameters'));
+		}
+
+		$model = new CourseEnroll();
+		$model->courseEnrollId = RestUtils::generateId();
+		$model->courseId = $usr;
+		$model->studentId = $stu;
+		$model->status = 'PEN';
+
+		if ($model->validate() && $model->save()) {
+			$response = \Yii::$app->getResponse();
+			$response->setStatusCode(201);
+			$id = implode(',', array_values($model->getPrimaryKey(true)));
+			$response->getHeaders()->set('Location', Url::toRoute([$id], true));
+		} else {
+			// Validation error
+			throw new HttpException(422, json_encode($model->errors));
+		}
+
+		return $model;
+	}
+
 	/**
 	 * Create new staff member from backend dashboard
 	 *
@@ -215,44 +226,6 @@ class CourseController extends Controller
 	}
 
 	/**
-	 * Update staff member information from backend dashboard
-	 *
-	 * Request: PUT /v1/staff/1
-	 *  {
-	 *  	"id": 20,
-	 *  	"username": "testuser",
-	 *  	"email": "test2@test.com",
-	 *  	"unconfirmed_email": "test2@test.com",
-	 *  	"password": "{password}",
-	 *  	"role": 50,
-	 *  	"role_label": "Staff",
-	 *  	"last_login_at": null,
-	 *  	"last_login_ip": null,
-	 *  	"confirmed_at": null,
-	 *  	"blocked_at": null,
-	 *  	"status": 10,
-	 *  	"status_label": "Active",
-	 *  	"created_at": "2017-05-27 17:30:12",
-	 *  	"updated_at": "2017-05-27 17:30:12",
-	 *  	"permissions": [
-	 *  		{
-	 *  			"name": "manageSettings",
-	 *  			"description": "Manage settings",
-	 *  			"checked": false
-	 *  		},
-	 *  		{
-	 *  			"name": "manageStaffs",
-	 *  			"description": "Manage staffs",
-	 *  			"checked": false
-	 *  		},
-	 *  		{
-	 *  			"name": "manageUsers",
-	 *  			"description": "Manage users",
-	 *  			"checked": true
-	 *  		}
-	 *  	]
-	 *  }
-	 *
 	 *
 	 * @param $id
 	 *

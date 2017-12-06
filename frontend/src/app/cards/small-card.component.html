@@ -2,23 +2,15 @@
   <div class="small-card">
     <!-- Image -->
     <div class="small-card-img">
-      <div class="small-card-compare-btn">
-        <div class="icon-plus"></div>
-      </div>
-      <img src="assets/img/gold.jpg" alt="">
+      <compare-button [inCard]="true" [course]="course"></compare-button>
+      <img src="{{course.media[0].image.large}}" alt="" (click)="viewCourse(course.courseId)">
     </div>
 
     <!-- Body -->
     <div class="small-card-body">
       <p class="small-card-title">{{course.name || course.title}}</p>
-      <div class="small-card-rating">
-        <div class="icon-star"></div>
-        <div class="icon-star"></div>
-        <div class="icon-star"></div>
-        <div class="icon-star"></div>
-        <div class="icon-star"></div>
-      </div>
-      <p class="small-card-reviews-btn"><span class="bold">250</span> Reviews</p>
+      <star-rating [rate]="course.rating"></star-rating>
+      <review-count [count]="167"></review-count>
     </div>
 
   </div>
@@ -29,23 +21,14 @@
   <div class="small-card">
     <!-- Image -->
     <div class="small-card-img">
-      <div class="small-card-compare-btn">
-        <div class="icon-plus"></div>
-      </div>
-      <img src="assets/img/gold.jpg" alt="">
+      <img src="{{school.media[0].image.large}}" alt="" (click)="viewSchool(school.schoolId)">
     </div>
 
     <!-- Body -->
     <div class="small-card-body">
       <p class="small-card-title">{{school.name || school.title}}</p>
-      <div class="small-card-rating">
-        <div class="icon-star"></div>
-        <div class="icon-star"></div>
-        <div class="icon-star"></div>
-        <div class="icon-star"></div>
-        <div class="icon-star"></div>
-      </div>
-      <p class="small-card-reviews-btn"><span class="bold">250</span> Reviews</p>
+      <star-rating [rate]="school.rating"></star-rating>
+      <review-count [count]="250"></review-count>
     </div>
 
   </div>

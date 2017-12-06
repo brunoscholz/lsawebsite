@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "{{%courseenroll}}".
@@ -31,10 +32,25 @@ class CourseEnroll extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    public static function primaryKey()
+    {
+        return ['courseEnrollId'];
+    }
+
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::className(),
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function rules()
     {
         return [
-            [['courseEnrollId', 'created_at', 'updated_at'], 'required'],
+            [['courseEnrollId'], 'required'],
             [['created_at', 'updated_at'], 'integer'],
             [['courseEnrollId', 'courseId', 'studentId'], 'string', 'max' => 21],
             [['status'], 'string', 'max' => 3],

@@ -1,10 +1,10 @@
 <button
-  class="btn btn-sm action-btn"
+  class="btn btn-fill"
   [ngClass]="{'disabled': _submitted,
-              'btn-outline-secondary': !course,
-              'btn-secondary': course }"
+              'btn-primary': !enrolled,
+              'btn-disabled': enrolled }"
   (click)="toggleFollowing()">
   <i class="ion-plus-round"></i>
   &nbsp;
-  {{ course ? 'Enrolled' : 'Enroll Now' }}
+  {{ enrolled ? 'Enrolled' : 'Enroll Now' }}
 </button>

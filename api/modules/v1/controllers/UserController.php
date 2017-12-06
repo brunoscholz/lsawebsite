@@ -297,12 +297,15 @@ class UserController extends RestController
 			$response = \Yii::$app->getResponse();
 			$response->setStatusCode(200);
 
-			return [
+            return $user->toArray();
+
+			/*return [
+                'userId'
 				'username'  =>  $user->username,
 				'email'     =>  $user->email,
 				'last_login_at' =>  $user->last_login_at,
 				'last_login_ip' =>  $user->last_login_ip,
-			];
+			];*/
 		} else {
 			// Validation error
 			throw new NotFoundHttpException("Object not found");

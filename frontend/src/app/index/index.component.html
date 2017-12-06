@@ -1,7 +1,5 @@
 <div class="home-container">
 
-  <section class="section is-large">
-
     <search-bar></search-bar>
 
     <div class="row" *ngIf="_errorMessage">
@@ -40,7 +38,7 @@
             </div>
             <section class="small-cards">
               <div class="h-scroll">
-                <small-card *ngFor="let school of _featured.School" [school]="school.model" (click)="viewSchool(school.model.schoolId)"></small-card>
+                <small-card *ngFor="let school of _featured.School" [school]="school.model"></small-card>
               </div>
             </section>
           </div>
@@ -53,7 +51,7 @@
             </div>
             <section class="small-cards">
               <div class="h-scroll">
-                <small-card *ngFor="let course of _featured.Course" [course]="course.model" (click)="viewCourse(course.model.courseId)"></small-card>
+                <small-card *ngFor="let course of _featured.Course" [course]="course.model"></small-card>
               </div>
             </section>
           </div>
@@ -75,5 +73,4 @@
       </div>
     </div>
 
-  </section>
 </div>

@@ -1,21 +1,21 @@
-import {Injectable} from '@angular/core';
-import {Http, Headers, Response} from '@angular/http';
+import { Injectable } from '@angular/core';
+import { Http, Headers, Response } from '@angular/http';
 
-import {GlobalService} from './global.service';
-
-import { Observable } from 'rxjs/Rx';
+import { GlobalService } from './global.service';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
+import { Observable } from 'rxjs/Rx';
+import { Router } from "@angular/router";
 
-import {Router} from "@angular/router";
+import { tokenNotExpired } from 'angular2-jwt';
+import { AuthHttp, JwtHelper } from 'angular2-jwt';
 
-import {tokenNotExpired} from 'angular2-jwt';
-import {AuthHttp, JwtHelper} from 'angular2-jwt';
-
+import * as _ from "underscore";
 
 @Injectable()
 export class UserService {
+    //private loggedIn = false;
     public redirectURL = '';
     public jwtHelper: JwtHelper = new JwtHelper();
 
@@ -177,9 +177,13 @@ export class UserService {
 
     public saveToken(token:string): void {
         localStorage.setItem('frontend-token', token);
+        console.log(token);
+        let storedKeys = Object.keys(localStorage);
+        console.log(storedKeys);
     }
 
     public destroyToken(): void {
+        console.log("__CALLED DESTROY TOKEN__");
         localStorage.removeItem('frontend-token');
     }
 
@@ -187,7 +191,7 @@ export class UserService {
         return localStorage.getItem('frontend-token');
     }
 
-    private checkToken(): any {
+    public checkToken(): any {
         return !!localStorage.getItem('frontend-token');
     }
 

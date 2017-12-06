@@ -120,6 +120,7 @@ p {
   margin: 0 auto;
   background: #fff;
   */
+  overflow: hidden;
   transform: translateZ(0);
   /*box-shadow: 0 1px 1px rgba(0,0,0,.1);*/
 }
@@ -163,16 +164,26 @@ label[for*='1'] {
   transition: .3s transform;
 }*/
 
-.togglebox section.content {
+.togglebox section.content, .togglebox div.content {
   position: absolute;
   visibility: hidden;
   opacity: 0;
   transition: visibility 0s, opacity 0.5s linear;
   width: 75%;
   padding: 0 0 0 21px;
-  top: 0;  bottom: 0; left: 25%;
+  top: 0;
+  left: 25%;
   margin: auto;
   /*transition: all 2s linear;*/
+}
+
+.togglebox div.content.ghost{
+  visibility: hidden;
+  width: 100%;
+  height: 40vh;
+  top: 0;
+  left: 0;
+  position: relative;
 }
 
 #toggle1:checked ~ label[for*='1'],

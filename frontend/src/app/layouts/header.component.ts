@@ -7,6 +7,8 @@ import { User } from '../model/general';
 import { ModalDirective } from 'ngx-bootstrap/modal/modal.component';
 import { SignModalCmp } from '../login/sign.modal';
 
+import { CompareService } from '../model/compare.service';
+
 @Component({
   selector: 'layout-header',
   templateUrl: './header.component.html',
@@ -17,25 +19,32 @@ export class HeaderComponent implements OnInit {
   @ViewChild('signupModal') public signupModal: SignModalCmp;
   @ViewChild('signinModal') public signinModal: SignModalCmp;
 
+  _hasProducts: number = 0;
   currentUser: User;
   basicData: any = {};
 
   constructor(
     private _userService: UserService,
-    private _userDataService: UserDataService
-  ) {}
+    private _userDataService: UserDataService,
+    private _compareService: CompareService
+  ) { }
 
   ngOnInit(): void {
     let jwtValue: any = this._userService.getJWTValue();
     if (jwtValue != null) {
         this.basicData = jwtValue.data;
     }
+
     this._userDataService.currentUser
     .subscribe((userData) => {
       this.currentUser = userData;
     });
 
-    this._userDataService.populate();
+    this._compareService.hasProducts
+    .subscribe((hasp) => {
+      this._hasProducts = hasp;
+    });
+
   }
 
   signUpClicked() {

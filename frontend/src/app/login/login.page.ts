@@ -78,7 +78,7 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
     this._resetFormErrors();
-    this._userService.logout();
+    //this._userService.logout();
 
     // get return url from route parameters or default to '/'
     this._returnURL = this._activatedRoute.snapshot.queryParams['r'] || '/';

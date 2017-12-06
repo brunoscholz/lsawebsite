@@ -1,0 +1,105 @@
+<div class="row" *ngIf="_errorMessage">
+  <div class="col-sm-12">
+  <p class="alert alert-danger">{{_errorMessage}}</p>
+  </div>
+</div>
+<div class="animated fadeIn" *ngIf="!_course && !_errorMessage">
+  <span class="spinner"></span>
+</div>
+<div class="animated fadeIn" *ngIf="_course">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card-group-title">
+        <p class="title"><span class="bold">Enrollment Process </span></p>
+        <p class="subtitle">{{_course.name}}, at {{_course.school.name}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="togglebox">
+    <input id="toggle1" type="radio" name="toggle" checked="checked" />
+    <label for="toggle1">Course</label>
+    <div id="content1" class="content">
+      
+      <div class="row">
+        <div class="col-sm-12">
+          
+          <div class="card-group" style="margin-top: 0 !important;">
+            <div class="card-group-title">
+              <p class="title"><span class="bold">Enrollment Process </span></p>
+              <p class="subtitle">{{_course.name}}, at {{_course.school.name}}</p>
+            </div>
+
+            <section class="facilities">
+              <section class="small-cards">
+                <div class="row">
+                  <p>
+                    Content THREE Bacon ipsum dolor sit amet beef venison beef ribs kielbasa. Sausage pig leberkas, t-bone sirloin shoulder bresaola. Frankfurter rump porchetta ham. Pork belly prosciutto brisket meatloaf short ribs.
+                  </p>
+                  <p>
+                    Brisket meatball turkey short loin boudin leberkas meatloaf chuck andouille pork loin pastrami spare ribs pancetta rump. Frankfurter corned beef beef tenderloin short loin meatloaf swine ground round venison.
+                  </p>
+                </div>
+                <div class="row">
+                  <p>
+                    Content THREE Bacon ipsum dolor sit amet beef venison beef ribs kielbasa. Sausage pig leberkas, t-bone sirloin shoulder bresaola. Frankfurter rump porchetta ham. Pork belly prosciutto brisket meatloaf short ribs.
+                  </p>
+                  <p>
+                    Brisket meatball turkey short loin boudin leberkas meatloaf chuck andouille pork loin pastrami spare ribs pancetta rump. Frankfurter corned beef beef tenderloin short loin meatloaf swine ground round venison.
+                  </p>
+                </div>
+                <div class="row">
+                  <p>
+                    Content THREE Bacon ipsum dolor sit amet beef venison beef ribs kielbasa. Sausage pig leberkas, t-bone sirloin shoulder bresaola. Frankfurter rump porchetta ham. Pork belly prosciutto brisket meatloaf short ribs.
+                  </p>
+                  <p>
+                    Brisket meatball turkey short loin boudin leberkas meatloaf chuck andouille pork loin pastrami spare ribs pancetta rump. Frankfurter corned beef beef tenderloin short loin meatloaf swine ground round venison.
+                  </p>
+                </div>
+              </section>
+
+            </section>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <input id="toggle2" type="radio" name="toggle" />
+    <label for="toggle2">City</label>
+    <div id="content2" class="content">
+      <p>
+        Content TWO Bacon ipsum dolor sit amet beef venison beef ribs kielbasa. Sausage pig leberkas, t-bone sirloin shoulder bresaola. Frankfurter rump porchetta ham. Pork belly prosciutto brisket meatloaf short ribs.
+      </p>
+      <p>
+        Brisket meatball turkey short loin boudin leberkas meatloaf chuck andouille pork loin pastrami spare ribs pancetta rump. Frankfurter corned beef beef tenderloin short loin meatloaf swine ground round venison.
+      </p>
+    </div>
+
+    <input id="toggle3" type="radio" name="toggle" />
+    <label for="toggle3">Trip</label>
+    <div id="content3" class="content">
+      <p>
+        Content THREE Bacon ipsum dolor sit amet beef venison beef ribs kielbasa. Sausage pig leberkas, t-bone sirloin shoulder bresaola. Frankfurter rump porchetta ham. Pork belly prosciutto brisket meatloaf short ribs.
+      </p>
+      <p>
+        Brisket meatball turkey short loin boudin leberkas meatloaf chuck andouille pork loin pastrami spare ribs pancetta rump. Frankfurter corned beef beef tenderloin short loin meatloaf swine ground round venison.
+      </p>
+    </div>
+
+    <input id="toggle4" type="radio" name="toggle" />
+    <label for="toggle4">Payment Options</label>
+    <div id="content4" class="content">
+      <p>
+        Content FOUR Bacon ipsum dolor sit amet beef venison beef ribs kielbasa. Sausage pig leberkas, t-bone sirloin shoulder bresaola. Frankfurter rump porchetta ham. Pork belly prosciutto brisket meatloaf short ribs.
+      </p>
+      <p>
+        Brisket meatball turkey short loin boudin leberkas meatloaf chuck andouille pork loin pastrami spare ribs pancetta rump. Frankfurter corned beef beef tenderloin short loin meatloaf swine ground round venison.
+      </p>
+    </div>
+
+    <div class="content ghost"></div>
+    <div class="clearfix"></div>
+  </div>
+
+</div>

@@ -1,0 +1,15 @@
+.compare-btn {
+  font-size: 20pt;
+  color: white;
+  position: absolute;
+  top: .5em;
+  left: .5em;
+}
+
+.compare-btn .icon-close {
+	color: #DD5555;
+}
+
+.compare-btn .icon-plus {
+	color: white;
+}

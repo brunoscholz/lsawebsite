@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
 
@@ -11,14 +11,20 @@ import { Course } from '../model/general';
   selector: 'enroll-button',
   templateUrl: './enroll-button.component.html'
 })
-export class EnrollButtonComponent {
+export class EnrollButtonComponent implements OnInit {
   @Input() course: Course;
   @Output() onToggle = new EventEmitter<boolean>();
   _submitted:boolean = false;
 
+  enrolled: boolean = false;
+
   constructor(private _userService: UserDataService,
               private _courseService: CourseDataService,
               private _router: Router) {}
+
+  ngOnInit() {
+    this.enrolled = this._userService.checkEnrolled(this.course.courseId);
+  }
 
   toggleFollowing() {
     this._submitted = true;
@@ -32,27 +38,20 @@ export class EnrollButtonComponent {
         }
 
         // Follow this profile if we aren't already
-        /*if (!this.profile['following']) {*/
-          this._courseService.enroll(this.course['id'])
+        if (!this.enrolled) {
+          this._courseService.enroll(this.course.courseId)
           .subscribe(
-            data => {
+            (data) => {
               this._submitted = false;
               this.onToggle.emit(true);
+              this._router.navigate(['/course/enroll', this.course.courseId]);
             },
-            err => this._submitted = false
+            (err) => this._submitted = false
           );
-
-        // Otherwise, unfollow this profile
-        /*} else {
-          this.profilesService.unfollow(this.profile['username'])
-          .subscribe(
-            data => {
-              this._submitted = false;
-              this.onToggle.emit(false);
-            },
-            err => this._submitted = false
-          );
-        }*/
+        } else {
+          // Otherwise, just see the enroll process
+          this._router.navigate(['/course/enroll', this.course.courseId]);
+        }
 
       });
   }

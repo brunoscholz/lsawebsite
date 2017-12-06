@@ -27,7 +27,7 @@ import { P404Component } from './pages/404.component';
 // Shared
 import { AuthGuard } from './model/auth.guard';
 import { SharedModule } from './shared/shared.module';
-
+import { CompareModule } from './compare/compare.module';
 import { LoginModule } from './login/login.module';
 
 // Model & Services
@@ -39,6 +39,7 @@ import { SearchService } from './model/search.service';
 import { MapService } from './model/map.service';
 import { SchoolDataService } from './model/school-data.service';
 import { CourseDataService } from './model/course-data.service';
+import { CompareService } from './model/compare.service';
 
 import { AgmCoreModule } from '@agm/core';
 
@@ -56,6 +57,7 @@ import { AgmCoreModule } from '@agm/core';
         ChartsModule,
         HttpModule,
         SharedModule,
+        CompareModule,
         LoginModule,
     ],
     declarations: [
@@ -84,6 +86,7 @@ import { AgmCoreModule } from '@agm/core';
         MapService,
         SchoolDataService,
         CourseDataService,
+        CompareService,
     ],
     bootstrap: [AppComponent]
 })

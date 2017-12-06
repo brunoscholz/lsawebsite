@@ -1,44 +1,54 @@
 <!-- BEGIN HEADER -->
 <div class="container">
 
-  <div id="top-nav">
+  <div id="top-nav" class="navbar">
     <div class="logo">
       <a routerLinkActive="active" [routerLink]="['/']" [routerLinkActiveOptions]="{exact:true}" style="display: inline-flex;">
         <div class="logo-icon">
           <img src="assets/img/logo-icon.svg" class="logo-icon">
         </div>
         <div class="logo-text">
-          <p><span class="--bold --text-primary">Language Schools</span> | Australia</p>
+          <span class="bold primary">Language Schools</span> | Australia
         </div>
       </a>
     </div>
 
-    <div class="sign dropdown" style="float:right; z-index: 2000;">
-      <img src="assets/img/icons/sign-icon.svg">
-      <ul class="dropdown-content" *showAuthed="false">
-        <li>
-          <a class="nav-link" routerLinkActive="active" [routerLink]="['/']" [routerLinkActiveOptions]="{exact:true}">Home</a>
-        </li>
-        <li>
-          <a class="nav-link" routerlinkactive="active" (click)="signUpClicked()" style="cursor: pointer;">Sign Up</a>
-          <!-- routerLinkActive="active" [routerLink]="['/signup']" -->
-        </li>
-        <li>
-          <a class="nav-link" routerlinkactive="active" (click)="signInClicked()" style="cursor: pointer;">Sign In</a>
-        </li>
-      </ul>
-      <ul class="dropdown-content" *showAuthed="true">
-        <li>
-          <span>{{currentUser.username}} ({{basicData.roleLabel}})</span>
-        </li>
-        <li>
-          <a class="nav-link" routerLinkActive="active" [routerLink]="['/account']">Profile</a>
-        </li>
-        <li>
-          <a class="nav-link" routerLinkActive="active" [routerLink]="['/logout']">Logout</a>
-        </li>
-      </ul>
-    </div>
+    <ul class="navbar-nav">
+      <li *ngIf="_hasProducts > 0">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['/compare']">
+          <img src="assets/img/icons/menu.svg">
+        </a>
+        <span class="badge badge-pill">{{_hasProducts}}</span>
+      </li>
+      <li class="sign dropdown">
+        <img src="assets/img/icons/sign-icon.svg" style="margin-top: 11px;">
+        <ul class="dropdown-content" *showAuthed="false">
+          <li>
+            <a class="nav-link" routerLinkActive="active" [routerLink]="['/']" [routerLinkActiveOptions]="{exact:true}">Home</a>
+          </li>
+          <li>
+            <a class="nav-link" routerlinkactive="active" (click)="signUpClicked()" style="cursor: pointer;">Sign Up</a>
+            <!-- routerLinkActive="active" [routerLink]="['/signup']" -->
+          </li>
+          <li>
+            <a class="nav-link" routerlinkactive="active" (click)="signInClicked()" style="cursor: pointer;">Sign In</a>
+          </li>
+        </ul>
+        <ul class="dropdown-content" *showAuthed="true">
+          <li>
+            <span>{{currentUser.username}} ({{basicData.roleLabel}})</span>
+          </li>
+          <li>
+            <a class="nav-link" routerLinkActive="active" [routerLink]="['/account']">Profile</a>
+          </li>
+          <li>
+            <a class="nav-link" routerLinkActive="active" [routerLink]="['/logout']">Logout</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    
 
   </div>
 </div>

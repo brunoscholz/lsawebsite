@@ -1,1 +1,8 @@
+.fade.in {
+    opacity: 1 !important;
+}
 
+.modal.fade .modal-dialog {
+    transition: transform .3s ease-out;
+    transform: unset;
+}

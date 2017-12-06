@@ -122,12 +122,11 @@
             </div>
             <div class="activities">
               <div class="actions">
-                <a class="btn btn-primary"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Compare</a>
+                <compare-button style="width: 100%;" [course]=_course></compare-button>
               </div>
 
               <div class="actions">
-                <!-- <a class="btn btn-primary">Book Now!</a> -->
-                <enroll-button [course]=_course (onToggle)="toggleEnroll()"></enroll-button>
+                <enroll-button style="width: 100%;" [course]=_course (onToggle)="toggleEnroll()"></enroll-button>
               </div>
             </div>
           </div>

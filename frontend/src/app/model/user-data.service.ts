@@ -13,6 +13,7 @@ import {UserService} from './user.service';
 import {User} from './general';
 import {AuthHttp} from 'angular2-jwt';
 
+import * as _ from "underscore";
 
 @Injectable()
 export class UserDataService {
@@ -24,7 +25,7 @@ export class UserDataService {
 
   constructor(public _globalService:GlobalService,
               public _userService:UserService,
-              public _authHttp: AuthHttp){
+              public _authHttp: AuthHttp) {
   }
 
   private getHeaders():Headers {
@@ -77,7 +78,8 @@ export class UserDataService {
 
   populate() {
     // If JWT detected, attempt to get & store user's info
-    if (this._userService.getToken()) {
+    console.log("__CALLED POPULATE__");
+    if (this._userService.checkToken()) {
       this.getMe()
         .subscribe(
           data => this.setAuth(data),
@@ -90,6 +92,7 @@ export class UserDataService {
   }
 
   setAuth(user: User) {
+    console.log("__CALLED SET AUTH__");
     // Set current user data into observable
     this.currentUserSubject.next(user);
     // Set isAuthenticated to true
@@ -97,6 +100,7 @@ export class UserDataService {
   }
 
   purgeAuth() {
+    console.log("__CALLED PURGE AUTH__");
     // Remove JWT from localstorage
     this._userService.destroyToken();
     // Set current user to an empty object
@@ -106,14 +110,17 @@ export class UserDataService {
   }
 
   public logout(): void {
+    console.log("__CALLED LOGOUT__");
     this.purgeAuth();
   }
 
   attemptAuth(username, password, type = 'login') {
+    console.log("__CALLED ATTEMPT AUTH__");
     const route = (type === 'login') ? '/login' : '';
     return this._userService.login(username, password)
     .map((response) => {
       if (response.success) {
+        console.log(response.data);
         // Save JWT sent from server in localstorage
         this._userService.saveToken(response.data.access_token);
         this.populate();
@@ -126,6 +133,14 @@ export class UserDataService {
 
   getCurrentUser(): User {
     return this.currentUserSubject.value;
+  }
+
+  checkEnrolled(courseId: string) {
+    let usr = this.getCurrentUser();
+    let keys =  _.filter(usr.courseEnrolls as any, function(obj) { return obj["courseId"] == courseId; });
+    console.log(keys);
+    //return _.contains(keys, courseId);
+    return keys.length > 0;
   }
 
   private handleError (error: Response | any) {

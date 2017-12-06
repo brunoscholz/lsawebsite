@@ -6,18 +6,8 @@
     </button>
   </div>
 </div>
-<div class="search-box search-bar no-filters" role="search">
-  <form [formGroup]="_form" (ngSubmit)="onSubmit()">
-    <div class="input-container">
-      <div class="input-field">
-        <p class="input-label">Search for...</p>
-        <input type="text" class="form-control" id="term" placeholder="Enter your search" [formControl]="_form.controls['term']" [(ngModel)]="_term.q" />
-      </div>
-      <button type="submit" class="btn btn-sm btn-primary" ><i class="fa fa-dot-circle-o"></i> Search</button>
-      <div *ngIf="_submitted" class="spinner"></div>
-    </div>
-  </form>
-</div>
+
+<search-bar [term]="_term.q"></search-bar>
 
 <div class="row" *ngIf="_errorMessage">
   <div class="col-sm-12">

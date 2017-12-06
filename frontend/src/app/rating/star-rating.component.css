@@ -1,0 +1,16 @@
+.star-rating {
+  width: 100%;
+  height: auto;
+  margin-bottom: 1em;
+  display: flex;
+  color: #DD5555;
+}
+
+.star-rating div {
+  margin-right: .5em;
+}
+
+.star-rating div.disabled {
+  color: #4F4F4F;
+  opacity: .5;
+}

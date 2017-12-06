@@ -96,7 +96,7 @@ export class SignupComponent implements OnInit {
 
     ngOnInit() {
         this._resetFormErrors();
-        this._userDataService.logout();
+        //this._userDataService.logout();
     }
 
     public onSubmit(elementValues: any) {

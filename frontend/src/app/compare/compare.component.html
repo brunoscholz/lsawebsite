@@ -1,0 +1,75 @@
+<div class="row" *ngIf="_errorMessage">
+  <div class="col-sm-12">
+    <p class="alert alert-danger">{{_errorMessage}}</p>
+  </div>
+</div>
+<div class="animated fadeIn" *ngIf="false">
+  <span class="spinner"></span>
+</div>
+<div class="animated fadeIn">
+  <div class="app-compare">
+      <div class="row">
+        <div class="col-sm-12">
+
+          <!-- Big Cards -->
+          <div class="card-group" style="margin-top: 15px;">
+            <div class="card-group-title">
+              <p class="title"><span class="bold">Comparison Table </span></p>
+              <p class="subtitle"></p>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-sm-12">
+          <section>
+            <div class="row">
+              <div class="col-sm-12">
+                <table class="table table-hover table-responsive">
+                  <thead>
+                    <tr>
+                      <td></td>
+                      <th>Basic</th>
+                      <th>Premium</th>
+                      <th>Deluxe</th>
+                      <th>Business</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">Price</th>
+                      <td>✔</td>
+                      <td>✔</td>
+                      <td>✔</td>
+                      <td>✔</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Ratings</th>
+                      <td>❌</td>
+                      <td>✔</td>
+                      <td>✔</td>
+                      <td>✔</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Feature 3</th>
+                      <td>❌</td>
+                      <td>❌</td>
+                      <td>✔</td>
+                      <td>✔</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Feature 4</th>
+                      <td>❌</td>
+                      <td>❌</td>
+                      <td>❌</td>
+                      <td>✔</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+
+  </div>
+</div>

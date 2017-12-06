@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { CourseListComponent } from './course-list.component';
 import { CourseDetailComponent } from './course-detail.component';
+import { CourseEnrollComponent } from './course-enroll.component';
 
 const routes: Routes = [
     {
@@ -23,6 +24,13 @@ const routes: Routes = [
                 component: CourseDetailComponent,
                 data: {
                     title: 'View'
+                }
+            },
+            {
+                path: 'enroll/:courseId',
+                component: CourseEnrollComponent,
+                data: {
+                    title: 'Enroll',
                 }
             },
             {

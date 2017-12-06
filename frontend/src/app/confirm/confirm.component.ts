@@ -18,7 +18,7 @@ export class ConfirmComponent implements OnInit {
     }
 
     ngOnInit() {
-        this._userService.logout();
+        //this._userService.logout();
 
         // subscribe to router event
         this._activatedRoute.queryParams.subscribe((params: Params) => {

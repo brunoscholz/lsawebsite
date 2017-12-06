@@ -70,6 +70,10 @@ export const routes: Routes = [
                 loadChildren: 'app/password-reset/password-reset.module#PasswordResetModule'
             },
             {
+                path: 'compare',
+                loadChildren: 'app/compare/compare.module#CompareModule'
+            },
+            {
                 path: 'sample-page',
                 loadChildren: 'app/sample-page/sample-page.module#SamplePageModule'
             }

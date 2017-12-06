@@ -1,0 +1,13 @@
+<div class="compare-btn" *ngIf="inCard" (click)="toggleComparing()">
+	<div class="icon-plus" [ngClass]="{ 'icon-plus': !_comparing, 'icon-close': _comparing }"></div>
+</div>
+<button *ngIf="!inCard" 
+  class="btn btn-fill"
+  [ngClass]="{'disabled': _submitted,
+              'btn-primary': !_comparing,
+              'btn-disabled': _comparing }"
+  (click)="toggleComparing()">
+  <i class="ion-plus-round"></i>
+  &nbsp;
+  {{ !_comparing ? 'Compare +' : 'Compare -' }}
+</button>

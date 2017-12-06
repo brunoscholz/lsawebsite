@@ -21,9 +21,9 @@ export class School {
   media: Media[];
   ratings: Rating[];
   relationships: Relationship[];
-  schoolawards: SchoolAwards[];
-  schoolcampis: SchoolCampi[];
-  schoolfeatures: SchoolFeatures[];
+  schoolAwards: SchoolAwards[];
+  schoolCampis: SchoolCampi[];
+  schoolFeatures: SchoolFeatures[];
 
   constructor(values: Object = {}) {
     Object.assign(this, values);
@@ -40,7 +40,7 @@ export class SchoolCampi {
   school: School;
 
   courses: Course[];
-  schoolfeatures: SchoolFeatures[];
+  schoolFeatures: SchoolFeatures[];
 
   constructor(values: Object = {}) {
     Object.assign(this, values);
@@ -91,13 +91,15 @@ export class Course {
   schoolCampi: SchoolCampi;
   courseType: CourseType;
   school: School;
-  courseenrolls: CourseEnroll[];
-  coursefeatures: CourseFeatures[];
-  courseinstructors: CourseInstructor[];
-  coursesections: CourseSection[];
+  courseEnrolls: CourseEnroll[];
+  courseFeatures: CourseFeatures[];
+  courseInstructors: CourseInstructor[];
+  courseSections: CourseSection[];
   media: Media[];
   ratings: Rating[];
   relationships: Relationship[];
+
+  enrolled: boolean;
 
   constructor(values: Object = {}) {
     Object.assign(this, values);
@@ -157,8 +159,8 @@ export class CourseSection {
   status: string;
   course: Course;
 
-  coursesectionitems: CourseSectionItem[];
-  coursesectionresources: CourseSectionResource[];
+  courseSectionItems: CourseSectionItem[];
+  courseSectionResources: CourseSectionResource[];
 }
 
 export class CourseSectionItem {
@@ -255,7 +257,7 @@ export class Location {
 
   relationships: Relationship[];
   schools: School[];
-  schoolcampis: SchoolCampi[];
+  schoolCampis: SchoolCampi[];
   students: Student[];
 }
 
@@ -303,7 +305,7 @@ export class Instructor {
   status: string;
   user: User;
 
-  courseinstructors: CourseInstructor[];
+  courseInstructors: CourseInstructor[];
   media: Media[];
   ratings: Rating[];
 }
@@ -321,7 +323,7 @@ export class Student {
   location: Location;
   user: User;
 
-  courseenrolls: CourseEnroll[];
+  courseEnrolls: CourseEnroll[];
   media: Media[];
   payments: Payments[];
   ratings: Rating[];
@@ -335,14 +337,20 @@ export class User {
   password:string;
   last_login_at:string;
   last_login_ip:string;
-  confirmed_at:string;
+  /*confirmed_at:string;
   blocked_at:string;
-  role:number;
+  role:number;*/
   role_label:string;
-  status:number;
+  /*status:number;*/
   status_label:string;
-  created_at:string;
-  updated_at:string;
+  /*created_at:string;
+  updated_at:string;*/
+
+  student: Student;
+  instructor: Instructor;
+  agent: Agent;
+  school: School;
+  courseEnrolls: CourseEnroll[];
 
   constructor(values: Object = {}) {
     Object.assign(this, values);

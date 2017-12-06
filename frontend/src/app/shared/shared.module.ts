@@ -18,6 +18,11 @@ import { ShowAuthedDirective } from './show-authed.directive';
 import { BigCardComponent } from '../cards/big-card.component';
 import { SmallCardComponent } from '../cards/small-card.component';
 
+import { StarRatingComponent } from '../rating/star-rating.component';
+import { ReviewCountComponent } from '../rating/review-count.component';
+import { CompareButtonComponent } from '../buttons/compare-button.component';
+import { EnrollButtonComponent } from '../buttons/enroll-button.component';
+
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { SearchModalCmp } from '../search/search.modal';
 import { SearchBarComponent } from '../search/search-bar.component';
@@ -41,6 +46,10 @@ import { MapComponent } from "../maps/map.component";
 
         BigCardComponent,
         SmallCardComponent,
+        StarRatingComponent,
+        ReviewCountComponent,
+        CompareButtonComponent,
+        EnrollButtonComponent,
         SearchModalCmp,
         SearchBarComponent,
         MapComponent,
@@ -56,6 +65,10 @@ import { MapComponent } from "../maps/map.component";
 
         BigCardComponent,
         SmallCardComponent,
+        StarRatingComponent,
+        ReviewCountComponent,
+        CompareButtonComponent,
+        EnrollButtonComponent,
         SearchModalCmp,
         SearchBarComponent,
         MapComponent,

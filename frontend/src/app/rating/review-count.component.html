@@ -1,0 +1,9 @@
+<p class="reviews-txt" *ngIf="count < 1">
+	No<span class="bold"> reviews</span> yet.
+</p>
+<p class="reviews-txt" *ngIf="count == 1">
+	<span class="bold">{{count}}</span> Review
+</p>
+<p class="reviews-txt" *ngIf="count > 1">
+	<span class="bold">{{count}}</span> Reviews
+</p>

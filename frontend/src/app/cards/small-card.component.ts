@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
 import { School, Course } from "../model/general";
 
 @Component({
@@ -12,7 +13,7 @@ export class SmallCardComponent implements OnInit {
 
   _mode: string = 'none';
 
-  constructor() {}
+  constructor(private _router: Router) {}
 
   ngOnInit() {
     if (this.course)
@@ -21,5 +22,13 @@ export class SmallCardComponent implements OnInit {
       this._mode = 'school';
 
     //console.log(this._mode);
+  }
+
+  public viewCourse(courseId:string):void {
+    this._router.navigate(['/course', courseId]);
+  }
+
+  public viewSchool(schoolId:string):void {
+    this._router.navigate(['/school', schoolId]);
   }
 }

@@ -1,0 +1,6 @@
+<div class="star-rating" *ngIf="rate == 0">
+	<div class="disabled" style="font-size: 0.8rem;">Not enough ratings.</div>
+</div>
+<div class="star-rating" *ngIf="rate > 0">
+	<div class="icon-star" *ngFor="let starIndex of starIndexes" (click)="rateThis(starIndex + 1)" [ngClass]="{ 'disabled': getStarIconName(starIndex) }"></div>
+</div>

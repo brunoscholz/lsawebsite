@@ -26,6 +26,11 @@ export class IndexComponent implements OnInit {
 	ngOnInit() {
 		//this._resetFormErrors();
 		this.getFeatured();
+		let storedKeys = Object.keys(localStorage);
+		console.log(storedKeys);
+
+		let sessionKeys = Object.keys(sessionStorage);
+		console.log(sessionKeys);
 	}
 
 	getFeatured() {
@@ -56,15 +61,5 @@ export class IndexComponent implements OnInit {
 	public viewCity(city):void {
 		//console.log(city);
 		this._router.navigate(['/search', city.cityName.toLowerCase()]);
-	}
-
-	public viewCourse(courseId:string):void {
-		console.log(courseId);
-		this._router.navigate(['/course', courseId]);
-	}
-
-	public viewSchool(schoolId:string):void {
-		console.log(schoolId);
-		this._router.navigate(['/school', schoolId]);
 	}
 }

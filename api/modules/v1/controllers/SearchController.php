@@ -192,6 +192,10 @@ class SearchController extends Controller
 
 		foreach ($school->each() as $sc)
 		{
+			if($sc['media'][0]['image']['thumb'] == '')
+				$sc['media'][0]['image']['thumb'] = 'assets/img/generic-avatar.png';
+			if($sc['media'][0]['image']['large'] == '')
+				$sc['media'][0]['image']['large'] = 'assets/img/generic-cover.jpg';
 			//$temp = $sc->toArray();
 			/*
 			$tmpMedia = array();
@@ -212,6 +216,10 @@ class SearchController extends Controller
 
 		foreach ($course->each() as $co)
 		{
+			if($co['media'][0]['image']['thumb'] == '')
+				$co['media'][0]['image']['thumb'] = 'assets/img/generic-avatar.png';
+			if($co['media'][0]['image']['large'] == '')
+				$co['media'][0]['image']['large'] = 'assets/img/generic-cover.jpg';
 			//$temp = $co->toArray();
 			/*$tmpMedia = array();
 			foreach ($co->media as $media) {

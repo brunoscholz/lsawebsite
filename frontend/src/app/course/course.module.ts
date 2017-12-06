@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-//import { SharedModule } from '../shared/shared.module';
+import { SharedModule } from '../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { CompareModule } from '../compare/compare.module';
 import { CourseListComponent } from './course-list.component';
 import { CourseDetailComponent } from './course-detail.component';
+import { CourseEnrollComponent } from './course-enroll.component';
 import { CourseRoutingModule } from './course-routing.module';
-
-import { EnrollButtonComponent } from '../buttons/enroll-button.component';
 
 // CourseEnroll?
 
@@ -17,12 +17,14 @@ import { EnrollButtonComponent } from '../buttons/enroll-button.component';
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        CourseRoutingModule
+        CourseRoutingModule,
+        SharedModule,
+        CompareModule,
     ],
     declarations: [
         CourseListComponent,
         CourseDetailComponent,
-        EnrollButtonComponent,
+        CourseEnrollComponent,
     ]
 })
 export class CourseModule {

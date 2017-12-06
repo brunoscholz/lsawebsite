@@ -8,16 +8,20 @@ import { Observable } from 'rxjs/Rx';
 
 import { GlobalService } from './global.service';
 import { UserService } from './user.service';
-import { Course } from './general';
+import { UserDataService } from './user-data.service';
+import { Course, User } from './general';
 import { AuthHttp } from 'angular2-jwt';
-
 
 @Injectable()
 export class CourseDataService {
 
-    constructor(public _globalService:GlobalService,
-                public _userService:UserService,
-                public _authHttp: AuthHttp){
+    constructor(
+        public _globalService:GlobalService,
+        public _userService:UserService,
+        public _userDataService:UserDataService,
+        public _authHttp: AuthHttp
+    ) {
+
     }
 
     // POST /v1/course
@@ -113,8 +117,24 @@ export class CourseDataService {
             .catch(this.handleError);
     }
 
+    // return Observable.throw('not implemented');
     enroll(id:string):Observable<any> {
-        return Observable.throw('not implemented');
+        let headers = this.getHeaders();
+
+        let user = this._userDataService.getCurrentUser();
+
+        return this._authHttp.post(
+            this._globalService.apiHost+'/course/enroll',
+            JSON.stringify({courseId: id, studentId: user.student.studentId}),
+            {
+                headers: headers
+            })
+            .map(response => response.json())
+            .map((response) => {
+                //this._userDataService.setCurrentUser();
+                return response;
+            })
+            .catch(this.handleError);
     }
 
     public handleError (error: Response | any) {

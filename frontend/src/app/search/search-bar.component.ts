@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, Input, ViewChild, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 
 import { CustomValidators } from 'ng2-validation';
@@ -7,7 +7,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SearchService } from "../model/search.service";
 import { UserService } from "../model/user.service";
 
-import { ISearchData } from "../model/general";
+import { ISearchData, IPayload, Checkbox } from "../model/general";
 
 import { ModalDirective } from 'ngx-bootstrap/modal/modal.component';
 import { SearchModalCmp } from './search.modal';
@@ -20,7 +20,9 @@ import { SearchModalCmp } from './search.modal';
 export class SearchBarComponent {
   @ViewChild(ModalDirective) public myModal: ModalDirective;
   @ViewChild('searchModal') public searchModal: SearchModalCmp;
+  @Input('term') term: string;
 
+  _term: IPayload = new IPayload();
   _searchForm:FormGroup;
   _formErrors:any;
   _submitted:boolean = false;
@@ -55,8 +57,16 @@ export class SearchBarComponent {
     }
   }
 
-  ngOnInit() {
-    //this._resetFormErrors();
+  private _resetData() {
+    this._term = new IPayload();
+    this._term.pickup = new Checkbox();
+  }
+
+  public ngOnInit(): void {
+    this._resetData();
+    if(typeof this.term !== "undefined" && this.term !== '') {
+      this._term.q = this.term;
+    }
   }
 
   public onSubmit(elementValues: any) {

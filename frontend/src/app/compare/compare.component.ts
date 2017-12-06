@@ -1,17 +1,15 @@
-import {Component, OnInit} from '@angular/core';
-import {UserService} from "../model/user.service";
-import {UserDataService} from "../model/user-data.service";
-
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import {User} from "../model/general";
+import { CompareService } from "../model/compare.service";
+import { User, Course, School } from "../model/general";
 
 @Component({
-    selector: 'app-account',
-    templateUrl: './account.component.html',
-    styleUrls: ['./account.component.css']
+    selector: 'app-compare',
+    templateUrl: './compare.component.html',
+    styleUrls: ['./compare.component.css']
 })
-export class AccountComponent implements OnInit {
+export class CompareComponent implements OnInit {
      _errorMessage:string;
      _mode:string = '';
      _user:User;
@@ -19,12 +17,8 @@ export class AccountComponent implements OnInit {
      /*_currentUser:User;
      _isUser: boolean;*/
 
-    constructor(
-        public _userService:UserDataService,
-        public _route: ActivatedRoute,
-        public _router: Router
-    ) {
-        
+    constructor(public _route: ActivatedRoute,
+                public _router: Router) {
     }
 
     public ngOnInit() {
@@ -32,11 +26,11 @@ export class AccountComponent implements OnInit {
         
         this._profileId = this._route.snapshot.params['userId'];
         
-        this._userService.currentUser
+       /* this._userService.currentUser
         .subscribe((userData: User) => {
             this._user = userData;
             //this._isUser = (this._currentUser.username === this._profileId);
-        });
+        });*/
 
         /*this._userDataService.getMe()
             .subscribe(

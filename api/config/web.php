@@ -78,6 +78,11 @@ $config = [
                     'tokens' => [
                         '{id}'             => '<id:\w+>',
                     ],
+                    'extraPatterns' => [
+                        'OPTIONS {id}'              =>  'options',
+                        'POST enroll'               =>  'enroll',
+                        'OPTIONS enroll'            =>  'options',
+                    ],
                 ],
                 [
                     'class'         => 'yii\rest\UrlRule',

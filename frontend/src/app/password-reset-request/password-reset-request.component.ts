@@ -75,7 +75,7 @@ export class PasswordResetRequestComponent implements OnInit {
 
     ngOnInit() {
         this._resetFormErrors();
-        this._userService.logout();
+        //this._userService.logout();
     }
 
     public onSubmit(elementValues: any) {

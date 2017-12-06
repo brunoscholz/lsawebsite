@@ -11,7 +11,7 @@
     <div class="input-container">
       <div class="input-field">
         <p class="input-label">Search for...</p>
-        <input type="text" class="form-control" id="term" placeholder="Enter your search" [formControl]="_searchForm.controls['term']">
+        <input type="text" class="form-control" id="term" placeholder="Enter your search" [formControl]="_searchForm.controls['term']" [(ngModel)]="_term.q">
       </div>
       <button type="submit" class="btn btn-sm btn-primary" ><i class="fa fa-dot-circle-o"></i> Search</button>
     </div>
@@ -24,7 +24,7 @@
     <div class="input-container">
       <div class="input-field">
         <p class="input-label">Search for...</p>
-        <input type="text" class="form-control" id="term" placeholder="Enter your search" [formControl]="_searchForm.controls['term']">
+        <input type="text" class="form-control" id="term" placeholder="Enter your search" [formControl]="_searchForm.controls['term']" [(ngModel)]="_term.q">
       </div>
       <button type="submit" class="btn btn-sm btn-primary" ><i class="fa fa-dot-circle-o"></i> Search</button>
     </div>

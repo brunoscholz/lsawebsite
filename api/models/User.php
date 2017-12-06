@@ -116,16 +116,16 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             'userId',
             'username',
             'email',
-            'unconfirmed_email',
-            'role',
+            //'unconfirmed_email',
+            //'role',
             'role_label'    =>  function() {
                 return $this->getRoleLabel();
             },
             'last_login_at',
             'last_login_ip',
-            'confirmed_at',
-            'blocked_at',
-            'status',
+            //'confirmed_at',
+            //'blocked_at',
+            //'status',
             'status_label'  =>  function(){
                 $statusLabel = '';
                 switch($this->status) {
@@ -144,8 +144,13 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
                 }
                 return $statusLabel;
             },
-            'created_at',
-            'updated_at',
+            /*'created_at',
+            'updated_at',*/
+            'student',
+            'instructor',
+            //'agent',
+            'school',
+            'courseEnrolls',
         ];
 
 		// If role is staff and admin, then return permissions
@@ -266,6 +271,49 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 			['permissions', 'validatePermissions'],
             [['access_token', 'permissions'], 'safe'],
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getStudent()
+    {
+        return $this->hasOne(Student::className(), ['userId' => 'userId']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getInstructor()
+    {
+        return $this->hasOne(Instructor::className(), ['userId' => 'userId']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSchool()
+    {
+        return $this->hasOne(School::className(), ['userId' => 'userId']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    /*public function getAgent()
+    {
+        return $this->hasOne(Agent::className(), ['userId' => 'userId']);
+    }*/
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCourseEnrolls()
+    {
+        /*return $this->hasMany(Item::className(), ['id' => 'item_id'])
+            ->viaTable('order_item', ['order_id' => 'id']);*/
+        return $this->hasMany(CourseEnroll::className(), ['studentId' => 'studentId'])
+            ->via('student');
     }
 
 	/**

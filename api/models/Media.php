@@ -153,8 +153,10 @@ class Media extends \yii\db\ActiveRecord
 
     public function afterFind()
     {
+        /*var_dump($this->image->toArray());
+        die();
         //$this->image = $this->image->toArray();
-        /*if(is_null($this->image) || empty($this->image)) {
+        if(is_null($this->image) || empty($this->image)) {
             $this->image = new Image();
             $this->image->thumb = 'assets/img/generic-avatar.png';
             $this->image->large = 'assets/img/generic-cover.jpg';

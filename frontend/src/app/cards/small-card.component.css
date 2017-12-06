@@ -20,14 +20,6 @@
   max-height: 100%;
 }
 
-.small-card-compare-btn {
-  font-size: 20pt;
-  color: white;
-  position: absolute;
-  top: .5em;
-  left: .5em;
-}
-
 .small-card-body {
   width: 100%;
   height: auto;
@@ -39,26 +31,4 @@
   font-size: 14pt;
   font-weight: 700;
   margin-bottom: .5em;
-}
-
-.small-card-rating {
-  width: 100%;
-  height: auto;
-  margin-bottom: 1em;
-  display: flex;
-  color: #DD5555;
-}
-
-.small-card-rating div {
-  margin-right: .5em;
-}
-
-.small-card-rating div:last-child {
-  color: #4F4F4F;
-  opacity: .5;
-}
-
-.small-card-reviews-btn {
-  font-size: 10pt;
-  opacity: .8;
 }
