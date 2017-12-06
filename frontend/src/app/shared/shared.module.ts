@@ -8,6 +8,8 @@ import { LimitToPipe } from './limit-to.pipe';
 import { Nl2BrPipe } from './nl2br.pipe';
 import { KeysPipe } from './keys.pipe';
 
+import { FromNowPipe } from './from-now.pipe';
+
 //import { ContainsModule } from './contains-validator.directive';
 //import { ContainsValidator } from './contains-validator.directive';
 
@@ -43,6 +45,7 @@ import { MapComponent } from "../maps/map.component";
         LimitToPipe,
         Nl2BrPipe,
         KeysPipe,
+        FromNowPipe,
 
         BigCardComponent,
         SmallCardComponent,
@@ -62,6 +65,7 @@ import { MapComponent } from "../maps/map.component";
         LimitToPipe,
         Nl2BrPipe,
         KeysPipe,
+        FromNowPipe,
 
         BigCardComponent,
         SmallCardComponent,

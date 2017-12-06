@@ -1,17 +1,17 @@
 import {Injectable} from '@angular/core';
 import {Http, Headers, Response} from '@angular/http';
 
-import { Observable } from 'rxjs/Rx';
+import { Observable, Observer } from 'rxjs/Rx';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 
-import {GlobalService} from './global.service';
-import {UserService} from './user.service';
-import {User} from './general';
-import {AuthHttp} from 'angular2-jwt';
+import { GlobalService } from './global.service';
+import { UserService } from './user.service';
+import { AuthHttp } from 'angular2-jwt';
+import { User, Student } from './general';
 
 import * as _ from "underscore";
 
@@ -52,7 +52,7 @@ export class UserDataService {
       .catch(this.handleError);
   }
 
-  updateUser(userData):Observable<any>{
+  updateUser(userData):Observable<any> {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json; charset=UTF-8');
 
@@ -135,12 +135,35 @@ export class UserDataService {
     return this.currentUserSubject.value;
   }
 
+  getUser(): Observable<User> {
+    return Observable.create((observer: Observer<User>) => {
+      observer.next(this.currentUserSubject.value);
+      observer.complete();
+    });
+  }
+
   checkEnrolled(courseId: string) {
     let usr = this.getCurrentUser();
     let keys =  _.filter(usr.courseEnrolls as any, function(obj) { return obj["courseId"] == courseId; });
     console.log(keys);
     //return _.contains(keys, courseId);
     return keys.length > 0;
+  }
+
+  // GET /v1/course/1
+  getStudentById(id:string):Observable<Student> {
+    let headers = this.getHeaders();
+
+    return this._authHttp.get(
+      this._globalService.apiHost+'/student/'+id,
+      {
+        headers: headers
+      })
+      .map(response => response.json())
+      .map((response) => {
+        return <Student>response.data;
+      })
+      .catch(this.handleError);
   }
 
   private handleError (error: Response | any) {

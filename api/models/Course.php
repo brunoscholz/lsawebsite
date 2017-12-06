@@ -144,7 +144,7 @@ class Course extends \yii\db\ActiveRecord
     {
         $fields = parent::fields();
         $fields[] = 'courseType';
-        $fields[] = 'media';
+        $fields[] = 'images';
         /*$fields[] = 'school';
         $fields[] = 'schoolCampi';*/
         $fields[] = 'courseEnrolls';
@@ -270,11 +270,14 @@ class Course extends \yii\db\ActiveRecord
         return $this->hasMany(Media::className(), ['courseId' => 'courseId']);
     }
 
-    /*public function getImage()
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getImages()
     {
-        return $this->hasMany(Image::className(), ['mediaId' => 'mediaId'])
-            ->viaTable('tbl_media', ['courseId' => 'courseId']);
-    }*/
+        return $this->hasMany(Image::className(), ['imageId' => 'imageId'])
+            ->via('media');
+    }
 
     /**
      * @return \yii\db\ActiveQuery

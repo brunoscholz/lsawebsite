@@ -5,10 +5,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 //import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
 
 import { CourseDataService } from "../model/course-data.service";
-import { Course, User } from "../model/general";
+import { Course, User, Student } from "../model/general";
 
 import { UserDataService } from "../model/user-data.service";
 import { UserService } from "../model/user.service";
+
+import * as util from '../util/uuid';
 
 @Component({
   templateUrl: './course-enroll.component.html',
@@ -25,6 +27,7 @@ export class CourseEnrollComponent implements OnInit {
   //_bgImage: any;
 
   _currentUser: User;
+  _student: Student;
 
   constructor(
     private _courseDataService: CourseDataService,
@@ -39,6 +42,7 @@ export class CourseEnrollComponent implements OnInit {
       password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
     });
     this._enrollForm.valueChanges.subscribe(data => this.onValueChanged(data));
+    
   }
 
   public _setFormErrors(errorFields:any):void{
@@ -88,10 +92,17 @@ export class CourseEnrollComponent implements OnInit {
 
   ngOnInit() {
     this._resetFormErrors();
-    
     this._id = this._route.snapshot.params['courseId'];
-    this._currentUser = this._userDataService.getCurrentUser();
+    //this._currentUser = <User>this._userDataService.getCurrentUser();
     this.getCourse();
+    this._userDataService.currentUser
+    .subscribe((user: User) => {
+      this._currentUser = user;
+      if(this._currentUser.student)
+        this.getStudent(this._currentUser.student.studentId);
+    });
+
+    console.log(util.uuid());
   }
 
   public onSubmit(elementValues: any) {
@@ -104,7 +115,28 @@ export class CourseEnrollComponent implements OnInit {
     .subscribe(
         course => {
             this._course = course;
+            console.log(this._course);
+            //this.getStudent();
             //this._bgImage = this._sanitizer.bypassSecurityTrustStyle(`url(${this._course.media[0].image.large}) 0 0px no-repeat`);
+        },
+        error =>  {
+            // unauthorized access
+            if(error.status == 401 || error.status == 403) {
+                this._userService.unauthorizedAccess(error);
+            } else {
+                this._errorMessage = error.data.message;
+            }
+        }
+    );
+  }
+
+  public getStudent(id:string) {
+    this._student = null;
+    this._userDataService.getStudentById(id)
+    .subscribe(
+        student => {
+            this._student = student;
+            console.log(this._student);
         },
         error =>  {
             // unauthorized access

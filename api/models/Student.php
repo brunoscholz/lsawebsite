@@ -47,10 +47,19 @@ class Student extends \yii\db\ActiveRecord
 
     public function fields()
     {
-        $fields = parent::fields();
-        $fields[] = 'user';
-        $fields[] = 'location';
-
+        $fields = [
+            'studentId',
+            'userId',
+            'name',
+            'birthday',
+            'phone',
+            'emergencyPhone',
+            'locationId',
+            'status',
+            'images',
+            'location',
+            'courseEnrolls',
+        ];
         return $fields;
     }
 
@@ -97,9 +106,10 @@ class Student extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCourseenrolls()
+    public function getCourseEnrolls()
     {
-        return $this->hasMany(Courseenroll::className(), ['studentId' => 'studentId']);
+        return $this->hasMany(CourseEnroll::className(), ['studentId' => 'studentId'])
+            ->with('payments');
     }
 
     /**
@@ -113,9 +123,20 @@ class Student extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getImages()
+    {
+        return $this->hasMany(Image::className(), ['imageId' => 'imageId'])
+            ->via('media');
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getPayments()
     {
-        return $this->hasMany(Payments::className(), ['studentId' => 'studentId']);
+        //return $this->hasMany(Payments::className(), ['studentId' => 'studentId']);
+        return $this->hasMany(Payments::className(), ['studentId' => 'studentId'])
+            ->via('courseEnrolls');
     }
 
     /**

@@ -173,7 +173,7 @@ class School extends \yii\db\ActiveRecord
     {
         $fields = parent::fields();
         $fields[] = 'courses';
-        $fields[] = 'media';
+        $fields[] = 'images';
         $fields[] = 'ratings';
         $fields[] = 'relationships';
         $fields[] = 'location';
@@ -233,6 +233,15 @@ class School extends \yii\db\ActiveRecord
     public function getMedia()
     {
         return $this->hasMany(Media::className(), ['schoolId' => 'schoolId']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getImages()
+    {
+        return $this->hasMany(Image::className(), ['imageId' => 'imageId'])
+            ->via('media');
     }
 
     /**

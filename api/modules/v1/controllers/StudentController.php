@@ -77,24 +77,26 @@ class StudentController extends RestController
     }
 
     public function actionIndex() {
-        $data = RestUtils::getQuery(\Yii::$app->request->get(), Student::find());
-        //return $data->createCommand()->rawsql;
+        $q = \Yii::$app->request->get();
+        $m = Student::find();
+        $data = RestUtils::getQuery($q, $m);
+
         $models = array();
 
         //$data->andFilterWhere(['like binary', 'tbl_user.userId', $filter['userId']]);
-
         foreach ($data->each() as $model)
         {
-            $temp = $model->toArray();
-            $tmpMedia = array();
-            foreach ($model->media as $media) {
-                $tmpMedia[] = $media->toArray();
-            }
+            $tmpEnroll = array();
+            foreach ($model->courseEnrolls as $ce) {
 
-            $temp['media'] = $tmpMedia;
+                $tmpEnroll[] = $ce->toArray();
+            }
+            $temp['courseEnrolls'] = $tmpEnroll;
+
             $models[] = $temp;
         }
 
+        //echo RestUtils::sendResult($models['status'], $models);
         return $models;
     }
 
@@ -107,7 +109,16 @@ class StudentController extends RestController
 
 
         if($staff) {
-            return $staff->toArray();
+            $temp = $staff->toArray();
+
+            $tmpEnroll = array();
+            foreach ($staff->courseEnrolls as $ce) {
+
+                $tmpEnroll[] = $ce->toArray();
+            }
+            $temp['courseEnrolls'] = $tmpEnroll;
+
+            return $temp;
         } else {
             throw new NotFoundHttpException("Object not found: $id");
         }

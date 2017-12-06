@@ -148,11 +148,11 @@ class SchoolController extends RestController
 			$temp = ArrayHelper::toArray($school, [], false);
 
 			$tmpMedia = array();
-			foreach ($school->media as $media) {
+			foreach ($school->images as $media) {
 				if($media)
 					$tmpMedia[] = $media->toArray();
 			}
-			$temp['media'] = $tmpMedia;
+			$temp['images'] = $tmpMedia;
 
 			if($school->location) {
 				$tmpLoc = $school->location->toArray();

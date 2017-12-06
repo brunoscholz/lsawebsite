@@ -74,6 +74,21 @@ class CourseEnroll extends \yii\db\ActiveRecord
         ];
     }
 
+     public function fields()
+    {
+        $fields = [
+            'courseEnrollId',
+            'courseId',
+            'studentId',
+            'created_at',
+            'updated_at',
+            'status',
+            'payments',
+        ];
+
+        return $fields;
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */

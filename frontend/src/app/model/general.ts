@@ -321,10 +321,9 @@ export class Student {
   status: string;
 
   location: Location;
-  user: User;
+  images: Image[];
 
   courseEnrolls: CourseEnroll[];
-  media: Media[];
   payments: Payments[];
   ratings: Rating[];
   relationships: Relationship[];

@@ -140,11 +140,11 @@ class CourseController extends Controller
 			$temp = ArrayHelper::toArray($course, [], false);
 
 			$tmpMedia = array();
-			foreach ($course->media as $media) {
+			foreach ($course->images as $media) {
 				if($media)
 					$tmpMedia[] = $media->toArray();
 			}
-			$temp['media'] = $tmpMedia;
+			$temp['images'] = $tmpMedia;
 
 			//return $temp;
 
