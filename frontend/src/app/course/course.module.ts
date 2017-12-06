@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SharedModule } from '../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { SharedModule } from '../shared/shared.module';
 import { CompareModule } from '../compare/compare.module';
+import { ChatModule } from '../chat/chat.module';
+
 import { CourseListComponent } from './course-list.component';
 import { CourseDetailComponent } from './course-detail.component';
 import { CourseEnrollComponent } from './course-enroll.component';
@@ -20,6 +22,7 @@ import { CourseRoutingModule } from './course-routing.module';
         CourseRoutingModule,
         SharedModule,
         CompareModule,
+        ChatModule,
     ],
     declarations: [
         CourseListComponent,

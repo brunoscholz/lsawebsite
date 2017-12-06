@@ -1,0 +1,13 @@
+<li [ngClass]="{'self': !incoming, 'other': incoming}">
+  <div class="avatar" *ngIf="!incoming">
+    <img src="{{message.author.avatarSrc}}">
+  </div>
+  <div class="messages"> <!-- [ngClass]="{'msg-sent': !incoming, 'msg-receive': incoming}" -->
+    <p>{{message.text}}</p>
+    <!-- <time datetime="2009-11-13T20:14">37 mins</time> -->
+    <p class="time">{{message.sender}} • {{message.sentAt | fromNow}}</p>
+  </div>
+  <div class="avatar" *ngIf="incoming">
+    <img src="{{message.author.avatarSrc}}">
+  </div>
+</li>

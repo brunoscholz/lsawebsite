@@ -29,6 +29,7 @@ import { AuthGuard } from './model/auth.guard';
 import { SharedModule } from './shared/shared.module';
 import { CompareModule } from './compare/compare.module';
 import { LoginModule } from './login/login.module';
+import { ChatModule } from './chat/chat.module';
 
 // Model & Services
 import { GlobalService } from './model/global.service';
@@ -40,6 +41,9 @@ import { MapService } from './model/map.service';
 import { SchoolDataService } from './model/school-data.service';
 import { CourseDataService } from './model/course-data.service';
 import { CompareService } from './model/compare.service';
+
+import { MessageService } from './model/message.service';
+import { ThreadService } from './model/thread.service';
 
 import { AgmCoreModule } from '@agm/core';
 
@@ -59,6 +63,7 @@ import { AgmCoreModule } from '@agm/core';
         SharedModule,
         CompareModule,
         LoginModule,
+        ChatModule,
     ],
     declarations: [
         AppComponent,
@@ -87,6 +92,8 @@ import { AgmCoreModule } from '@agm/core';
         SchoolDataService,
         CourseDataService,
         CompareService,
+        MessageService,
+        ThreadService,
     ],
     bootstrap: [AppComponent]
 })
