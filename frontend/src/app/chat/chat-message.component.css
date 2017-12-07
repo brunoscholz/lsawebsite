@@ -10,7 +10,7 @@ label {
 div.message {
   padding:0 0 30px 58px;
   clear:both;
-  margin-bottom:45px;
+  /*margin-bottom:45px;*/
 }
 div.message.right {
     padding: 0 58px 30px 0;
@@ -29,7 +29,7 @@ div.message.right img {
     margin-left: 0;
   margin-right: -38px;  
 }
-.message .bubble{ 
+.message .bubble { 
   background:#f0f4f7;
   font-size:13px;
   font-weight:600;
@@ -38,13 +38,14 @@ div.message.right img {
   color:#8495a3;
   position:relative;
   float:left;
+  margin-bottom: 45px;
 }
 div.message.right .bubble {
   float:right;
   border-radius:5px 5px 0px 5px ;
 }
 .bubble .corner {
-  background:url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/bubble-corner.png") 0 0 no-repeat;
+  background:url("../../assets/img/bubble-corner.png") 0 0 no-repeat;
   position:absolute;
   width:7px;
   height:7px;
@@ -52,14 +53,16 @@ div.message.right .bubble {
   bottom:0;
 }
 div.message.right .corner {
-  background:url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/bubble-cornerR.png") 0 0 no-repeat;
+  background:url("../../assets/img/bubble-cornerR.png") 0 0 no-repeat;
   left:auto;
   right:-5px;
 }
 .bubble span {
-    color: #aab8c2;
-    font-size: 11px;
-    position: absolute;
-    right: 0;
-    bottom: -22px;
+  color: #aab8c2;
+  font-size: 11px;
+  position: absolute;
+  right: 0;
+  bottom: -22px;
+  text-align: end;
+  white-space: pre;
 }

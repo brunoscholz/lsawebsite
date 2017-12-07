@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { User } from '../model/general';
+import { ChatUser } from '../model/general';
 //import { UsersService } from '../model/user.service';
 import { UserDataService } from '../model/user-data.service';
 import { Thread, Message } from '../model/chat';
@@ -25,12 +25,38 @@ export class ChatWindowComponent implements OnInit {
   messages: Observable<any>;
   currentThread: Thread;
   draftMessage: Message;
-  currentUser: User;
+  currentUser: ChatUser;
+  status:{isopen:boolean} = {isopen: false};
 
   constructor(public _messageService: MessageService,
               public _threadService: ThreadService,
               public _userService: UserDataService,
               public el: ElementRef) {
+  }
+
+
+  public toggled(open:boolean):void {
+  }
+
+  public toggleWindow($event:MouseEvent):void {
+    $event.preventDefault();
+    $event.stopPropagation();
+    this.status.isopen = !this.status.isopen;
+
+    const cx: any = this.el.nativeElement.querySelector('#close .cx');
+    const cy: any = this.el.nativeElement.querySelector('#close .cy');
+    const cb: any = this.el.nativeElement.querySelector('#chatbox');
+
+    if(!this.status.isopen) {
+      cx.classList.remove('s1', 's2', 's3');
+      cy.classList.remove('s1', 's2', 's3');
+      cb.classList.add('collapsed');
+    } else {
+      cx.classList.add('s1', 's2', 's3');
+      cy.classList.add('s1', 's2', 's3');
+      cb.classList.remove('collapsed');
+    }
+
   }
 
   ngOnInit(): void {
@@ -43,9 +69,9 @@ export class ChatWindowComponent implements OnInit {
         this.currentThread = thread;
       });
 
-    this._userService.currentUser
+    this._userService.currentChatUser
       .subscribe(
-        (user: User) => {
+        (user: ChatUser) => {
           this.currentUser = user;
         });
 

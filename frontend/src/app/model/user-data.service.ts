@@ -11,7 +11,7 @@ import 'rxjs/add/operator/catch';
 import { GlobalService } from './global.service';
 import { UserService } from './user.service';
 import { AuthHttp } from 'angular2-jwt';
-import { User, Student } from './general';
+import { User, Student, ChatUser } from './general';
 
 import * as _ from "underscore";
 
@@ -19,6 +19,9 @@ import * as _ from "underscore";
 export class UserDataService {
   private currentUserSubject = new BehaviorSubject<User>(new User());
   public currentUser = this.currentUserSubject.asObservable().distinctUntilChanged();
+
+  private currentChatUserSubject = new BehaviorSubject<ChatUser>(null);
+  public currentChatUser = this.currentChatUserSubject.asObservable().distinctUntilChanged();
 
   private isAuthenticatedSubject = new ReplaySubject<boolean>(1);
   public isAuthenticated = this.isAuthenticatedSubject.asObservable();
@@ -140,6 +143,10 @@ export class UserDataService {
       observer.next(this.currentUserSubject.value);
       observer.complete();
     });
+  }
+
+  setCurrentChatUser(usr: ChatUser) {
+    this.currentChatUserSubject.next(usr);
   }
 
   checkEnrolled(courseId: string) {

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
-import { User } from './general';
+import { ChatUser } from './general';
 import { Thread, Message } from './chat';
 
 const initialMessages: Message[] = [];
@@ -90,7 +90,7 @@ export class MessageService {
     this.newMessages.next(message);
   }
 
-  messagesForThreadUser(thread: Thread, user: User): Observable<Message> {
+  messagesForThreadUser(thread: Thread, user: ChatUser): Observable<Message> {
     return this.newMessages
       .filter((message: Message) => {
                // belongs to this thread

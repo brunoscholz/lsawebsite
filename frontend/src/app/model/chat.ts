@@ -1,4 +1,4 @@
-import { User } from './general';
+import { ChatUser } from './general';
 import { uuid } from '../util/uuid';
 
 /**
@@ -28,7 +28,7 @@ import { uuid } from '../util/uuid';
    id: string;
    sentAt: Date;
    isRead: boolean;
-   author: User;
+   author: ChatUser;
    text: string;
    thread: Thread;
 

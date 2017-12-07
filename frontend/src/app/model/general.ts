@@ -1,3 +1,5 @@
+import { uuid } from '../util/uuid';
+
 /*********************/
 /*      SCHOOLS      */
 /*********************/
@@ -329,6 +331,14 @@ export class Student {
   relationships: Relationship[];
 }
 
+export class ChatUser {
+  userId: string;
+
+  constructor(public name:string, public avatarSrc: string, public role:string, id = null) {
+    this.userId = id || uuid();
+  }
+}
+
 export class User {
   userId:string;
   username:string;
@@ -351,8 +361,11 @@ export class User {
   school: School;
   courseEnrolls: CourseEnroll[];
 
+  chatUser: ChatUser;
+
   constructor(values: Object = {}) {
     Object.assign(this, values);
+    this.chatUser = new ChatUser(this.username, 'assets/img/generic-avatar.png', this.role_label, this.userId);
   }
 }
 
