@@ -14,8 +14,7 @@ export class ThreadService {
   orderedThreads: Observable<Thread[]>;
 
   // `currentThread` contains the currently selected thread
-  currentThread: Subject<Thread> =
-    new BehaviorSubject<Thread>(new Thread());
+  currentThread: Subject<Thread> = new BehaviorSubject<Thread>(new Thread());
 
   // `currentThreadMessages` contains the set of messages for the currently
   // selected thread

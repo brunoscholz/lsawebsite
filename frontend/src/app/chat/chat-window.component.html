@@ -1,33 +1,73 @@
-<section class="chat">
-  
-  <header class="top-bar">
-    
-    <div class="left">
-      <span class="icon typicons-message"></span>
-      <h1>Chat - {{currentThread.name}}</h1>
+<div id="chatbox">
+  <div id="chatview" class="p1">      
+    <div id="profile">
+
+        <div id="close">
+            <div class="cy"></div>
+            <div class="cx"></div>
+        </div>
+        
+        <p>{{currentThread.name}}</p>
+        <span>support@lsa.com.au</span>
     </div>
-    
-    <div class="right">
-      <span class="icon typicons-minus"></span>
-      <span class="icon typicons-times"></span>
+
+    <div id="chat-messages">
+      <label>Thursday 02</label>
+
+      <div class="message">
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/1_copy.jpg" />
+        <div class="bubble">
+          Really cool stuff!
+          <div class="corner"></div>
+          <span>3 min</span>
+        </div>
+      </div>
+        
+      <div class="message right">
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/2_copy.jpg" />
+        <div class="bubble">
+          Can you share a link for the tutorial?
+          <div class="corner"></div>
+          <span>1 min</span>
+        </div>
+      </div>
+      
+      <div class="message">
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/1_copy.jpg" />
+        <div class="bubble">
+          Yeah, hold on
+          <div class="corner"></div>
+          <span>Now</span>
+        </div>
+      </div>
+      
+      <div class="message right">
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/2_copy.jpg" />
+        <div class="bubble">
+          Can you share a link for the tutorial?
+          <div class="corner"></div>
+          <span>1 min</span>
+        </div>
+      </div>
+      
+      <div class="message">
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/1_copy.jpg" />
+        <div class="bubble">
+          Yeah, hold on
+          <div class="corner"></div>
+          <span>Now</span>
+        </div>
+      </div>
+
+      <chat-message *ngFor="let message of messages | async" [message]="message"></chat-message>
+
     </div>
-    
-  </header>
-  
-  <ol class="discussion">
-    <chat-message *ngFor="let message of messages | async" [message]="message"></chat-message>
-  </ol>
-  <div class="panel-footer">
-    <div class="input-group">
-      <input type="text" class="chat-input"
-      placeholder="Write your message here..."
-      (keydown.enter)="onEnter($event)"
-      [(ngModel)]="draftMessage.text" />
-      <span class="input-group-btn">
-        <button class="btn-chat"
-        (click)="onEnter($event)"
-        >Send</button>
-      </span>
+
+    <div id="sendmessage">
+      <input type="text" placeholder="Send message..." (keydown.enter)="onEnter($event)" [(ngModel)]="draftMessage.text" />
+      <button id="send" (click)="onEnter($event)"></button>
     </div>
-  </div>
-</section>
+
+  </div>        
+</div>
+<div class="footer-line"></div>
