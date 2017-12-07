@@ -1,0 +1,16 @@
+/*a.nav-link img {
+  width: 25px;
+  height: 25px;
+  vertical-align: middle;
+  position: relative;
+}*/
+
+span.badge {
+  position: relative;
+  color: #000;
+  float: left;
+  margin: -19px 0 0 0;
+  left: 10px;
+  color: white;
+  background-color: #DD5555;
+}

@@ -1,0 +1,4 @@
+<a class="nav-link px-2" routerLinkActive="active" [routerLink]="['/chat']">
+  <img src="assets/img/icons/menu.svg">
+  <span class="badge badge-pill" *ngIf="unreadMessagesCount > 0">{{unreadMessagesCount}}</span>
+</a>

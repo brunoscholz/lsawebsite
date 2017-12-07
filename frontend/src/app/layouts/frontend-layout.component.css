@@ -15,9 +15,10 @@ html,body
 .app-body {
   height: 100%;
   min-height: calc(100vh - 6vh - 24.6vh);
-  padding: 1em 0;
+  padding: 2em 0 1em 0;
 }
 
 main {
   overflow:auto;
+  margin-top: 65px;
 }

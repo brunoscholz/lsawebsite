@@ -1,57 +1,78 @@
 <!-- BEGIN HEADER -->
-<div class="container">
+<nav id="top-nav" class="navbar fixed-top navbar-light navbar-expand-lg navbar-template">
+  <div class="container">
+    <a class="navbar-brand" routerLinkActive="active" [routerLink]="['/']" [routerLinkActiveOptions]="{exact:true}" style="display: inline-flex;">
+      <div class="logo-icon">
+        <img src="assets/img/logo-icon.svg" class="logo-icon">
+      </div>
+      <div class="logo-text">
+        <span class="bold primary">Language Schools</span> | Australia
+      </div>
+    </a>
 
-  <div id="top-nav" class="navbar">
-    <div class="logo">
-      <a routerLinkActive="active" [routerLink]="['/']" [routerLinkActiveOptions]="{exact:true}" style="display: inline-flex;">
-        <div class="logo-icon">
-          <img src="assets/img/logo-icon.svg" class="logo-icon">
-        </div>
-        <div class="logo-text">
-          <span class="bold primary">Language Schools</span> | Australia
-        </div>
-      </a>
+    <div class="d-flex flex-row order-2 order-lg-3">
+        <ul class="navbar-nav flex-row">
+            <!-- <li class="nav-item"><a class="nav-link px-2" href="#"><span class="fa fa-linkedin"></span></a></li> -->
+            <li class="nav-item" *ngIf="_hasProducts > 0">
+              <a class="nav-link px-3" routerLinkActive="active" [routerLink]="['/compare']">
+                <img src="assets/img/icons/menu.svg">
+                <span class="badge badge-pill">{{_hasProducts}}</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <message-count></message-count>
+            </li>
+            <li class="nav-item sign">
+              <a class="nav-link px-3">
+                <img src="assets/img/icons/sign-icon.svg" style="margin-top: 4px;">
+              </a>
+              <ul class="dropdown-content" *showAuthed="false">
+                <li>
+                  <a class="nav-link" routerLinkActive="active" [routerLink]="['/']" [routerLinkActiveOptions]="{exact:true}">Home</a>
+                </li>
+                <li>
+                  <a class="nav-link" routerlinkactive="active" (click)="signUpClicked()" style="cursor: pointer;">Sign Up</a>
+                  <!-- routerLinkActive="active" [routerLink]="['/signup']" -->
+                </li>
+                <li>
+                  <a class="nav-link" routerlinkactive="active" (click)="signInClicked()" style="cursor: pointer;">Sign In</a>
+                </li>
+              </ul>
+              <ul class="dropdown-content" *showAuthed="true">
+                <li>
+                  <span>{{currentUser.username}} ({{basicData.roleLabel}})</span>
+                </li>
+                <li>
+                  <a class="nav-link" routerLinkActive="active" [routerLink]="['/account']">Profile</a>
+                </li>
+                <li>
+                  <a class="nav-link" routerLinkActive="active" [routerLink]="['/logout']">Logout</a>
+                </li>
+              </ul>
+            </li>
+        </ul>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown">
+            <span class="navbar-toggler-icon"></span>
+        </button>
     </div>
-
-    <ul class="navbar-nav">
-      <li *ngIf="_hasProducts > 0">
-        <a class="nav-link" routerLinkActive="active" [routerLink]="['/compare']">
-          <img src="assets/img/icons/menu.svg">
-        </a>
-        <span class="badge badge-pill">{{_hasProducts}}</span>
-      </li>
-      <li class="sign dropdown">
-        <img src="assets/img/icons/sign-icon.svg" style="margin-top: 11px;">
-        <ul class="dropdown-content" *showAuthed="false">
-          <li>
-            <a class="nav-link" routerLinkActive="active" [routerLink]="['/']" [routerLinkActiveOptions]="{exact:true}">Home</a>
-          </li>
-          <li>
-            <a class="nav-link" routerlinkactive="active" (click)="signUpClicked()" style="cursor: pointer;">Sign Up</a>
-            <!-- routerLinkActive="active" [routerLink]="['/signup']" -->
-          </li>
-          <li>
-            <a class="nav-link" routerlinkactive="active" (click)="signInClicked()" style="cursor: pointer;">Sign In</a>
-          </li>
+    <!-- <div class="collapse navbar-collapse order-3 order-lg-2" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Features</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Pricing</a></li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown">Dropdown link</a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </li>
         </ul>
-        <ul class="dropdown-content" *showAuthed="true">
-          <li>
-            <span>{{currentUser.username}} ({{basicData.roleLabel}})</span>
-          </li>
-          <li>
-            <a class="nav-link" routerLinkActive="active" [routerLink]="['/account']">Profile</a>
-          </li>
-          <li>
-            <a class="nav-link" routerLinkActive="active" [routerLink]="['/logout']">Logout</a>
-          </li>
-        </ul>
-      </li>
-    </ul>
-
-    
-
+    </div> -->
   </div>
-</div>
+</nav>
+
 <!-- END HEADER -->
 
 

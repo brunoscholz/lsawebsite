@@ -1,11 +1,11 @@
 .icon {
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
 }
 
 .icon.clickable {
   cursor: pointer;
-  opacity: 0.5;
+  opacity: 0.7;
   transition: all 300ms ease;
 }
 
@@ -14,93 +14,60 @@
 }
 
 #top-nav {
-  padding: 1em 0;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  align-items: center;
-  height: 54px;
-  line-height: 54px;
+  /*#FDFCFF*/
+  background-color: #f5f5f5;
 }
 
-.logo {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-.logo a {
+.navbar-brand {
   color: #6C647B;
 }
 
-.logo a:hover, .logo a:focus {
+.navbar-brand:hover, .navbar-brand:focus {
   text-decoration: none;
 }
 
-.logo .logo-icon, a > img {
+.navbar-brand .logo-icon {
   width: 30px;
   height: 30px;
   margin-right: 0.5em;
+  line-height: 43px;
 }
 
-.logo .logo-text {
+.navbar-brand .logo-text {
   font-size: 10pt;
-  line-height: 30px;
   vertical-align: middle;
-  line-height: 54px;
+  line-height: 43px;
 }
 
 @media (min-width: 480px) {
-  .logo .logo-text {
+  .navbar-brand .logo-text {
     font-size: 14pt;
   }
 }
 
-.navbar-nav {
-  display: inline-block;
+li.nav-item, li.sign {
+  line-height: 43px;
 }
 
-.navbar-nav li {
-  height: 100%;
-  width: 54px;
+span.badge {
+  position: relative;
+  color: #000;
   float: left;
-}
-
-.navbar-nav li img {
-  width: 25px;
-  height: 25px;
-  vertical-align: middle;
-}
-
-.navbar-nav li span.badge {
-  position: absolute;
-  bottom: 0px;
-  right: 70px;
+  margin: -19px 0 0 0;
+  left: 10px;
   color: white;
   background-color: #DD5555;
-}
-
-#app-header {
-  padding: 1em 0;
-}
-
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
-    
 }
 
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
     display: none;
     position: absolute;
-    right: 0;
+    right: 90px;
     background-color: #f9f9f9;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
+    z-index: 1099;
     list-style: none;
 }
 
@@ -122,6 +89,6 @@
 }
 
 /* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {
+.sign:hover .dropdown-content {
   display: block;
 }
