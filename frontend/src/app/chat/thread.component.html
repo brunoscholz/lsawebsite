@@ -1,0 +1,8 @@
+<li class="media">
+  <img class="d-flex mr-3" src="{{thread.avatarSrc}}" alt="{{thread.name}}">
+  <div class="media-body">
+    <h5 class="mt-0">{{thread.name}} <span *ngIf="selected">&bull;</span></h5>
+    {{thread.lastMessage.text}}
+  </div>
+  <button class="btn primary pull-right" (click)="clicked($event)">Select</button>
+</li>

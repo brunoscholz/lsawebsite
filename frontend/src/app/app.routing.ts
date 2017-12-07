@@ -74,8 +74,8 @@ export const routes: Routes = [
                 loadChildren: 'app/compare/compare.module#CompareModule'
             },
             {
-                path: 'sample-page',
-                loadChildren: 'app/sample-page/sample-page.module#SamplePageModule'
+                path: 'messages',
+                loadChildren: 'app/chat/chat.module#ChatModule'
             }
         ],
     },

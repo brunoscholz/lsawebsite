@@ -1,0 +1,20 @@
+<div class="row" *ngIf="_errorMessage">
+  <div class="col-sm-12">
+  <p class="alert alert-danger">{{_errorMessage}}</p>
+  </div>
+</div>
+<!-- <div class="animated fadeIn" *ngIf="!_course && !_errorMessage">
+  <span class="spinner"></span>
+</div> -->
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-sm-12">
+
+      <!-- conversations -->
+      <ul class="list-unstyled">
+        <chat-thread *ngFor="let thread of threads | async" [thread]="thread"></chat-thread>
+      </ul>
+
+    </div>
+  </div>
+</div>

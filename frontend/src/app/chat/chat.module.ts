@@ -5,6 +5,8 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
 import { ChatWindowComponent } from './chat-window.component';
 import { ChatMessageComponent } from './chat-message.component';
+import { ThreadsComponent } from './threads.component';
+import { SingleThreadComponent } from './thread.component';
 
 import { MessageCounterComponent } from './message-counter.component';
 
@@ -22,11 +24,15 @@ import { MomentModule } from 'angular2-moment';
     declarations: [
         ChatWindowComponent,
         ChatMessageComponent,
+        ThreadsComponent,
+        SingleThreadComponent,
         MessageCounterComponent,
     ],
     exports: [
         ChatWindowComponent,
         ChatMessageComponent,
+        ThreadsComponent,
+        SingleThreadComponent,
         MessageCounterComponent,
     ]
 })
