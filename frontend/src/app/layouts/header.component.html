@@ -28,14 +28,14 @@
               </a>
               <ul class="dropdown-content" *showAuthed="false">
                 <li>
-                  <a class="nav-link" routerLinkActive="active" [routerLink]="['/']" [routerLinkActiveOptions]="{exact:true}">Home</a>
+                  <a class="nav-link" routerLinkActive="active" [routerLink]="['/']" [routerLinkActiveOptions]="{exact:true}">{{ 'home' | translate }}</a>
                 </li>
                 <li>
-                  <a class="nav-link" routerlinkactive="active" (click)="signUpClicked()" style="cursor: pointer;">Sign Up</a>
+                  <a class="nav-link" routerlinkactive="active" (click)="signUpClicked()" style="cursor: pointer;">{{ 'signUp' | translate }}</a>
                   <!-- routerLinkActive="active" [routerLink]="['/signup']" -->
                 </li>
                 <li>
-                  <a class="nav-link" routerlinkactive="active" (click)="signInClicked()" style="cursor: pointer;">Sign In</a>
+                  <a class="nav-link" routerlinkactive="active" (click)="signInClicked()" style="cursor: pointer;">{{ 'signIn' | translate }}</a>
                 </li>
               </ul>
               <ul class="dropdown-content" *showAuthed="true">
@@ -43,10 +43,10 @@
                   <span>{{currentUser.username}} ({{basicData.roleLabel}})</span>
                 </li>
                 <li>
-                  <a class="nav-link" routerLinkActive="active" [routerLink]="['/account']">Profile</a>
+                  <a class="nav-link" routerLinkActive="active" [routerLink]="['/account']">{{ 'profile' | translate }}</a>
                 </li>
                 <li>
-                  <a class="nav-link" routerLinkActive="active" [routerLink]="['/logout']">Logout</a>
+                  <a class="nav-link" routerLinkActive="active" [routerLink]="['/logout']">{{ 'logout' | translate }}</a>
                 </li>
               </ul>
             </li>
@@ -55,21 +55,12 @@
             <span class="navbar-toggler-icon"></span>
         </button>
     </div>
-    <!-- <div class="collapse navbar-collapse order-3 order-lg-2" id="navbarNavDropdown">
+    <div class="collapse navbar-collapse order-3 order-lg-2" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Features</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Pricing</a></li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown">Dropdown link</a>
-                <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </li>
+            <li class="nav-item"><button class="nav-link" (click)="switchLanguage('en')">en</button></li>
+            <li class="nav-item"><button class="nav-link" (click)="switchLanguage('pt-BR')">br</button></li>
         </ul>
-    </div> -->
+    </div>
   </div>
 </nav>
 

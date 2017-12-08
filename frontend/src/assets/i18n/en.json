@@ -1,0 +1,60 @@
+{
+    "Title": "Translation example",
+    "Intro": "Hello I am {{name}}, I am {{age}} years old.",
+
+    "intro1": "Make your dream of<br><span class='bold'>studying abroad </span>come true",
+    "intro1sub": "Choose the city of your <span class='bold'>dreams!</span>",
+
+	"intro2": "<span class='bold'>Best Reviewes </span> Schools",
+    "intro2sub": "Australia has an amazing variety of high quality schools for you to choose from.",
+
+    "intro3": "Courses with the <span class='bold'>best prices </span>",
+    "intro3sub": "Looking for the best deal in the market? We have it waiting for you.",
+
+    "home": "Home",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "profile": "Profile",
+    "logout": "Logout",
+
+    "searchPage": {
+	    "search": "Search",
+	    "title": "Search for...",
+	    "subTitle": "Find your School overseas.",
+	    "searchph": "Enter your search"
+    },
+
+    "course": "Course",
+    "courses": "Courses",
+    "comments": "Comment",
+    "contact": "Contact",
+    "reviews": "Reviews",
+
+    "schoolPage": {
+        "facilities": "Facilities"
+    },
+     "aboutPage": {
+        "intro": "We are LSA"
+    },
+    "contactPage": {
+    	"title": "Contact",
+    	"subTitle": "Send a message ",
+    	"openChat": "Open Chat",
+    	"fillForm": "Or fill the form bellow",
+    	"name": "Name",
+    	"nameph": "Enter your full name",
+    	"email": "Email",
+    	"emailph": "Enter yoou email address",
+    	"subject": "Subject",
+    	"subjectph": "Tell us what you want...",
+    	"message": "Mensagem",
+    	"messageph": "Enter the message",
+    	"send": "Send"
+    },
+    "preps": {
+    	"at": "at" 
+    },
+    "messages": {
+    	"notFound" : "Not Found"
+    }
+}

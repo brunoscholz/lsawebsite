@@ -2,7 +2,7 @@
   <div id="search-bar-mobile-input">
     <button id="mobile-search-toggler" data-toggle="modal" data-target="#search-mobile-modal" (click)="searchModalClicked()" class="mobile-input">
       <img src="assets/img/icons/search.svg" class="icon">
-      <p>Find your School overseas.</p>
+      <p>{{ 'searchPage.subTitle' | translate }}</p>
     </button>
   </div>
 </div>
@@ -10,10 +10,10 @@
   <form [formGroup]="_searchForm" (ngSubmit)="onSubmit(_searchForm.value)">
     <div class="input-container">
       <div class="input-field">
-        <p class="input-label">Search for...</p>
-        <input type="text" class="form-control" id="term" placeholder="Enter your search" [formControl]="_searchForm.controls['term']" [(ngModel)]="_term.q">
+        <p class="input-label">{{ 'searchPage.title' | translate }}</p>
+        <input type="text" class="form-control" id="term" placeholder="{{ 'searchPage.subTitle' | translate }}" [formControl]="_searchForm.controls['term']" [(ngModel)]="_term.q">
       </div>
-      <button type="submit" class="btn btn-sm btn-primary" ><i class="fa fa-dot-circle-o"></i> Search</button>
+      <button type="submit" class="btn btn-sm btn-primary" ><i class="fa fa-dot-circle-o"></i> {{ 'searchPage.search' | translate }}</button>
     </div>
   </form>
 </div>
@@ -23,10 +23,10 @@
   <form [formGroup]="_searchForm" (ngSubmit)="onSubmit(_searchForm.value)">
     <div class="input-container">
       <div class="input-field">
-        <p class="input-label">Search for...</p>
-        <input type="text" class="form-control" id="term" placeholder="Enter your search" [formControl]="_searchForm.controls['term']" [(ngModel)]="_term.q">
+        <p class="input-label">{{ 'searchPage.title' | translate }}</p>
+        <input type="text" class="form-control" id="term" placeholder="{{ 'searchPage.searchph' | translate }}" [formControl]="_searchForm.controls['term']" [(ngModel)]="_term.q">
       </div>
-      <button type="submit" class="btn btn-sm btn-primary" ><i class="fa fa-dot-circle-o"></i> Search</button>
+      <button type="submit" class="btn btn-sm btn-primary" ><i class="fa fa-dot-circle-o"></i> {{ 'searchPage.search' | translate }}</button>
     </div>
   </form>
 </div>

@@ -1,0 +1,60 @@
+{
+    "Title": "Exemplo de Tradução",
+    "Intro": "Olá, meu nome é {{name}}, tenho {{age}} anos.",
+
+    "intro1": "Torne em realidade<br> o seu sonho de <strong>estudar fora</strong>",
+    "intro1sub": "Escolha a cidade dos seus <strong>sonhos!</strong>",
+
+	"intro2": "Escolas com as <strong>melhores avaliações</strong>",
+    "intro2sub": "A Austrália tem uma grande variedade de escolas altamente qualificadas pra você escolher.",
+
+    "intro3": "Cursos com os <strong>melhores preços</strong>",
+    "intro3sub": "Procurando as melhores ofertas? Temos cursos esperando por você.",
+
+    "home": "Início",
+    "signIn": "Entrar",
+    "signUp": "Registrar",
+    "profile": "Perfil",
+    "logout": "Sair",
+
+    "searchPage": {
+	    "search": "Buscar",
+	    "title": "Buscar por...",
+	    "subTitle": "Ache uma escola do outro lado do mundo.",
+	    "searchph": "Digite o que deseja procurar"
+    },
+
+    "course": "Curso",
+    "courses": "Cursos",
+    "comments": "Comentários",
+    "contact": "Contato",
+    "reviews": "Avaliações",
+
+    "schoolPage": {
+        "facilities": "Estrutura"
+    },
+     "aboutPage": {
+        "Intro": "Nós somos a LSA"
+    },
+    "contactPage": {
+    	"title": "Contato",
+    	"subTitle": "Envie uma mensagem ",
+    	"openChat": "Abrir o Chat",
+    	"fillForm": "Ou preencha o formulário abaixo",
+    	"name": "Nome",
+    	"nameph": "Seu nome completo",
+    	"email": "Email",
+    	"emailph": "Digite seu endereço de email",
+    	"subject": "Assunto",
+    	"subjectph": "O que deseja?",
+    	"message": "Mensagem",
+    	"messageph": "Dúvidas, questionamentos, críticas e sugestões...",
+    	"send": "Enviar"
+    },
+    "preps": {
+    	"at": "em" 
+    },
+    "messages": {
+    	"NotFound" : "Não encontrado"
+    }
+}

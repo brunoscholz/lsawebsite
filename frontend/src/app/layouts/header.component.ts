@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+
 import { UserService } from "../model/user.service";
 import { UserDataService } from "../model/user-data.service";
 
@@ -26,7 +28,8 @@ export class HeaderComponent implements OnInit {
   constructor(
     private _userService: UserService,
     private _userDataService: UserDataService,
-    private _compareService: CompareService
+    private _compareService: CompareService,
+    private _translate: TranslateService
   ) { }
 
   ngOnInit(): void {
@@ -45,6 +48,10 @@ export class HeaderComponent implements OnInit {
       this._hasProducts = hasp;
     });
 
+  }
+
+  switchLanguage(language: string) {
+    this._translate.use(language);
   }
 
   signUpClicked() {

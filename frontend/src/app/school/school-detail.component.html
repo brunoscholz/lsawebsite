@@ -14,14 +14,14 @@
 
         <div class="card-group">
           <div class="card-group-title">
-            <p class="title"><span class="bold">{{_school.name}}, </span>at {{_school.location?.geography.cityName}}</p>
+            <p class="title"><span class="bold">{{_school.name}}, </span>{{ 'preps.at' | translate }} {{_school.location?.geography.cityName}}</p>
             <p class="subtitle">{{_school.description}}</p>
           </div>
         </div>
 
         <div class="card-group">
           <div class="card-group-title">
-            <p class="title"><span class="bold">Facilities </span></p>
+            <p class="title"><span class="bold">{{ 'schoolPage.facilities' | translate }} </span></p>
             <p class="subtitle"></p>
           </div>
 
@@ -91,7 +91,7 @@
 
     <div class="card-group">
       <div class="card-group-title">
-        <p class="title"><span class="bold">Courses </span></p>
+        <p class="title"><span class="bold">{{ 'courses' | translate }} </span></p>
         <p class="subtitle" *ngIf="!_school.courses">No courses registered yet...</p>
       </div>
 
@@ -107,7 +107,7 @@
 
     <div class="card-group">
       <div class="card-group-title">
-        <p class="title"><span class="bold">Comments </span></p>
+        <p class="title"><span class="bold">{{ 'comments' | translate }} </span></p>
         <p class="subtitle" *ngIf="!_school.ratings">No comments yet...</p>
       </div>
 
@@ -120,8 +120,8 @@
 
     <div class="card-group">
       <div class="card-group-title">
-        <p class="title"><span class="bold">Contact </span></p>
-        <p class="subtitle">Send a message to this school...</p>
+        <p class="title"><span class="bold">{{ 'contactPage.title' | translate }} </span></p>
+        <p class="subtitle">{{ 'contactPage.subTitle' | translate }}</p>
       </div>
 
       <section class="contact-chat">
@@ -130,11 +130,11 @@
           <button class="btn btn-primary" (click)="createThread()">
             <i class="ion-plus-round"></i>
             &nbsp;
-            Open Chat
+            {{ 'contactPage.openChat' | translate }}
           </button>
         </div>
         <div class="col-md-12">
-          Or send an email through the form bellow
+          {{ 'contactPage.fillForm' | translate }}
         </div>
       </section>
 
@@ -145,9 +145,9 @@
               <div class="form-group-wrapper row">
                 <div class="col-sm-6">
                   <div class="form-group" [ngClass]="{'has-danger': !_isValid('name')}">
-                    <label class="col-sm-12" for="name">Name <span class="required">*</span></label>
+                    <label class="col-sm-12" for="name">{{ 'contactPage.name' | translate }} <span class="required">*</span></label>
                     <div class="col-sm-12">
-                      <input type="text" class="form-control" id="name" placeholder="Enter your name" [formControl]="_form.controls['name']" [ngClass]="{'form-control-danger': !_isValid('name')}" [(ngModel)]="_message.name" />
+                      <input type="text" class="form-control" id="name" placeholder="{{ 'contactPage.nameph' | translate }}" [formControl]="_form.controls['name']" [ngClass]="{'form-control-danger': !_isValid('name')}" [(ngModel)]="_message.name" />
                     </div><div class="clearfix"></div>
                     <div class="col-sm-12" *ngIf="!_formErrors.name.valid">
                       <span class="help-block help-block-error">{{_formErrors.name.message}}</span>
@@ -158,9 +158,9 @@
                   </div>
 
                   <div class="form-group" [ngClass]="{'has-danger': !_isValid('email')}">
-                    <label class="col-sm-12" for="email">Email Address <span class="required">*</span></label>
+                    <label class="col-sm-12" for="email">{{ 'contactPage.email' | translate }} <span class="required">*</span></label>
                     <div class="col-sm-12">
-                      <input type="email" class="form-control" id="email" placeholder="Enter your email address" [formControl]="_form.controls['email']" [ngClass]="{'form-control-danger': !_isValid('email')}" [(ngModel)]="_message.email" />
+                      <input type="email" class="form-control" id="email" placeholder="{{ 'contactPage.emailph' | translate }}" [formControl]="_form.controls['email']" [ngClass]="{'form-control-danger': !_isValid('email')}" [(ngModel)]="_message.email" />
                     </div><div class="clearfix"></div>
                     <div class="col-sm-12" *ngIf="!_formErrors.email.valid">
                       <span class="help-block help-block-error">{{_formErrors.email.message}}</span>
@@ -171,9 +171,9 @@
                   </div>
 
                   <div class="form-group" [ngClass]="{'has-danger': !_isValid('subject')}">
-                    <label class="col-sm-12" for="subject">Subject <span class="required">*</span></label>
+                    <label class="col-sm-12" for="subject">{{ 'contactPage.subject' | translate }} <span class="required">*</span></label>
                     <div class="col-sm-12">
-                      <input type="text" class="form-control" id="subject" placeholder="Enter the subject" [formControl]="_form.controls['subject']" [ngClass]="{'form-control-danger': !_isValid('subject')}" [(ngModel)]="_message.subject"/>
+                      <input type="text" class="form-control" id="subject" placeholder="{{ 'contactPage.subjectph' | translate }}" [formControl]="_form.controls['subject']" [ngClass]="{'form-control-danger': !_isValid('subject')}" [(ngModel)]="_message.subject"/>
                     </div><div class="clearfix"></div>
                     <div class="col-sm-12" *ngIf="!_formErrors.subject.valid">
                       <span class="help-block help-block-error">{{_formErrors.subject.message}}</span>
@@ -182,9 +182,9 @@
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group" [ngClass]="{'has-danger': !_isValid('message')}">
-                    <label class="col-sm-12" for="message">Message <span class="required">*</span></label>
+                    <label class="col-sm-12" for="message">{{ 'contactPage.message' | translate }} <span class="required">*</span></label>
                     <div class="col-sm-12">
-                      <textarea rows="13" class="form-control" id="message" placeholder="Enter the message" [formControl]="_form.controls['message']" [ngClass]="{'form-control-danger': !_isValid('message')}" [(ngModel)]="_message.message"></textarea>
+                      <textarea rows="13" class="form-control" id="message" placeholder="{{ 'contactPage.messageph' | translate }}" [formControl]="_form.controls['message']" [ngClass]="{'form-control-danger': !_isValid('message')}" [(ngModel)]="_message.message"></textarea>
                     </div><div class="clearfix"></div>
                     <div class="col-sm-12" *ngIf="!_formErrors.message.valid">
                       <span class="help-block help-block-error">{{_formErrors.message.message}}</span>
@@ -197,7 +197,7 @@
                 <div class="col-sm-6">
                 </div>
                 <div class="col-sm-6 text-sm-right" style="padding-right: 30px;">
-                  <button type="submit" class="btn btn-primary" [disabled]="!_form.valid || _submitted == true">Send</button>
+                  <button type="submit" class="btn btn-primary" [disabled]="!_form.valid || _submitted == true">{{ 'contactPage.send' | translate }}</button>
                   <div class="spinner spinner-login" *ngIf="_submitted"></div>
                 </div>
               </div>

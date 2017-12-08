@@ -31,6 +31,8 @@ import { SearchBarComponent } from '../search/search-bar.component';
 
 import { MapComponent } from "../maps/map.component";
 
+import { TranslateModule } from '@ngx-translate/core';
+
         //ContainsModule.provideContains(contains),
 @NgModule({
     imports: [
@@ -40,6 +42,7 @@ import { MapComponent } from "../maps/map.component";
         ReactiveFormsModule,
         ModalModule,
         AuthModule,
+        TranslateModule,
     ],
     declarations: [
         LimitToPipe,
@@ -62,6 +65,7 @@ import { MapComponent } from "../maps/map.component";
         FormsModule,
         ReactiveFormsModule,
         MomentModule,
+        TranslateModule,
         LimitToPipe,
         Nl2BrPipe,
         KeysPipe,

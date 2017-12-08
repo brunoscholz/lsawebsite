@@ -47,6 +47,14 @@ import { ThreadService } from './model/thread.service';
 
 import { AgmCoreModule } from '@agm/core';
 
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { Http } from '@angular/http';
+
+export function HttpLoaderFactory(http: Http) {
+    return new TranslateHttpLoader(http);
+}
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -60,6 +68,13 @@ import { AgmCoreModule } from '@agm/core';
         ModalModule.forRoot(),
         ChartsModule,
         HttpModule,
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [Http]
+            }
+        }),
         SharedModule,
         CompareModule,
         LoginModule,
