@@ -72,7 +72,7 @@ export class SchoolDetailComponent implements OnInit {
     .subscribe(
       school => {
         this._school = school;
-        this._bgImage = this._sanitizer.bypassSecurityTrustStyle(`url(${this._school.media[0].image.large}) 0 0px no-repeat`);
+        this._bgImage = this._sanitizer.bypassSecurityTrustStyle(`url(${this._school.images[0].large}) 0 0px no-repeat`);
         console.log(school);
       },
       error =>  {
@@ -84,6 +84,11 @@ export class SchoolDetailComponent implements OnInit {
         }
       }
     );
+  }
+
+  createThread() {
+    // const sUser: ChatUser = new ChatUser();
+    // const tSchool: Thread = new Thread('t', ladycap.name, ladycap.avatarSrc);
   }
 
   onSubmit() {

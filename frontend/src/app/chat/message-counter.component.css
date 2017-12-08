@@ -13,4 +13,9 @@ span.badge {
   left: 10px;
   color: white;
   background-color: #DD5555;
+  opacity: 1;
+}
+
+span.badge.hidden {
+  opacity: 0;
 }

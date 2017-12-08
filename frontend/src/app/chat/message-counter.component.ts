@@ -14,7 +14,7 @@ import * as _ from 'lodash';
 })
 
 export class MessageCounterComponent implements OnInit {
-  unreadMessagesCount: number;
+  unreadMessagesCount: number = 0;
 
   constructor(
     private _router: Router,

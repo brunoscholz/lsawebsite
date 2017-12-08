@@ -20,7 +20,8 @@ export class School {
   user:User;
 
   courses: Course[];
-  media: Media[];
+  //media: Media[];
+  images: Image[];
   ratings: Rating[];
   relationships: Relationship[];
   schoolAwards: SchoolAwards[];

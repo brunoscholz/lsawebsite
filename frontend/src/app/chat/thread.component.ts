@@ -25,7 +25,7 @@ export class SingleThreadComponent implements OnInit {
   }
 
   clicked(event: any): void {
-    this._threadService.setCurrentThread(this.thread);
+    this._threadService.setCurrentThread(this.thread, true);
     event.preventDefault();
   }
 }

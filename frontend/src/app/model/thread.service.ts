@@ -16,6 +16,9 @@ export class ThreadService {
   // `currentThread` contains the currently selected thread
   currentThread: Subject<Thread> = new BehaviorSubject<Thread>(new Thread());
 
+  private openWindowSubject = new Subject<boolean>();
+  public openChatWindow = this.openWindowSubject.asObservable();
+
   // `currentThreadMessages` contains the set of messages for the currently
   // selected thread
   currentThreadMessages: Observable<Message[]>;
@@ -65,10 +68,14 @@ export class ThreadService {
     this.currentThread.subscribe(this.messagesService.markThreadAsRead);
   }
 
-  setCurrentThread(newThread: Thread): void {
+  setCurrentThread(newThread: Thread, openWnd: boolean = false): void {
     this.currentThread.next(newThread);
+    this.openWindow(openWnd);
   }
 
+  openWindow(status:boolean) {
+    this.openWindowSubject.next(status);
+  }
 }
 
 /*export const threadsServiceInjectables: Array<any> = [

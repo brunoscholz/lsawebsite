@@ -124,7 +124,21 @@
         <p class="subtitle">Send a message to this school...</p>
       </div>
 
-      <section class="facilities">
+      <section class="contact-chat">
+        <div class="col-md-12">
+          <!-- <open-chat-button []=""></open-chat-button> -->
+          <button class="btn btn-primary" (click)="createThread()">
+            <i class="ion-plus-round"></i>
+            &nbsp;
+            Open Chat
+          </button>
+        </div>
+        <div class="col-md-12">
+          Or send an email through the form bellow
+        </div>
+      </section>
+
+      <section class="contact-form">
         <div class="col-md-12">
           <form [formGroup]="_form" (ngSubmit)="onSubmit()">
             <div class="card-block">

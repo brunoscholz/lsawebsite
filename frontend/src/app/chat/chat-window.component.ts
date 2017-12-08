@@ -43,20 +43,29 @@ export class ChatWindowComponent implements OnInit {
     $event.stopPropagation();
     this.status.isopen = !this.status.isopen;
 
+    if(!this.status.isopen) {
+      this.close();
+    } else {
+      this.open();
+    }
+  }
+
+  open() {
     const cx: any = this.el.nativeElement.querySelector('#close .cx');
     const cy: any = this.el.nativeElement.querySelector('#close .cy');
     const cb: any = this.el.nativeElement.querySelector('#chatbox');
+    cx.classList.add('s1', 's2', 's3');
+    cy.classList.add('s1', 's2', 's3');
+    cb.classList.remove('collapsed');
+  }
 
-    if(!this.status.isopen) {
-      cx.classList.remove('s1', 's2', 's3');
-      cy.classList.remove('s1', 's2', 's3');
-      cb.classList.add('collapsed');
-    } else {
-      cx.classList.add('s1', 's2', 's3');
-      cy.classList.add('s1', 's2', 's3');
-      cb.classList.remove('collapsed');
-    }
-
+  close() {
+    const cx: any = this.el.nativeElement.querySelector('#close .cx');
+    const cy: any = this.el.nativeElement.querySelector('#close .cy');
+    const cb: any = this.el.nativeElement.querySelector('#chatbox');
+    cx.classList.remove('s1', 's2', 's3');
+    cy.classList.remove('s1', 's2', 's3');
+    cb.classList.add('collapsed');
   }
 
   ngOnInit(): void {
@@ -68,6 +77,14 @@ export class ChatWindowComponent implements OnInit {
       (thread: Thread) => {
         this.currentThread = thread;
       });
+
+    this._threadService.openChatWindow
+    .subscribe((st) => {
+      if(st && !this.status.isopen) {
+        this.status.isopen = true;
+        this.open();
+      }
+    });
 
     this._userService.currentChatUser
       .subscribe(
