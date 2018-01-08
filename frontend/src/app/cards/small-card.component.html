@@ -3,7 +3,7 @@
     <!-- Image -->
     <div class="small-card-img">
       <compare-button [inCard]="true" [course]="course"></compare-button>
-      <img src="{{course.media[0].image.large}}" alt="" (click)="viewCourse(course.courseId)">
+      <img src="{{course.images[0].large}}" alt="" (click)="viewCourse(course.id)">
     </div>
 
     <!-- Body -->
@@ -21,7 +21,7 @@
   <div class="small-card">
     <!-- Image -->
     <div class="small-card-img">
-      <img src="{{school.media[0].image.large}}" alt="" (click)="viewSchool(school.schoolId)">
+      <img src="{{school.images[0].large}}" alt="" (click)="viewSchool(school.id)">
     </div>
 
     <!-- Body -->

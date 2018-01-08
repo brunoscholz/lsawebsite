@@ -2,16 +2,16 @@
   white-space: pre;
   height: 54px;
   line-height: 54px;
-  padding: 0 13px;
+  padding: 0 13px 0 30px;
   font-size: 14px;
   font-weight: 700;
-  text-align: center;
+  text-align: left;
   /*cursor: pointer;*/
 }
 
 .table thead th,
 .table tbody td {
-  text-align: center;
+  text-align: left;
 }
 
 .table thead, table tbody th {
@@ -31,23 +31,3 @@
   border-right: 2px solid #DD5555;
 }
 
-/* Table column sizing
-================================== */
-.comparison-table--1col > .comparison-table-cell {
-  width: 100%;
-}
-.comparison-table--2cols > .comparison-table-cell {
-  width: 50%;
-}
-.comparison-table--3cols > .comparison-table-cell {
-  width: 33.33%;
-}
-.comparison-table--4cols > .comparison-table-cell {
-  width: 25%;
-}
-.comparison-table--5cols > .comparison-table-cell {
-  width: 20%;
-}
-.comparison-table--6cols > .comparison-table-cell {
-  width: 16.6%;
-}

@@ -54,6 +54,14 @@ export class CompareService implements OnDestroy {
     });
   }
 
+  refreshTable():void {
+    this._courses = this.getTable();
+    if(this._courses.length > 0) {
+      this.currentTableSubject.next(this._courses);
+      this.hasProductsSubject.next(this._courses.length);
+    }
+  }
+
   getTable() {
     return <Course[]>JSON.parse(localStorage.getItem('compare-table'));
   }

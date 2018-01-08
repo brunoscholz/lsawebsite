@@ -106,11 +106,11 @@ class Course extends \yii\db\ActiveRecord
 
                     return [
                         'type' => 'Course',
-                        'id' => $model->courseId,
+                        'courseId' => $model->courseId,
                         'name' => $model->name,
-                        'body' => strip_tags($model->about),
+                        'about' => strip_tags($model->about),
                         'cost' => $model->cost,
-                        'picture' => $model->media,
+                        'images' => $model->images,
                         'reviews' => $model->ratings,
                         //['name' => 'url', 'value' => $model->url, 'type' => SearchBehavior::FIELD_KEYWORD],
                         // ['name' => 'model', 'value' => 'page', 'type' => SearchBehavior::FIELD_UNSTORED],

@@ -1,0 +1,20 @@
+:host {
+  width: 100%;
+}
+
+tr {
+  border: none;
+}
+
+th {
+  white-space: pre;
+  height: 54px;
+  line-height: 54px;
+  padding: 0 13px 0 30px;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: left;
+  /*cursor: pointer;*/
+  color: #DD5555;
+  border-bottom: none !important;
+}

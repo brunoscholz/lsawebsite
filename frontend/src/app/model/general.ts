@@ -91,16 +91,18 @@ export class Course {
   created_at: number;
   updated_at: number;
   status: string;
+
+  school: School;
   schoolCampi: SchoolCampi;
   courseType: CourseType;
-  school: School;
   courseEnrolls: CourseEnroll[];
   courseFeatures: CourseFeatures[];
   courseInstructors: CourseInstructor[];
   courseSections: CourseSection[];
-  media: Media[];
   ratings: Rating[];
   relationships: Relationship[];
+  //media: Media[];
+  images: Image[];
 
   enrolled: boolean;
 

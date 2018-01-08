@@ -1,0 +1,32 @@
+.table th, .table td {
+  white-space: pre;
+  height: 54px;
+  line-height: 54px;
+  padding: 0 13px 0 30px;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: left;
+  /*cursor: pointer;*/
+}
+
+.table thead th,
+.table tbody td {
+  text-align: left;
+}
+
+.table thead, table tbody th {
+  color: #DD5555;
+}
+
+.table tbody tr:hover > th {
+  background-color: #DD5555;
+  color: white;
+}
+
+.table thead th {
+  border-bottom: 1px solid #c2cfd6;
+}
+
+.table tbody th {
+  border-right: 2px solid #DD5555;
+}

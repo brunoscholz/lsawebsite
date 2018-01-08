@@ -15,7 +15,7 @@
 4 verbose stack     at ReadFileContext.callback (C:\Users\bruno_000\AppData\Roaming\npm\node_modules\npm\node_modules\graceful-fs\graceful-fs.js:78:16)
 4 verbose stack     at FSReqWrap.readFileAfterOpen [as oncomplete] (fs.js:365:13)
 5 verbose cwd C:\wamp\www\Booking\yiiangular
-6 error Windows_NT 10.0.15063
+6 error Windows_NT 10.0.16299
 7 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Users\\bruno_000\\AppData\\Roaming\\npm\\node_modules\\npm\\bin\\npm-cli.js" "start"
 8 error node v6.9.1
 9 error npm  v4.0.2

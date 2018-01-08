@@ -4,6 +4,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { CompareService } from "../model/compare.service";
 import { User, Course, School } from "../model/general";
 
+import * as _ from 'underscore';
+
 @Component({
     selector: 'app-compare',
     templateUrl: './compare.component.html',
@@ -14,18 +16,27 @@ export class CompareComponent implements OnInit {
      _mode:string = '';
      _user:User;
      _profileId: string;
-     /*_currentUser:User;
-     _isUser: boolean;*/
 
-    constructor(public _route: ActivatedRoute,
-                public _router: Router) {
+     _courses: Course[];
+
+     _columns;
+     _data;
+
+    constructor(
+        public _compare: CompareService,
+        public _route: ActivatedRoute,
+        public _router: Router
+    ) {
     }
 
     public ngOnInit() {
         this._errorMessage = "";
         
         this._profileId = this._route.snapshot.params['userId'];
-        
+
+        this._courses = this._compare.getTable();
+        //console.log(this._courses);
+
        /* this._userService.currentUser
         .subscribe((userData: User) => {
             this._user = userData;
@@ -47,5 +58,54 @@ export class CompareComponent implements OnInit {
                     }
                 }
             );*/
+
+        this._columns = this.getColumns();
+        this._data = this.getData();
+    }
+
+    getColumns() {
+        let mp = _.map(this._courses, function(c) { return c['name']; });
+        return mp;
+    }
+
+    getData() {
+        let self = this;
+        let mp = _.map(this.getItems(), function(c) {
+            let m = _.map(self._courses, function(d) {
+                return d[c['field']];
+            });
+            return {'rowName': c['label'], 'columns': m};
+        })
+
+        return mp;
+    }
+
+    getCourseData() {
+
+    }
+
+    public getItems():Array<any>{
+        return [
+            {
+                label: 'Price',
+                field: 'cost'
+            },
+            {
+                label: 'Ratings',
+                field: 'rating'
+            },
+            {
+                label: 'Reviews',
+                field: 'cost'
+            },
+            {
+                label: 'Certified?',
+                field: 'rating'
+            },
+            {
+                label: 'TOEFL valid?',
+                field: 'rating'
+            }
+        ];
     }
 }

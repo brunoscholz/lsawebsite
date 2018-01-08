@@ -28,12 +28,14 @@ export class SchoolDetailComponent implements OnInit {
   _bgImage: any;
   _message: any = {};
 
-  constructor(public _schoolDataService: SchoolDataService,
-              public _userService: UserService,
-              public _route: ActivatedRoute,
-              public _router: Router,
-              private _sanitizer: DomSanitizer,
-              private _formBuilder:FormBuilder) {
+  constructor(
+    public _schoolDataService: SchoolDataService,
+    public _userService: UserService,
+    public _route: ActivatedRoute,
+    public _router: Router,
+    private _sanitizer: DomSanitizer,
+    private _formBuilder:FormBuilder
+  ) {
 
     // Construct form group
     this._form = _formBuilder.group({

@@ -88,10 +88,10 @@ class School extends \yii\db\ActiveRecord
                     /** @var self $model */
                     return [
                         'type' => 'School',
-                        'id' => $model->schoolId,
+                        'schoolId' => $model->schoolId,
                         'name' => $model->name,
-                        'body' => strip_tags($model->description),
-                        'picture' => $model->media,
+                        'description' => strip_tags($model->description),
+                        'images' => $model->images,
                         'reviews' => $model->ratings,
                         //['name' => 'url', 'value' => $model->url, 'type' => SearchBehavior::FIELD_KEYWORD],
                         // ['name' => 'model', 'value' => 'page', 'type' => SearchBehavior::FIELD_UNSTORED],

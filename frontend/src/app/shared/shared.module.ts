@@ -33,6 +33,8 @@ import { MapComponent } from "../maps/map.component";
 
 import { TranslateModule } from '@ngx-translate/core';
 
+import { TableModule } from '../table/table.module';
+
         //ContainsModule.provideContains(contains),
 @NgModule({
     imports: [
@@ -43,6 +45,7 @@ import { TranslateModule } from '@ngx-translate/core';
         ModalModule,
         AuthModule,
         TranslateModule,
+        TableModule,
     ],
     declarations: [
         LimitToPipe,
@@ -70,6 +73,7 @@ import { TranslateModule } from '@ngx-translate/core';
         Nl2BrPipe,
         KeysPipe,
         FromNowPipe,
+        TableModule,
 
         BigCardComponent,
         SmallCardComponent,

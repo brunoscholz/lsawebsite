@@ -10,7 +10,8 @@ import { ThreadService } from '../model/thread.service';
 })
 export class ThreadsComponent {
   threads: Observable<any>;
-
+  _errorMessage: string;
+  
   constructor(private _threadService: ThreadService) {
     this.threads = _threadService.orderedThreads;
   }

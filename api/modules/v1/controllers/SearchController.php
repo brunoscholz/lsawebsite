@@ -183,51 +183,47 @@ class SearchController extends Controller
 		// best reviewes schools
 		$school = \app\models\School::find()
 			->limit(7)
-			->joinWith(['media', 'media.image'])
-			->andWhere(['tbl_school.status' => 'ACT'])
-			->asArray();
+			->andWhere(['tbl_school.status' => 'ACT']);
 
 		/*var_dump($school->createCommand()->rawsql);
 		die();*/
 
 		foreach ($school->each() as $sc)
 		{
-			if($sc['media'][0]['image']['thumb'] == '')
-				$sc['media'][0]['image']['thumb'] = 'assets/img/generic-avatar.png';
-			if($sc['media'][0]['image']['large'] == '')
-				$sc['media'][0]['image']['large'] = 'assets/img/generic-cover.jpg';
-			//$temp = $sc->toArray();
-			/*
-			$tmpMedia = array();
-			foreach ($sc->media as $media) {
-				$tmpMedia[] = $media->toArray();
-			}
-			$temp['media'] = $tmpMedia;*/
+			$temp = $sc->toArray();
+			/*if($sc['images'][0]['thumb'] == '')
+				$sc['images'][0]['thumb'] = 'assets/img/generic-avatar.png';
+			if($sc['images'][0]['large'] == '')
+				$sc['images'][0]['large'] = 'assets/img/generic-cover.jpg';*/
 
-			$models[] = ['type' => 'School', 'model' => $sc];
+			$tmpMedia = array();
+			foreach ($sc->images as $media) {
+				if($media)
+					$tmpMedia[] = $media->toArray();
+			}
+			$temp['images'] = $tmpMedia;
+			
+
+			$models[] = ['type' => 'School', 'model' => $temp];
 		}
 
 		// best priced courses
 		$course = \app\models\Course::find()
 			->limit(7)
-			->joinWith(['media', 'media.image'])
-			->andWhere(['tbl_course.status' => 'ACT'])
-			->asArray();
+			->andWhere(['tbl_course.status' => 'ACT']);
 
 		foreach ($course->each() as $co)
 		{
-			if($co['media'][0]['image']['thumb'] == '')
-				$co['media'][0]['image']['thumb'] = 'assets/img/generic-avatar.png';
-			if($co['media'][0]['image']['large'] == '')
-				$co['media'][0]['image']['large'] = 'assets/img/generic-cover.jpg';
-			//$temp = $co->toArray();
-			/*$tmpMedia = array();
-			foreach ($co->media as $media) {
-				$tmpMedia[] = $media->toArray();
+			$temp = $co->toArray();
+			
+			$tmpMedia = array();
+			foreach ($co->images as $media) {
+				if($media)
+					$tmpMedia[] = $media->toArray();
 			}
-			$temp['media'] = $tmpMedia;*/
+			$temp['images'] = $tmpMedia;
 
-			$models[] = ['type' => 'Course', 'model' => $co];
+			$models[] = ['type' => 'Course', 'model' => $temp];
 		}
 
 

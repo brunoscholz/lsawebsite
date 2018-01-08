@@ -41,13 +41,13 @@
           
         <section id="content1">
           <p>
-            <small-card *ngFor="let course of _data.Course" [course]="course" (click)="viewCourse(course.id)"></small-card>
+            <small-card *ngFor="let school of _data.School" [school]="school" (click)="viewSchool(school.id)"></small-card>
           </p>
         </section>
           
         <section id="content2">
           <p>
-            <small-card *ngFor="let school of _data.School" [school]="school" (click)="viewSchool(school.id)"></small-card>
+            <small-card *ngFor="let course of _data.Course" [course]="course" (click)="viewCourse(course.id)"></small-card>
           </p>
         </section>
           

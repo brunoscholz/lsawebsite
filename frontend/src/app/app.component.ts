@@ -7,6 +7,7 @@ import { UserDataService } from "./model/user-data.service";
 import { ChatExampleData } from './chat/chat-example-data';
 import { MessageService } from './model/message.service';
 import { ThreadService } from './model/thread.service';
+import { CompareService } from './model/compare.service';
 
 @Component({
     selector: 'body',
@@ -20,6 +21,7 @@ export class AppComponent {
 		public _userService: UserDataService,
 		public _messageService: MessageService,
 		public _threadService: ThreadService,
+        public _compareService: CompareService,
         public translate: TranslateService
 	) {
         // this language will be used as a fallback when a translation isn't found in the current language
@@ -37,6 +39,8 @@ export class AppComponent {
 
         // get user info... hopefully once only
         this._userService.populate();
+
+        this._compareService.refreshTable();
 
         ChatExampleData.init(_messageService, _threadService, _userService);
     }

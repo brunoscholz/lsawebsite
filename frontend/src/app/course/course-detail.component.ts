@@ -19,11 +19,13 @@ export class CourseDetailComponent implements OnInit {
     _errorMessage: string;
     _bgImage: any;
 
-    constructor(public _courseDataService: CourseDataService,
-                public _userService: UserService,
-                public _route: ActivatedRoute,
-                public _router: Router,
-                private _sanitizer: DomSanitizer) {}
+    constructor(
+        public _courseDataService: CourseDataService,
+        public _userService: UserService,
+        public _route: ActivatedRoute,
+        public _router: Router,
+        private _sanitizer: DomSanitizer
+    ) {}
 
     ngOnInit() {
         this._id = this._route.snapshot.params['courseId'];
@@ -36,7 +38,7 @@ export class CourseDetailComponent implements OnInit {
         .subscribe(
             course => {
                 this._course = course;
-                this._bgImage = this._sanitizer.bypassSecurityTrustStyle(`url(${this._course.media[0].image.large}) 0 0px no-repeat`);
+                this._bgImage = this._sanitizer.bypassSecurityTrustStyle(`url(${this._course.images[0].large}) 0 0px no-repeat`);
                 console.log(this._course);
             },
             error =>  {
